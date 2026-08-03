@@ -1,0 +1,7 @@
+.git
+backups
+docs
+tools
+node_modules
+*.py
+_*.html
