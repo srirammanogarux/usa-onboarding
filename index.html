@@ -1041,9 +1041,9 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
   animation:fpBreathe 3.2s ease-in-out infinite;
   transition:opacity .4s var(--ease-out),transform .5s var(--ease-out);}
 .fingerp:active{transform:scale(.97);}
-.fp-stack{position:relative;display:block;width:102px;height:128px;}
+.fp-stack{position:relative;display:block;width:104px;height:113px;}
 .fp-stack svg{position:absolute;inset:0;width:100%;height:100%;}
-.fp-base svg{stroke:rgba(214,210,255,.28);}
+.fp-base svg{stroke:rgba(214,210,255,.34);}
 .fp-lit svg{stroke:#FFFFFF;}
 /* the lit copy is uncovered bottom to top, in step with the hold */
 .fp-lit{position:absolute;inset:0;clip-path:inset(100% 0% 0% 0%);
@@ -1327,8 +1327,8 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     <h2 class="fq">¿Prefieres la app<br>en español?</h2>
     <p class="fsub">Las instrucciones aparecerán en tu idioma. El inglés que practicas sigue siendo 100% real.</p>
     <div class="opts" data-adv="q2">
-      <button class="opt"><span class="flag">🇪🇸</span><span class="t-option">Sí, en español</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-      <button class="opt"><span class="flag">🇺🇸</span><span class="t-option">Keep it in English</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="opt" data-val="es"><span class="flag">🇪🇸</span><span class="t-option">Sí, en español</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="opt" data-val="en"><span class="flag">🇺🇸</span><span class="t-option">Keep it in English</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
     </div>
   </section>
 
@@ -1669,7 +1669,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
   <section class="screen fs" id="act">
     <span class="eyebrow" style="margin-top:26px">Your first practice</span>
     <div class="coach"><img class="av-img" src="images/sarah_av.webp" alt="Sarah"><div><div class="cn">Sarah</div><div class="cr">your speaking coach</div></div></div>
-    <div class="saybub"><span class="say-ctx" id="actCtx"></span><span class="say-q" id="actQ"></span></div>
+    <div class="saybub"><span class="say-ctx" id="actCtx"></span><span class="say-q" id="actQ" data-en></span></div>
     <div id="actMode"></div>
     <div class="fcta" style="align-items:center">
       <div class="mic-row" id="micRow">
@@ -1686,7 +1686,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     <p class="ah-ctx" id="ahCtx" hidden></p>
     <h2 class="fq" style="font-size:21px;margin-top:8px" id="ahTitle">A simple 4-part answer.</h2>
     <div class="scaf-progress"><i id="ahFill"></i></div>
-    <div class="scaf-card" id="ahCard"></div>
+    <div class="scaf-card" id="ahCard" data-en></div>
     <div class="fcta" style="align-items:center">
       <button class="btn" id="ahNext">Next</button>
       <div class="mic-row" id="ahMicRow" hidden>
@@ -1706,7 +1706,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
   <section class="screen fs" id="listen">
     <span class="eyebrow" style="margin-top:26px">Your first practice</span>
     <div class="coach"><img class="av-img" src="images/sarah_av.webp" alt="Sarah"><div><div class="cn">Sarah</div><div class="cr" id="lisState">listening…</div></div></div>
-    <div class="saybub"><span class="say-ctx" id="lisCtx"></span><span class="say-q" id="lisQ"></span></div>
+    <div class="saybub"><span class="say-ctx" id="lisCtx"></span><span class="say-q" id="lisQ" data-en></span></div>
     <div class="ctx-visual"><div class="timer" id="recTimer">0:00</div></div>
     <div class="fcta" style="align-items:center">
       <div class="pill-rec">
@@ -1736,7 +1736,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     <div class="hs-view" id="hsErrorsView" hidden>
       <h2 class="fq" style="margin-top:40px">First, let's fix your<br><em>pronunciation</em>.</h2>
       <p class="fsub">Two words from your answer need work.</p>
-      <div class="scaf-card readmode hs-passage" id="hsPassage"></div>
+      <div class="scaf-card readmode hs-passage" id="hsPassage" data-en></div>
       <div class="fcta"><button class="btn" id="hsFix">Let's correct them</button></div>
     </div>
     <div class="hs-view" id="hsPracticeView" hidden>
@@ -1860,21 +1860,27 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
       <p class="fsub" id="pledgeLine" style="text-align:center"></p>
       <div class="fingerp" id="fingerHold">
         <span class="fp-stack">
-          <span class="fp-base"><svg viewBox="0 0 132 166" fill="none" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M37.4 128.8L34.2 126.1L31.2 123.2L28.3 120.0L25.7 116.5L23.2 112.9L21.0 109.0L19.0 104.9L17.2 100.7L15.7 96.3L14.4 91.8L13.4 87.2L12.7 82.5L12.2 77.7L12.0 73.0L12.1 68.2L12.4 63.4L13.1 58.7L14.0 54.1L15.1 49.5L16.5 45.1L18.2 40.8L20.1 36.7L22.3 32.7L24.6 28.9L27.2 25.4L30.0 22.1L32.9 19.0L36.1 16.2L39.3 13.7L42.8 11.5L46.3 9.6L49.9 8.0L53.6 6.8L57.4 5.9L61.2 5.3L65.1 5.0L68.9 5.1L72.7 5.5L76.5 6.3L80.3 7.4L84.0 8.8L87.5 10.6L91.0 12.6L94.3 15.0L97.5 17.6L100.6 20.5L103.5 23.7L106.1 27.2L108.6 30.8L110.9 34.7L112.9 38.8L114.7 43.0L116.2 47.4L117.5 51.9L118.5 56.5L119.3 61.1L119.8 65.9L120.0 70.6L119.9 75.4L119.6 80.2L119.0 84.9L118.1 89.5L117.0 94.1L115.6 98.5L113.9 102.9L112.0 107.0L109.9 111.0L107.6 114.8L105.0 118.3L102.2 121.7L99.3 124.7L96.2 127.5"/>
-            <path d="M40.1 115.6L38.0 113.2L35.9 110.6L34.0 107.9L32.2 105.0L30.6 102.0L29.2 98.8L27.9 95.5L26.8 92.2L25.9 88.7L25.2 85.2L24.7 81.6L24.3 78.0L24.2 74.4L24.3 70.7L24.5 67.1L25.0 63.5L25.6 60.0L26.4 56.5L27.4 53.1L28.6 49.7L30.0 46.5L31.5 43.4L33.2 40.5L35.1 37.7L37.1 35.1L39.2 32.6L41.5 30.3L43.9 28.3L46.3 26.4L48.9 24.7L51.6 23.3L54.3 22.1L57.1 21.1L59.9 20.4L62.8 19.9L65.7 19.6L68.6 19.6L71.5 19.9L74.4 20.4L77.2 21.1L80.0 22.0L82.7 23.2L85.4 24.7L88.0 26.3L90.5 28.2L92.8 30.3L95.1 32.5L97.2 35.0L99.3 37.6L101.1 40.4L102.8 43.3L104.4 46.4L105.7 49.6L106.9 52.9L107.9 56.3L108.8 59.8L109.4 63.4L109.9 67.0L110.1 70.6L110.2 74.2L110.1 77.9L109.7 81.5L109.2 85.1L108.5 88.6L107.6 92.0L106.5 95.4L105.3 98.7L103.8 101.9L102.2 104.9L100.5 107.8L98.6 110.5L96.5 113.1"/>
-            <path d="M45.4 103.7L44.0 101.8L42.8 99.7L41.6 97.6L40.5 95.4L39.6 93.0L38.8 90.7L38.1 88.2L37.5 85.7L37.0 83.2L36.7 80.6L36.5 78.0L36.4 75.4L36.5 72.8L36.6 70.2L36.9 67.7L37.4 65.1L37.9 62.6L38.6 60.2L39.4 57.8L40.4 55.5L41.4 53.2L42.5 51.1L43.8 49.0L45.1 47.1L46.6 45.2L48.1 43.5L49.7 41.9L51.4 40.5L53.1 39.2L55.0 38.0L56.8 37.0L58.7 36.1L60.7 35.4L62.7 34.9L64.7 34.5L66.7 34.3L68.8 34.2L70.8 34.3L72.8 34.6L74.8 35.0L76.8 35.6L78.7 36.4L80.6 37.3L82.5 38.4L84.3 39.6L86.0 41.0L87.7 42.5L89.3 44.1L90.8 45.9L92.2 47.7L93.5 49.7L94.7 51.8L95.8 54.0L96.8 56.3L97.7 58.6L98.4 61.0L99.1 63.5L99.6 66.0L100.0 68.6L100.2 71.2L100.4 73.7L100.4 76.4L100.3 79.0L100.0 81.5L99.6 84.1L99.1 86.6L98.5 89.1L97.8 91.5L96.9 93.9L95.9 96.1L94.8 98.3L93.6 100.4"/>
-            <path d="M52.8 93.7L52.1 92.3L51.4 90.9L50.9 89.4L50.3 87.9L49.9 86.4L49.5 84.8L49.2 83.2L48.9 81.6L48.7 79.9L48.6 78.3L48.6 76.6L48.6 74.9L48.8 73.3L49.0 71.6L49.2 70.0L49.6 68.4L50.0 66.8L50.5 65.3L51.0 63.8L51.6 62.4L52.3 61.0L53.0 59.6L53.8 58.3L54.7 57.1L55.6 56.0L56.5 54.9L57.5 53.9L58.6 53.0L59.6 52.2L60.8 51.4L61.9 50.8L63.1 50.2L64.3 49.7L65.5 49.3L66.7 49.1L68.0 48.9L69.2 48.8L70.4 48.8L71.7 48.9L72.9 49.2L74.2 49.5L75.4 49.9L76.5 50.4L77.7 51.0L78.8 51.7L79.9 52.4L81.0 53.3L82.0 54.2L83.0 55.3L84.0 56.4L84.8 57.5L85.7 58.8L86.4 60.1L87.2 61.4L87.8 62.9L88.4 64.3L88.9 65.8L89.4 67.4L89.8 69.0L90.1 70.6L90.3 72.2L90.5 73.9L90.6 75.5L90.6 77.2L90.5 78.8L90.4 80.5L90.2 82.1L89.9 83.8L89.6 85.4L89.2 86.9L88.7 88.5L88.1 89.9"/>
-            <path d="M67.2 87.9L66.8 87.4L66.5 86.7L66.1 86.0L65.8 85.3L65.5 84.5L65.3 83.7L65.1 82.8L64.9 81.9L64.7 80.9L64.7 80.0L64.6 79.0L64.6 78.1L64.6 77.1L64.7 76.2L64.8 75.2L65.0 74.3L65.2 73.4L65.4 72.6L65.7 71.8L66.0 71.0L66.4 70.3L66.7 69.6L67.1 69.0L67.5 68.5L68.0 68.1L68.4 67.7L68.9 67.4L69.4 67.1L69.9 67.0L70.4 66.9L70.9 66.9L71.4 67.0L71.9 67.2L72.4 67.4L72.9 67.8L73.3 68.2L73.8 68.6L74.2 69.2L74.6 69.8L74.9 70.4L75.3 71.2L75.6 71.9L75.8 72.8L76.1 73.6L76.2 74.5L76.4 75.4L76.5 76.4L76.6 77.3L76.6 78.3L76.6 79.3L76.5 80.2L76.4 81.2L76.3 82.1L76.1 83.0L75.9 83.9L75.6 84.7L75.3 85.5L75.0 86.2L74.7 86.9L74.3 87.5L73.9 88.1L73.4 88.5L73.0 89.0L72.5 89.3L72.0 89.6L71.5 89.8L71.0 89.9L70.5 89.9L70.0 89.8L69.5 89.7L69.0 89.5L68.5 89.2"/>
-            <path d="M54 143L66 131L78 143"/>
+          <span class="fp-base"><svg viewBox="0 0 48 52" fill="none" stroke-width="1.7" stroke-linecap="round">
+            <path d="M24 24v7.5c0 4.2-.6 8.3-1.9 12.2"/>
+            <path d="M19.6 23.7a4.4 4.4 0 0 1 8.8 0v7.6c0 4.6-.7 9.1-2.1 13.4"/>
+            <path d="M15.2 23.6a8.8 8.8 0 0 1 17.6 0v7.7c0 4.9-.8 9.7-2.3 14.3"/>
+            <path d="M10.8 23.6a13.2 13.2 0 0 1 26.4 0v7.7c0 3.7-.4 7.3-1.3 10.8"/>
+            <path d="M6.4 29.6a17.6 17.6 0 0 1-.2-2.8v-3.2A17.8 17.8 0 0 1 15 8.2"/>
+            <path d="M20.5 4.6a17.8 17.8 0 0 1 21.1 15.1"/>
+            <path d="M7.6 36.4a17 17 0 0 1-.9-2.8"/>
+            <path d="M11.4 42.2a17.9 17.9 0 0 1-1.9-2.6"/>
+            <path d="M41.8 24.4v6.9c0 2.6-.2 5.2-.6 7.8"/>
           </svg></span>
-          <span class="fp-lit"><svg viewBox="0 0 132 166" fill="none" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M37.4 128.8L34.2 126.1L31.2 123.2L28.3 120.0L25.7 116.5L23.2 112.9L21.0 109.0L19.0 104.9L17.2 100.7L15.7 96.3L14.4 91.8L13.4 87.2L12.7 82.5L12.2 77.7L12.0 73.0L12.1 68.2L12.4 63.4L13.1 58.7L14.0 54.1L15.1 49.5L16.5 45.1L18.2 40.8L20.1 36.7L22.3 32.7L24.6 28.9L27.2 25.4L30.0 22.1L32.9 19.0L36.1 16.2L39.3 13.7L42.8 11.5L46.3 9.6L49.9 8.0L53.6 6.8L57.4 5.9L61.2 5.3L65.1 5.0L68.9 5.1L72.7 5.5L76.5 6.3L80.3 7.4L84.0 8.8L87.5 10.6L91.0 12.6L94.3 15.0L97.5 17.6L100.6 20.5L103.5 23.7L106.1 27.2L108.6 30.8L110.9 34.7L112.9 38.8L114.7 43.0L116.2 47.4L117.5 51.9L118.5 56.5L119.3 61.1L119.8 65.9L120.0 70.6L119.9 75.4L119.6 80.2L119.0 84.9L118.1 89.5L117.0 94.1L115.6 98.5L113.9 102.9L112.0 107.0L109.9 111.0L107.6 114.8L105.0 118.3L102.2 121.7L99.3 124.7L96.2 127.5"/>
-            <path d="M40.1 115.6L38.0 113.2L35.9 110.6L34.0 107.9L32.2 105.0L30.6 102.0L29.2 98.8L27.9 95.5L26.8 92.2L25.9 88.7L25.2 85.2L24.7 81.6L24.3 78.0L24.2 74.4L24.3 70.7L24.5 67.1L25.0 63.5L25.6 60.0L26.4 56.5L27.4 53.1L28.6 49.7L30.0 46.5L31.5 43.4L33.2 40.5L35.1 37.7L37.1 35.1L39.2 32.6L41.5 30.3L43.9 28.3L46.3 26.4L48.9 24.7L51.6 23.3L54.3 22.1L57.1 21.1L59.9 20.4L62.8 19.9L65.7 19.6L68.6 19.6L71.5 19.9L74.4 20.4L77.2 21.1L80.0 22.0L82.7 23.2L85.4 24.7L88.0 26.3L90.5 28.2L92.8 30.3L95.1 32.5L97.2 35.0L99.3 37.6L101.1 40.4L102.8 43.3L104.4 46.4L105.7 49.6L106.9 52.9L107.9 56.3L108.8 59.8L109.4 63.4L109.9 67.0L110.1 70.6L110.2 74.2L110.1 77.9L109.7 81.5L109.2 85.1L108.5 88.6L107.6 92.0L106.5 95.4L105.3 98.7L103.8 101.9L102.2 104.9L100.5 107.8L98.6 110.5L96.5 113.1"/>
-            <path d="M45.4 103.7L44.0 101.8L42.8 99.7L41.6 97.6L40.5 95.4L39.6 93.0L38.8 90.7L38.1 88.2L37.5 85.7L37.0 83.2L36.7 80.6L36.5 78.0L36.4 75.4L36.5 72.8L36.6 70.2L36.9 67.7L37.4 65.1L37.9 62.6L38.6 60.2L39.4 57.8L40.4 55.5L41.4 53.2L42.5 51.1L43.8 49.0L45.1 47.1L46.6 45.2L48.1 43.5L49.7 41.9L51.4 40.5L53.1 39.2L55.0 38.0L56.8 37.0L58.7 36.1L60.7 35.4L62.7 34.9L64.7 34.5L66.7 34.3L68.8 34.2L70.8 34.3L72.8 34.6L74.8 35.0L76.8 35.6L78.7 36.4L80.6 37.3L82.5 38.4L84.3 39.6L86.0 41.0L87.7 42.5L89.3 44.1L90.8 45.9L92.2 47.7L93.5 49.7L94.7 51.8L95.8 54.0L96.8 56.3L97.7 58.6L98.4 61.0L99.1 63.5L99.6 66.0L100.0 68.6L100.2 71.2L100.4 73.7L100.4 76.4L100.3 79.0L100.0 81.5L99.6 84.1L99.1 86.6L98.5 89.1L97.8 91.5L96.9 93.9L95.9 96.1L94.8 98.3L93.6 100.4"/>
-            <path d="M52.8 93.7L52.1 92.3L51.4 90.9L50.9 89.4L50.3 87.9L49.9 86.4L49.5 84.8L49.2 83.2L48.9 81.6L48.7 79.9L48.6 78.3L48.6 76.6L48.6 74.9L48.8 73.3L49.0 71.6L49.2 70.0L49.6 68.4L50.0 66.8L50.5 65.3L51.0 63.8L51.6 62.4L52.3 61.0L53.0 59.6L53.8 58.3L54.7 57.1L55.6 56.0L56.5 54.9L57.5 53.9L58.6 53.0L59.6 52.2L60.8 51.4L61.9 50.8L63.1 50.2L64.3 49.7L65.5 49.3L66.7 49.1L68.0 48.9L69.2 48.8L70.4 48.8L71.7 48.9L72.9 49.2L74.2 49.5L75.4 49.9L76.5 50.4L77.7 51.0L78.8 51.7L79.9 52.4L81.0 53.3L82.0 54.2L83.0 55.3L84.0 56.4L84.8 57.5L85.7 58.8L86.4 60.1L87.2 61.4L87.8 62.9L88.4 64.3L88.9 65.8L89.4 67.4L89.8 69.0L90.1 70.6L90.3 72.2L90.5 73.9L90.6 75.5L90.6 77.2L90.5 78.8L90.4 80.5L90.2 82.1L89.9 83.8L89.6 85.4L89.2 86.9L88.7 88.5L88.1 89.9"/>
-            <path d="M67.2 87.9L66.8 87.4L66.5 86.7L66.1 86.0L65.8 85.3L65.5 84.5L65.3 83.7L65.1 82.8L64.9 81.9L64.7 80.9L64.7 80.0L64.6 79.0L64.6 78.1L64.6 77.1L64.7 76.2L64.8 75.2L65.0 74.3L65.2 73.4L65.4 72.6L65.7 71.8L66.0 71.0L66.4 70.3L66.7 69.6L67.1 69.0L67.5 68.5L68.0 68.1L68.4 67.7L68.9 67.4L69.4 67.1L69.9 67.0L70.4 66.9L70.9 66.9L71.4 67.0L71.9 67.2L72.4 67.4L72.9 67.8L73.3 68.2L73.8 68.6L74.2 69.2L74.6 69.8L74.9 70.4L75.3 71.2L75.6 71.9L75.8 72.8L76.1 73.6L76.2 74.5L76.4 75.4L76.5 76.4L76.6 77.3L76.6 78.3L76.6 79.3L76.5 80.2L76.4 81.2L76.3 82.1L76.1 83.0L75.9 83.9L75.6 84.7L75.3 85.5L75.0 86.2L74.7 86.9L74.3 87.5L73.9 88.1L73.4 88.5L73.0 89.0L72.5 89.3L72.0 89.6L71.5 89.8L71.0 89.9L70.5 89.9L70.0 89.8L69.5 89.7L69.0 89.5L68.5 89.2"/>
-            <path d="M54 143L66 131L78 143"/>
+          <span class="fp-lit"><svg viewBox="0 0 48 52" fill="none" stroke-width="1.7" stroke-linecap="round">
+            <path d="M24 24v7.5c0 4.2-.6 8.3-1.9 12.2"/>
+            <path d="M19.6 23.7a4.4 4.4 0 0 1 8.8 0v7.6c0 4.6-.7 9.1-2.1 13.4"/>
+            <path d="M15.2 23.6a8.8 8.8 0 0 1 17.6 0v7.7c0 4.9-.8 9.7-2.3 14.3"/>
+            <path d="M10.8 23.6a13.2 13.2 0 0 1 26.4 0v7.7c0 3.7-.4 7.3-1.3 10.8"/>
+            <path d="M6.4 29.6a17.6 17.6 0 0 1-.2-2.8v-3.2A17.8 17.8 0 0 1 15 8.2"/>
+            <path d="M20.5 4.6a17.8 17.8 0 0 1 21.1 15.1"/>
+            <path d="M7.6 36.4a17 17 0 0 1-.9-2.8"/>
+            <path d="M11.4 42.2a17.9 17.9 0 0 1-1.9-2.6"/>
+            <path d="M41.8 24.4v6.9c0 2.6-.2 5.2-.6 7.8"/>
           </svg></span>
         </span>
       </div>
@@ -2136,10 +2142,7 @@ function go(id){
     clearTimeout(anT);if(!EMBED)anT=setTimeout(()=>go('qphone'),3300);
   }
   if(['ctxout','ctxstat','ackielts','qjtbd','ctxba','qskill','ctxfeat','qlevel','ctxsci','qdaily','qnotif','qsummary'].includes(id))renderPhaseA(id);
-  if(id==='ctxfeat'){
-    const _so=SKILLOUT[answers.qskill&&SKILLOUT[answers.qskill]?answers.qskill:'fluency'];
-    setTimeout(()=>{countUp(document.getElementById('skoBig'),_so.n,1100);startPills();},reduced?0:420);
-  } else stopPills();
+  if(id!=='ctxfeat')stopPills();      /* the count-up itself lives in renderPhaseA */
   if(['act','acthint','hintscore','listen','score','loader','plan','letter','paywall','exitoffer'].includes(id))renderPhaseB(id);
   if(answers.name)n.querySelectorAll('[data-nq]').forEach(h=>{h.innerHTML=h.dataset.nq.replace('{name}',answers.name);});
   const bb=document.getElementById('backBtn');
@@ -2147,6 +2150,7 @@ function go(id){
     bb.hidden=NO_BACK.has(id)||!navStack.some(x=>!SKIP_BACK.has(x));
     document.getElementById('app').classList.toggle('back-on',!bb.hidden);
   }
+  applyES(n);                  /* last: every render hook has already run */
 }
 /* the store question follows the device: both options ship, one is shown */
 (function(){
@@ -2316,6 +2320,7 @@ const FAMICONS={
   pronunciation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 4v16M8 8v8M4 10.5v3M16 7v10M20 9.5v5"/></svg>'
 };
 const CHECK='<span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+let skoT=null;
 function renderPhaseA(id){
   const ind=INDUSTRIES[occKey()]||INDUSTRIES.other;
   const fam=FAMILIES[answers.fam]||FAMILIES.smalltalk;
@@ -2411,6 +2416,8 @@ function renderPhaseA(id){
     document.getElementById('skoUnit').textContent=so.unit;
     document.getElementById('skoBig').textContent='0';
     document.getElementById('pillBox').innerHTML=so.tags.map(t=>'<span class="pill">'+t+'</span>').join('');
+    clearTimeout(skoT);
+    skoT=setTimeout(()=>{countUp(document.getElementById('skoBig'),so.n,1100);startPills();},reduced?0:420);
   }
 
 
@@ -2577,14 +2584,22 @@ function renderPhaseB(id){
     /* A — the promise. Timeframe picks the lane, commitment picks how bold. */
     const lane=planLane(), tier=planTier(), famK=answers.fam||'smalltalk', goalK=answers.qgoal||'career';
     const goalLvl=planTargetName(), curLvl=curLevelName();
-    const claim=lane==='short'
+    let claim=lane==='short'
       ? 'you will '+(((planGF()||{}).hero||HERO_JTBD[famK]||HERO_JTBD.smalltalk)[tier])
       : ((HERO_GOAL[goalK]||HERO_GOAL.other)[tier]);
+    /* the long lane's claim has a Spanish twin; the short lane is JTBD copy and
+       still needs one, so it stays English rather than half-translating */
+    if(esOn()&&lane!=='short') claim=(ES_GOAL[goalK]||ES_GOAL.other)[tier];
     document.getElementById('planEyebrow').textContent='Your personal plan is ready';
-    document.getElementById('planTitle').innerHTML=name+', in <em>'+planWhen()+'</em>, '+claim+'.';
+    const whenRaw=planWhen(), whenKey=whenRaw.replace(/\u00a0/g,' ');
+    /* planWhen() joins with a non-breaking space, so normalise before the lookup */
+    const whenTxt=esOn()?((ES_WHEN[whenKey]||whenKey).replace(' ','\u00a0')):whenRaw;
+    document.getElementById('planTitle').innerHTML=name+(esOn()?', en <em>':', in <em>')+whenTxt+'</em>, '+claim+'.';
     document.getElementById('planSub').hidden=true;
     /* B — the end outcome: their graph, then exactly what they will be able to do */
-    document.getElementById('outHeadB').textContent=planDate()+', here is what changes';
+    document.getElementById('outHeadB').textContent=esOn()
+      ? 'Para '+(ES_MONTH[planDate().replace(/^By /,'')]||planDate())+', esto es lo que cambia'
+      : planDate()+', here is what changes';
     document.getElementById('planTraj').innerHTML=trajHTML('2',curLvl,null,goalLvl);
     document.getElementById('outLead').textContent='By then you will be able to';
     const CH='<i><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>';
@@ -2927,6 +2942,70 @@ function armCounters(){
   };
   root.addEventListener('scroll',statOnScroll,{passive:true});
   requestAnimationFrame(statOnScroll);                     /* in case it already is */
+}
+/* ---------- Spanish UI ----------
+   Runs after a screen renders. Walks its text nodes and swaps anything present in
+   ES; a miss leaves the English in place. Subtrees marked data-en are skipped,
+   because that is the English the learner is here to practise. */
+function esOn(){ return answers.q6==='es'; }
+function esLookup(t){
+  if(ES[t]) return ES[t];
+  const n=answers.name;
+  /* try with the name, then the numbers, then both, folded into placeholders */
+  const cands=[];
+  const withName = (n && t.indexOf(n)>-1) ? t.split(n).join('{name}') : null;
+  if(withName) cands.push([withName,{name:n}]);
+  const nums=t.match(/\d+/g);
+  if(nums && nums.length===1){
+    cands.push([t.replace(/\d+/,'{n}'),{n:nums[0]}]);
+    if(withName) cands.push([withName.replace(/\d+/,'{n}'),{name:n,n:nums[0]}]);
+  }
+  for(const [k,vals] of cands){
+    if(!ES[k]) continue;
+    let out=ES[k];
+    for(const key in vals) out=out.split('{'+key+'}').join(vals[key]);
+    return out;
+  }
+  return null;
+}
+function esSkip(el,root){
+  for(let p=el;p&&p!==root.parentElement;p=p.parentElement){
+    if(p.dataset&&p.dataset.en!==undefined)return true;
+    if(p.tagName==='SCRIPT'||p.tagName==='STYLE')return true;
+  }
+  return false;
+}
+function applyES(root){
+  if(!root||!esOn())return;
+  /* pass 1: whole elements. Headings are split across <br>, so their text lives in
+     two nodes and only the joined string matches a key. */
+  root.querySelectorAll('h2,h3,p,span,b,em,button,div').forEach(el=>{
+    if(esSkip(el,root))return;
+    if(el.querySelector('h2,h3,p,span,b,em,button,div'))return;   /* leaves only */
+    /* textContent glues words across a <br> ("describesyour"), so read the markup */
+    const joined=el.innerHTML.replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g,'')
+      .replace(/&nbsp;/g,' ').replace(/\s+/g,' ').trim();
+    if(!joined||joined.length>140)return;
+    const es=esLookup(joined);
+    if(!es)return;
+    if(el.querySelector('br')) el.innerHTML=es.split(' ').length>4
+      ? es.replace(/^((?:\S+\s+){2,3})/,'$1<br>') : es;
+    else el.textContent=es;
+  });
+  /* pass 2: any remaining standalone text nodes */
+  const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+    acceptNode(n){
+      if(!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+      return esSkip(n.parentElement,root)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const hits=[];
+  while(walk.nextNode()){
+    const n=walk.currentNode, raw=n.nodeValue, t=raw.trim();
+    const es=esLookup(t);
+    if(es) hits.push([n,raw.replace(t,es)]);
+  }
+  hits.forEach(([n,v])=>{n.nodeValue=v;});
 }
 /* the plan's JTBD copy: goal x family first, family alone as the fallback */
 function planGF(){ return PLAN_GF[(answers.qgoal||'career')+'|'+(answers.fam||'smalltalk')]||null; }

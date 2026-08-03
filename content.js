@@ -1425,6 +1425,199 @@ const SCORE_MSG = {
 const SCORE_LABEL = { fluency:'Fluency', vocabulary:'Vocabulary',
   pronunciation:'Pronunciation', grammar:'Grammar' };
 
+
+/* ---------- Spanish UI ----------
+   Applied when the user answers "Si, en espanol" at q6. The pass in index.html
+   walks the active screen's text nodes and swaps anything it finds here, so a
+   missing entry degrades to English rather than breaking. Anything the learner
+   is meant to practise in English is marked data-en in the markup and skipped.
+   {name} is substituted back after lookup. */
+
+/* the plan title's claim, per goal and tier. Assembled in JS, so it cannot go
+   through the DOM pass. Keyed the same as HERO_GOAL. */
+const ES_GOAL = {
+  career:{ light:'el inglés deja de frenarte en el trabajo', std:'el inglés deja de bloquear tu carrera', deep:'el inglés ya no es un problema en el trabajo' },
+  ielts: { light:'dejas de adivinar tu banda', std:'sabes tu banda antes del examen', deep:'consigues la banda que necesitas' },
+  convo: { light:'las conversaciones del día a día se vuelven más fáciles', std:'hablas con cualquiera sin planearlo', deep:'hablas sin pensar primero en tu idioma' },
+  travel:{ light:'te manejas solo con lo básico', std:'viajas y resuelves todo por tu cuenta', deep:'viajas sin preocuparte por el inglés' },
+  school:{ light:'participas más en clase', std:'hablas en clase sin ensayarlo antes', deep:'el inglés deja de bajarte las notas' },
+  other: { light:'el inglés se te hace más fácil cada semana', std:'el inglés deja de estorbarte', deep:'usas el inglés sin pensarlo' }
+};
+/* the timeframe phrase and the month names the plan prints */
+const ES_WHEN = { '2 weeks':'2 semanas', '1 month':'1 mes', '3 months':'3 meses',
+  '6 months':'6 meses', '1 year':'1 año' };
+const ES_MONTH = { January:'enero', February:'febrero', March:'marzo', April:'abril',
+  May:'mayo', June:'junio', July:'julio', August:'agosto', September:'septiembre',
+  October:'octubre', November:'noviembre', December:'diciembre' };
+
+const ES = {
+  'A tiny nudge for your {n} minutes a day. No spam, ever.':'Un pequeño recordatorio para tus {n} minutos al día. Sin spam, nunca.',
+  'Can’t find words? Try this':'¿No encuentras las palabras? Prueba esto',
+  'Tap the mic and read':'Toca el micro y lee',
+  'A note from future {name}':'Una nota del {name} del futuro',
+  'I, {name}, will practice {n} minutes a day.':'Yo, {name}, practicaré {n} minutos al día.',
+  '{name}, {n} weeks from now':'{name}, dentro de {n} semanas',
+  '{name}, {n} week from now':'{name}, dentro de {n} semana',
+  'That was a real rep of':'Eso fue una práctica real de',
+  '. Imagine week three.':'. Imagina la semana tres.',
+  'Everything’s ready,':'Todo está listo,',
+  'Unlock {name}’s plan':'Desbloquea el plan de {name}',
+  'Wait, {name}…':'Espera, {name}…',
+  'Your plan stays saved. This price does not.':'Tu plan se guarda. Este precio no.',
+  'Unlimited speaking practice with Sarah':'Práctica de conversación ilimitada con Sarah',
+  'Progress you can see, week by week':'Progreso que se ve, semana a semana',
+  'Analyzing your speech sample':'Analizando tu muestra de voz',
+  /* buttons and chrome */
+  'Continue':'Continuar', 'Next':'Siguiente', 'Skip for now':'Omitir por ahora',
+  'Build my plan':'Crear mi plan', 'Commit to my plan':'Comprometerme con mi plan',
+  'Not now':'Ahora no', 'Allow':'Permitir', "Don't Allow":'No permitir',
+  'See report':'Ver informe', 'View the research':'Ver el estudio',
+  'Answer in your own words':'Responde con tus propias palabras',
+  'Pause':'Pausa', 'Restart':'Reiniciar',
+
+  /* qphone */
+  '{name}, can you share your phone number?':'{name}, ¿nos compartes tu número de teléfono?',
+  'Can you share your phone number?':'¿Nos compartes tu número de teléfono?',
+  'We will share your weekly progress reports, nothing else. No spam, for sure!':
+    'Te enviaremos tu informe semanal de progreso, nada más. Sin spam, de verdad.',
+  'Works great with WhatsApp':'Funciona muy bien con WhatsApp',
+  'Phone number':'Número de teléfono',
+
+  /* qocc */
+  '{name}, what best describes your current situation?':'{name}, ¿qué describe mejor tu situación actual?',
+  'What best describes your current situation?':'¿Qué describe mejor tu situación actual?',
+  "We'll build your practice around the conversations your day actually has.":
+    'Crearemos tu práctica en torno a las conversaciones que de verdad tienes.',
+  'Student':'Estudiante', 'Working professional':'Profesional', 'Freelancer':'Freelance',
+  'Business owner':'Dueño de un negocio', 'Homemaker':'En casa a tiempo completo',
+  'On a career break':'En pausa profesional', 'Looking for work':'Buscando trabajo',
+  'Something else':'Otra cosa',
+
+  /* qgoal */
+  '{name}, what are you learning English for?':'{name}, ¿para qué estás aprendiendo inglés?',
+  'What are you learning English for?':'¿Para qué estás aprendiendo inglés?',
+  "We'll build your whole plan around this.":'Construiremos todo tu plan a partir de esto.',
+  'Improve my career':'Mejorar mi carrera', 'Improve social conversations':'Conversar mejor con la gente',
+  'Travel':'Viajar', 'Excel at my school':'Destacar en mis estudios', 'Any other goal':'Otro objetivo',
+
+  /* IELTS sub-flow */
+  'Which IELTS test are you taking?':'¿Qué examen IELTS vas a presentar?',
+  'Academic':'Academic', 'General Training':'General Training',
+  'Your admission is a speaking score away.':'Tu admisión está a un puntaje de speaking de distancia.',
+  'When is your exam?':'¿Cuándo es tu examen?',
+  'What band are you aiming for?':'¿Qué banda quieres alcanzar?',
+  'Your plan will aim exactly there.':'Tu plan apuntará exactamente ahí.',
+  'Good enough to qualify':'Suficiente para calificar',
+  'Most university programs':'La mayoría de programas universitarios',
+  'Competitive programs & visas':'Programas competitivos y visas',
+  'Top schools and licensing':'Las mejores universidades y licencias',
+  'Not sure yet':'Aún no lo sé',
+  "Haven't booked yet":'Todavía no lo he reservado',
+
+  /* qjtbd */
+  '{name}, which conversation do you most want to nail?':'{name}, ¿qué conversación quieres dominar primero?',
+  'Which conversation do you most want to nail?':'¿Qué conversación quieres dominar primero?',
+
+  /* ctxba */
+  'Before':'Antes', 'After':'Después',
+
+  /* qskill */
+  'What should we sharpen first?':'¿Qué reforzamos primero?',
+  'Fluency':'Fluidez', 'Pronunciation':'Pronunciación', 'Vocabulary':'Vocabulario', 'Grammar':'Gramática',
+
+  /* qlevel */
+  '{name}, how would you describe your current level?':'{name}, ¿cómo describirías tu nivel actual?',
+  'How would you describe your current level?':'¿Cómo describirías tu nivel actual?',
+  'I’m completely new to English':'Soy totalmente nuevo en inglés',
+  'I can take part in basic chats':'Puedo participar en conversaciones básicas',
+  'I can handle short chats on familiar topics':'Puedo mantener charlas cortas sobre temas conocidos',
+  'I can talk about everyday topics in detail':'Puedo hablar en detalle de temas cotidianos',
+  'I can talk fluently with native speakers':'Puedo hablar con fluidez con nativos',
+  'I can communicate like a native speaker':'Puedo comunicarme como un hablante nativo',
+
+  /* level names, used on the graphs too */
+  'Novice':'Principiante', 'Beginner':'Básico', 'Intermediate':'Intermedio',
+  'Advanced':'Avanzado', 'Proficient':'Competente', 'Native':'Nativo',
+  'Conversational level':'Nivel conversacional', 'Now':'Ahora', 'With Stimuler':'Con Stimuler',
+  'Level':'Nivel', 'Time':'Tiempo',
+
+  /* ctxsci */
+  'Most people place themselves a level low. Two levels up is very doable.':
+    'Casi todos se ubican un nivel por debajo. Subir dos niveles es muy alcanzable.',
+
+  /* qtime */
+  'How soon do you want to see progress?':'¿Qué tan pronto quieres ver resultados?',
+  'Within 2 weeks':'En 2 semanas', 'Within a month':'En un mes', 'In 2–3 months':'En 2 o 3 meses',
+  'In 3 months':'En 3 meses', 'In 6 months':'En 6 meses', 'Within a year':'En un año',
+
+  /* qdaily */
+  '{name}, how much will you practice daily?':'{name}, ¿cuánto vas a practicar cada día?',
+  'How much will you practice daily?':'¿Cuánto vas a practicar cada día?',
+  'Today':'Hoy',
+
+  /* qnotif */
+  'Practice sticks when Sarah reminds you.':'La práctica funciona cuando Sarah te lo recuerda.',
+  '"Stimuler" Would Like to Send You Notifications':'"Stimuler" quiere enviarte notificaciones',
+  'Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.':
+    'Las notificaciones pueden incluir alertas, sonidos y globos. Puedes configurarlas en Ajustes.',
+
+  /* qsummary */
+  "Everything's ready,":'Todo está listo,',
+  'Your plan is built from':'Tu plan se construye a partir de',
+  'One short practice':'Una práctica corta',
+  'level':'nivel', 'focus':'enfoque',
+
+  /* practice chrome */
+  'Your first practice':'Tu primera práctica',
+  'your speaking coach':'tu coach de conversación',
+  'listening…':'escuchando…',
+  'How to answer':'Cómo responder',
+  'A simple 4-part answer.':'Una respuesta simple en 4 partes.',
+
+  /* hintscore */
+  'Your':'Tu', 'speech':'inglés hablado',
+
+  /* score */
+  'Your first score':'Tu primer puntaje',
+  'Your first mock score':'Tu primer puntaje de simulacro',
+  'Overall score':'Puntaje general',
+  'Your starting point, before any practice.':'Tu punto de partida, antes de practicar.',
+  'You reached for the same few words.':'Repetiste las mismas pocas palabras.',
+  'Your words worked, but they repeated.':'Tus palabras funcionaron, pero se repitieron.',
+  'You reached for the right words.':'Elegiste las palabras correctas.',
+  'Tenses slipped more than once.':'Se te escaparon varios tiempos verbales.',
+  'A couple of tense slips crept in.':'Se colaron un par de errores de tiempo verbal.',
+  'Your sentences held together.':'Tus frases se sostuvieron bien.',
+  'Some words were hard to catch.':'Algunas palabras costaron entenderse.',
+  'A few sounds landed soft.':'Algunos sonidos quedaron débiles.',
+  'You were easy to understand.':'Se te entendió con facilidad.',
+  'Long pauses broke your answer up.':'Las pausas largas cortaron tu respuesta.',
+  'You paused a few times mid-sentence.':'Hiciste algunas pausas a mitad de frase.',
+  'You kept going without stopping.':'Seguiste hablando sin detenerte.',
+
+  /* loader */
+  'Personalizing your plan':'Personalizando tu plan',
+  'Analyzing your speech sample':'Analizando tu muestra de voz',
+  'Setting your 6 month target':'Fijando tu meta a 6 meses',
+
+  /* plan */
+  'Your personal plan is ready':'Tu plan personal está listo',
+  'By then you will be able to':'Para entonces vas a poder',
+  'What we start with':'Con esto empezamos',
+  'By then you will have':'Para entonces habrás hecho',
+  'real conversations':'conversaciones reales', 'new words':'palabras nuevas',
+  'sounds mastered':'sonidos dominados', 'grammar fixes':'correcciones de gramática',
+  'hours speaking out loud':'horas hablando en voz alta',
+  "Here's why this plan suits you":'Por esto el plan encaja contigo',
+  'Your focus':'Tu enfoque',
+
+  /* letter */
+  'Make it a promise.':'Conviértelo en una promesa.',
+  'Press and hold to commit':'Mantén pulsado para comprometerte',
+  'Keep holding':'Sigue pulsando',
+  'Commitment made':'Compromiso hecho'
+};
+
 /* the graph's middle milestone, named rather than "Week 3" */
 const MILESTONE = {
   interview:'you answer without a pause', pitch:'you say the number first', crew:'they stop asking twice',
