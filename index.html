@@ -3018,6 +3018,8 @@ function cohortWho(){
   const g=answers.qgoal||'career';
   return g==='career' ? (OCCWHO[occKey()]||'learners') : (GOALWHO[g]||'learners');
 }
+/* the drill words belong to the practice passage, so they share its key */
+function pronSet(){ return PRONWORDS[practiceKey()]||PRONWORDS['career|other']; }
 function practiceCtx(){ return practiceSet().ctx; }
 function practiceQ(){ return practiceSet().q; }
 function practiceMode(){
@@ -3120,7 +3122,7 @@ function enterHintScore(){
 }
 function hsPassageHTML(){
   const sc=practiceSet();
-  const words=PRONWORDS[answers.fam]||PRONWORDS.smalltalk;
+  const words=pronSet();
   let text=sc.parts.join(' ');
   words.forEach((pw,i)=>{text=text.replace(new RegExp('\\b'+pw.w+'\\b','i'),m=>`<b class="hlw" data-i="${i}">${m}</b>`);});
   return '<p class="ah-para">'+text+'</p>';
@@ -3137,7 +3139,7 @@ document.getElementById('hsFix').addEventListener('click',()=>{
   hsWordIdx=0;hsLoadWord();
 });
 function hsLoadWord(){
-  const words=PRONWORDS[answers.fam]||PRONWORDS.smalltalk;
+  const words=pronSet();
   const pw=words[hsWordIdx];
   document.getElementById('hsFill').style.width=(hsWordIdx===0?8:50)+'%';
   document.querySelectorAll('#hsPracPassage .hlw').forEach(el=>{
@@ -3166,7 +3168,7 @@ document.getElementById('pcBtn').addEventListener('click',()=>{
   setTimeout(hsWordDone,2600);
 });
 function hsWordDone(){
-  const words=PRONWORDS[answers.fam]||PRONWORDS.smalltalk;
+  const words=pronSet();
   const pw=words[hsWordIdx];
   const btn=document.getElementById('pcBtn');
   btn.classList.remove('listening');btn.classList.add('done');
@@ -3196,7 +3198,7 @@ document.getElementById('pcSkip').addEventListener('click',()=>{
   else hsShowDone();
 });
 function hsShowDone(){
-  const words=PRONWORDS[answers.fam]||PRONWORDS.smalltalk;
+  const words=pronSet();
   document.getElementById('hsPracticeView').hidden=true;
   document.getElementById('hsDoneSub').textContent=`You practiced \u201C${words[0].w}\u201D and \u201C${words[1].w}\u201D. Real progress already.`;
   document.getElementById('hsTraj').innerHTML=trajHTML('1',curLevelName(),'First step',goalLevelName());

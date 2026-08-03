@@ -393,28 +393,45 @@ const SCAFFOLD = {
 /* ---------- pronunciation practice pairs (hint-user results flow) ---------- */
 /* two tricky words per family, both present in that family's SCAFFOLD passage */
 const PRONWORDS = {
-  interview:     [ { w: 'pressure', parts: ['pre','ssu','re'], ph: 'preh.shur',    tip: 'Stress over the sound ‘sh’', start: 52 },
-                   { w: 'deliver',  parts: ['de','liv','er'],  ph: 'duh.li.vur',   tip: 'Stress over the sound ‘li’', start: 48 } ],
-  meetings:      [ { w: 'release',  parts: ['re','lea','se'],  ph: 'ri.lees',      tip: 'End on a soft ‘s’',          start: 55 },
-                   { w: 'suggest',  parts: ['su','gg','est'],  ph: 'suh.jest',     tip: 'The ‘gg’ sounds like ‘j’', start: 50 } ],
-  fastspeech:    [ { w: 'report',     parts: ['re','por','t'],     ph: 'ri.port',        tip: 'Stress over the sound ‘por’', start: 54 },
-                   { w: 'summarized', parts: ['summa','ri','zed'], ph: 'suh.muh.rized',  tip: 'Land the ending ‘zed’',       start: 47 } ],
-  customer:      [ { w: 'model',     parts: ['mo','de','l'],      ph: 'mo.dul',        tip: 'The ‘de’ sounds like ‘duh’', start: 53 },
-                   { w: 'described', parts: ['de','scri','bed'],  ph: 'dih.skraibd',   tip: 'Stress over the sound ‘scri’',  start: 49 } ],
-  services:      [ { w: 'appointment', parts: ['appoi','ntme','nt'], ph: 'uh.point.ment', tip: 'Stress over the sound ‘nt’', start: 51 },
-                   { w: 'yesterday',   parts: ['yes','ter','day'],   ph: 'yes.tur.day',   tip: 'The ‘ter’ stays short',      start: 56 } ],
-  smalltalk:     [ { w: 'project',  parts: ['pro','jec','t'],   ph: 'pro.jekt',     tip: 'The ‘j’ is sharp',            start: 54 },
-                   { w: 'finally',  parts: ['fi','nal','ly'],   ph: 'fai.nuh.lee',  tip: 'Three beats: fai.nuh.lee',            start: 50 } ],
-  exam:          [ { w: 'confidence', parts: ['con','fi','dence'], ph: 'kon.fi.dens', tip: 'Stress the first beat ‘kon’', start: 52 },
-                   { w: 'practice',   parts: ['prac','ti','ce'],   ph: 'prak.tis',    tip: 'End short on ‘tis’',          start: 49 } ],
-  family:        [ { w: 'favorite', parts: ['fa','vo','rite'],  ph: 'fay.vuh.rit',  tip: 'Only three beats, not four',          start: 53 },
-                   { w: 'brother',  parts: ['bro','th','er'],   ph: 'bruh.thur',    tip: 'Soft ‘th’, tongue out',       start: 48 } ],
-  pitch:        [ { w: 'value', parts: ['val','u','e'], ph: 'val.yoo', tip: 'Two beats only: val.yoo', start: 53 },
-                  { w: 'included', parts: ['in','clu','ded'], ph: 'in.kloo.did', tip: 'Stress over the sound ‘kloo’', start: 49 } ],
-  crew:         [ { w: 'schedule', parts: ['sche','du','le'], ph: 'ske.jool', tip: 'The ‘sch’ sounds like ‘sk’', start: 50 },
-                  { w: 'material', parts: ['ma','te','rial'], ph: 'muh.teer.ee.ul', tip: 'Four beats, stress ‘teer’', start: 47 } ],
-  pronunciation: [ { w: 'clearly',  parts: ['clear','l','y'],   ph: 'kleer.lee',    tip: 'Roll into the ‘r’ smoothly',  start: 51 },
-                   { w: 'thirty',   parts: ['thir','t','y'],    ph: 'thur.tee',     tip: 'Soft ‘th’, tongue out',       start: 46 } ]
+  /* Keyed the same as PRACTICE, because these two words must actually occur in
+     that set's passage. Keying them on the JTBD family let the practice copy be
+     rewritten underneath them, and the highlight then matched nothing. */
+  'career|office':[
+    {w:'redesign',   parts:['re','de','sign'], ph:'ree.di.zain',   tip:'Three beats, stress the last one', start:52},
+    {w:'confirm',    parts:['con','fir','m'],  ph:'kun.furm',      tip:'The first beat is short: kun',    start:48}],
+  'career|ownboss':[
+    {w:'thousand',   parts:['thou','san','d'], ph:'thow.zund',     tip:'The middle sound is a soft z',     start:51},
+    {w:'covers',     parts:['co','ver','s'],   ph:'kuh.vurz',      tip:'Ends on a z, not an s',            start:47}],
+  'career|jobhunt':[
+    {w:'pressure',   parts:['pre','ssu','re'], ph:'preh.shur',     tip:'The double s sounds like sh',      start:52},
+    {w:'deliver',    parts:['de','liv','er'],  ph:'duh.li.vur',    tip:'Stress the middle beat: li',       start:48}],
+  'career|careerbreak':[
+    {w:'projects',   parts:['pro','jec','ts'], ph:'pro.jekts',     tip:'Keep the ts crisp at the end',     start:50},
+    {w:'finished',   parts:['fi','ni','shed'], ph:'fi.nisht',      tip:'The ending is sht, not shed',      start:47}],
+  'career|athome':[
+    {w:'household',  parts:['house','hol','d'],ph:'howss.hold',    tip:'Two beats, no gap between them',   start:51},
+    {w:'schedule',   parts:['sche','du','le'], ph:'ske.jool',      tip:'The sch sounds like sk',           start:46}],
+  'career|student':[
+    {w:'society',    parts:['so','ci','ety'],  ph:'suh.sai.uh.tee',tip:'Four beats, stress sai',           start:49},
+    {w:'doubled',    parts:['dou','ble','d'],  ph:'duh.buld',      tip:'The ou is short: duh',             start:52}],
+  'career|other':[
+    {w:'customer',   parts:['cus','to','mer'], ph:'kus.tuh.mur',   tip:'Three beats, stress kus',          start:53},
+    {w:'complaints', parts:['com','plain','ts'],ph:'kum.playnts',  tip:'Land the ts at the end',           start:48}],
+  'convo':[
+    {w:'company',    parts:['com','pa','ny'],  ph:'kum.puh.nee',   tip:'Stress the first beat: kum',       start:52},
+    {w:'mornings',   parts:['mor','ning','s'], ph:'mor.ningz',     tip:'Ends on a z sound',                start:49}],
+  'travel':[
+    {w:'afternoon',  parts:['af','ter','noon'],ph:'af.tur.noon',   tip:'Three beats, stress noon',         start:50},
+    {w:'minutes',    parts:['mi','nu','tes'],  ph:'mi.nits',       tip:'Two beats only: mi.nits',          start:47}],
+  'school':[
+    {w:'lessons',    parts:['le','sson','s'],  ph:'le.sunz',       tip:'The double s is one soft s',       start:51},
+    {w:'project',    parts:['pro','jec','t'],  ph:'pro.jekt',      tip:'The j is sharp',                   start:48}],
+  'ielts':[
+    {w:'weekends',   parts:['week','end','s'], ph:'week.endz',     tip:'Ends on a z sound',                start:52},
+    {w:'thirty',     parts:['thir','t','y'],   ph:'thur.tee',      tip:'Soft th, tongue out',              start:46}],
+  'other':[
+    {w:'practised',  parts:['prac','ti','sed'],ph:'prak.tist',     tip:'The ending is st, not sed',        start:50},
+    {w:'studying',   parts:['stu','dy','ing'], ph:'stuh.dee.ing',  tip:'Three beats, stress stuh',         start:47}]
 };
 
 /* ---------- before/after vignettes, keyed by occupation ---------- */
