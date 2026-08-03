@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimuler Onboarding · Style Guide</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ============ guide-only chrome ============ */
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--bg-page);
+    color:var(--text-hi);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    min-height:100vh;
+  }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px 140px;}
+
+  /* hero */
+  .hero{padding:110px 0 84px;border-bottom:1px solid var(--stroke);position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:-40% -20% auto;height:130%;pointer-events:none;
+    background:radial-gradient(60% 60% at 50% 0%, rgba(108,99,255,.16), transparent 70%);
+  }
+  .hero .t-eyebrow{margin-bottom:20px;display:block;}
+  .hero h1{
+    font-family:var(--font-display);font-weight:700;font-size:56px;letter-spacing:-.03em;line-height:1.05;
+  }
+  .hero h1 em{font-style:normal;color:var(--indigo-300);}
+  .hero p{margin-top:22px;max-width:560px;font-size:16px;line-height:1.6;color:var(--text-mid);}
+  .hero .meta{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap;}
+  .hero .meta span{
+    font-size:12.5px;font-weight:500;color:var(--text-mid);
+    padding:7px 14px;border-radius:var(--r-pill);
+    border:1px solid var(--stroke);background:var(--surface-1);
+  }
+
+  /* section scaffold */
+  section{padding:76px 0 8px;}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;}
+  .sec-num{font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--text-low);letter-spacing:.08em;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:30px;letter-spacing:-.02em;}
+  .sec-desc{margin:10px 0 36px;max-width:620px;font-size:15px;line-height:1.6;color:var(--text-mid);}
+  .sec-desc strong{color:var(--text-hi);font-weight:600;}
+  h3{font-family:var(--font-display);font-weight:600;font-size:16px;margin:40px 0 16px;color:var(--text-hi);}
+
+  /* panels */
+  .panel{
+    background:var(--surface-1);border:1px solid var(--stroke);border-radius:var(--r-lg);
+    padding:28px;
+  }
+  .panel + .panel{margin-top:16px;}
+  .grid{display:grid;gap:16px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr;}}
+
+  /* swatches */
+  .swatch-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;}
+  .swatch{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--stroke);background:var(--surface-1);}
+  .swatch .chipbox{height:76px;position:relative;}
+  .swatch .chipbox.hairline{box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);}
+  .swatch .info{padding:12px 14px;}
+  .swatch .name{font-family:var(--font-display);font-weight:600;font-size:13px;}
+  .swatch .hex{font-size:12px;color:var(--text-mid);margin-top:3px;font-variant-numeric:tabular-nums;}
+  .swatch .use{font-size:11.5px;color:var(--text-low);margin-top:5px;line-height:1.45;}
+
+  /* rules (do / don't) */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+  @media(max-width:760px){.rules{grid-template-columns:1fr;}}
+  .rule{border-radius:var(--r-md);padding:18px 20px;font-size:14px;line-height:1.55;color:var(--text-mid);border:1px solid var(--stroke);background:var(--surface-1);}
+  .rule b{display:block;font-family:var(--font-display);font-size:13px;letter-spacing:.06em;margin-bottom:8px;}
+  .rule.do b{color:var(--green);}
+  .rule.dont b{color:var(--red);}
+  .rule ul{margin:0;padding-left:18px;}
+  .rule li{margin:5px 0;}
+
+  /* type specimens */
+  .spec{display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--stroke);}
+  .spec:last-child{border-bottom:none;}
+  .spec .meta{font-size:12.5px;color:var(--text-low);line-height:1.7;}
+  .spec .meta b{color:var(--text-mid);font-weight:600;display:block;font-size:13px;}
+  @media(max-width:760px){.spec{grid-template-columns:1fr;gap:8px;}}
+
+  /* spacing + radius viz */
+  .space-row{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;}
+  .space-item{text-align:center;}
+  .space-item .bar{background:var(--indigo-500);opacity:.85;border-radius:3px;width:34px;margin:0 auto;}
+  .space-item .lab{font-size:11.5px;color:var(--text-mid);margin-top:8px;font-variant-numeric:tabular-nums;}
+  .rad-row{display:flex;gap:18px;flex-wrap:wrap;}
+  .rad-item{width:120px;height:84px;background:var(--surface-2);border:1.5px solid var(--stroke-strong);display:grid;place-items:center;font-size:12px;color:var(--text-mid);}
+
+  /* phone demo frame */
+  .phone-demo{
+    width:340px;max-width:100%;margin:0 auto;
+    border-radius:34px;border:1px solid var(--stroke);
+    padding:26px 20px 22px;overflow:hidden;position:relative;
+  }
+  .demo-note{text-align:center;font-size:12.5px;color:var(--text-low);margin-top:14px;}
+
+  /* motion demo */
+  .motion-table{width:100%;border-collapse:collapse;font-size:14px;}
+  .motion-table th{font-family:var(--font-display);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-low);text-align:left;padding:10px 14px;border-bottom:1px solid var(--stroke);}
+  .motion-table td{padding:13px 14px;border-bottom:1px solid var(--stroke);color:var(--text-mid);vertical-align:middle;}
+  .motion-table td:first-child{color:var(--text-hi);font-family:var(--font-display);font-weight:500;}
+  .motion-table tr:last-child td{border-bottom:none;}
+  .m-dot{width:18px;height:18px;border-radius:6px;background:linear-gradient(135deg,var(--indigo-400),var(--indigo-600));}
+  .m-track{width:150px;display:flex;}
+  tr.play .m-dot{animation-name:slide;animation-fill-mode:both;}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(132px)}}
+
+  /* reward demo */
+  .reward-stage{display:flex;flex-direction:column;align-items:center;gap:18px;padding:34px 0 10px;}
+  .reward-badge{
+    width:88px;height:88px;border-radius:50%;display:grid;place-items:center;font-size:38px;
+    background:radial-gradient(circle at 35% 30%, rgba(255,201,110,.35), rgba(240,163,47,.12) 70%);
+    border:1.5px solid var(--gold-500);
+    box-shadow:0 0 40px var(--gold-glow), inset 0 0 22px rgba(240,163,47,.18);
+  }
+  .reward-stage.pop .reward-badge{animation:pop .55s var(--ease-spring) both;}
+  @keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+  .reward-cap{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--gold-300);}
+  .confetti{position:absolute;width:8px;height:8px;border-radius:2px;pointer-events:none;z-index:5;}
+  .confetti.round{border-radius:50%;width:6px;height:6px;}
+
+  /* MCQ transition lab */
+  .mstage{position:relative;height:300px;overflow:hidden;}
+  .mscreen{position:absolute;inset:0;display:flex;flex-direction:column;}
+  .mscreen .mq{font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.02em;line-height:1.25;margin-bottom:16px;color:var(--text-hi);}
+  .mopts{display:flex;flex-direction:column;gap:10px;}
+  .g-row{display:flex;align-items:center;gap:14px;margin:9px 0;}
+  .g-lab{width:150px;text-align:right;font-size:12.5px;color:var(--text-mid);flex:none;}
+  .g-track{flex:1;height:20px;background:rgba(255,255,255,.04);border-radius:6px;position:relative;}
+  .g-bar{position:absolute;top:3px;bottom:3px;border-radius:4px;}
+  .g-ms{width:78px;font-size:11.5px;color:var(--text-low);font-variant-numeric:tabular-nums;flex:none;}
+
+  /* code chips */
+  code{
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;
+    background:var(--surface-2);border:1px solid var(--stroke);
+    padding:2px 7px;border-radius:6px;color:var(--indigo-300);
+  }
+
+  /* iconography */
+  .ico{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+  .duo-fill{fill:rgba(108,99,255,.22);stroke:none;}
+  .tile{width:44px;height:44px;border-radius:12px;background:var(--surface-2);border:1px solid var(--stroke);display:grid;place-items:center;color:var(--text-mid);flex:none;transition:background var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out);}
+  .tile .ico{width:22px;height:22px;}
+  .dir{position:relative;text-align:left;width:100%;border:1.5px solid var(--stroke);background:var(--surface-1);border-radius:var(--r-md);padding:20px;cursor:pointer;transition:border-color var(--dur-base) var(--ease-out),background var(--dur-base) var(--ease-out),transform var(--dur-fast) var(--ease-out);}
+  .dir:active{transform:scale(.99);}
+  .dir.is-selected{border-color:var(--indigo-500);background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(83,72,232,.07));}
+  .dir .d-name{font-family:var(--font-display);font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px;}
+  .dir .d-tag{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo-300);border:1px solid rgba(108,99,255,.4);border-radius:999px;padding:3px 8px;}
+  .dir .d-row{display:flex;gap:14px;align-items:center;margin:16px 0 14px;color:var(--text-mid);min-height:44px;flex-wrap:wrap;}
+  .dir .d-row .em{font-size:23px;line-height:1;}
+  .dir p{font-size:12.5px;line-height:1.55;color:var(--text-low);}
+  .disc{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--indigo-500),var(--indigo-700));display:grid;place-items:center;color:#fff;flex:none;box-shadow:0 6px 16px -6px var(--indigo-glow);}
+  .disc .ico{width:22px;height:22px;}
+  .ico-neon{color:var(--indigo-400);filter:drop-shadow(0 0 5px rgba(108,99,255,.85));}
+  .icons-preview .v{display:none!important;}
+  .icons-preview[data-dir="emoji"] .v-emoji,
+  .icons-preview[data-dir="outline"] .v-outline,
+  .icons-preview[data-dir="duo"] .v-duo,
+  .icons-preview[data-dir="tile"] .v-tile,
+  .icons-preview[data-dir="solid"] .v-solid,
+  .icons-preview[data-dir="grad"] .v-grad,
+  .icons-preview[data-dir="neon"] .v-neon,
+  .icons-preview[data-dir="disc"] .v-disc,
+  .icons-preview[data-dir="tint"] .v-tint{display:flex!important;align-items:center;justify-content:center;}
+  .opt.is-selected .disc{box-shadow:0 0 18px var(--indigo-glow),0 6px 16px -6px var(--indigo-glow);}
+  .opt .opt-ico{color:var(--text-mid);flex:none;}
+  .opt.is-selected .opt-ico{color:var(--indigo-400);}
+  .opt.is-selected .tile{background:linear-gradient(135deg,rgba(108,99,255,.28),rgba(83,72,232,.18));border-color:var(--indigo-500);color:var(--indigo-300);}
+
+  /* sticky nav */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,6,13,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--stroke);
+  }
+  nav .inner{max-width:1040px;margin:0 auto;padding:0 32px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;}
+  nav .inner::-webkit-scrollbar{display:none;}
+  nav a{
+    font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--text-mid);
+    text-decoration:none;padding:16px 12px;white-space:nowrap;border-bottom:2px solid transparent;
+    transition:color var(--dur-fast) var(--ease-out);
+  }
+  nav a:hover{color:var(--text-hi);}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <a href="#principles">Principles</a>
+  <a href="#color">Color</a>
+  <a href="#type">Typography</a>
+  <a href="#icons">Iconography</a>
+  <a href="#layout">Layout</a>
+  <a href="#components">Components</a>
+  <a href="#patterns">Patterns</a>
+  <a href="#motion">Motion</a>
+</div></nav>
+
+<div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <span class="t-eyebrow">Stimuler · Design System v1</span>
+    <h1>Onboarding,<br>made to <em>feel effortless</em></h1>
+    <p>The style guide for the form-based onboarding rework. One question per screen, one clear action, indigo for everything you touch, gold for everything you earn.</p>
+    <div class="meta">
+      <span>Inter Display · Geist</span>
+      <span>Dark navy base</span>
+      <span>4-pt grid</span>
+      <span>tokens.css</span>
+    </div>
+  </header>
+
+  <!-- ================= 00 PRINCIPLES ================= -->
+  <section id="principles">
+    <div class="sec-head"><span class="sec-num">00</span><h2>Principles</h2></div>
+    <p class="sec-desc">Four rules that every onboarding screen must pass. If a screen breaks one, redesign the screen, not the rule.</p>
+    <div class="grid g2">
+      <div class="panel"><h3 style="margin-top:0">One question, one screen</h3><p class="t-sub">Never stack questions. The question is the hero: set in display type at the top, options below, primary action pinned at the bottom. Chat scroll is gone; each screen is a composed moment.</p></div>
+      <div class="panel"><h3 style="margin-top:0">Tap first, type never*</h3><p class="t-sub">Every answer should be reachable in one tap. Free-text only where identity demands it (name). Selecting an option auto-advances after 350&nbsp;ms. No redundant "Next" tap for single-selects.</p></div>
+      <div class="panel"><h3 style="margin-top:0">Indigo is touch, gold is treasure</h3><p class="t-sub">Indigo marks selections, focus and links. The primary button is white, the single brightest element on a dark screen. Gold appears only when the learner gains something: progress, streaks, celebration. Gold on a button is a system violation.</p></div>
+      <div class="panel"><h3 style="margin-top:0">Progress is felt, not read</h3><p class="t-sub">The gold progress bar animates on every answer, paired with a micro-label ("Cool name!"). The learner should feel forward motion within 200&nbsp;ms of every tap.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= 01 COLOR ================= -->
+  <section id="color">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Color</h2></div>
+    <p class="sec-desc">Faithful to the current app: dark navy canvas, the indigo family as the <strong>only interactive color</strong>, gold reserved for <strong>progress and reward</strong>. Three background depths, never pure black inside the app.</p>
+
+    <h3>Backgrounds & surfaces</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="chipbox hairline" style="background:#07060D"></div><div class="info"><div class="name">bg-page</div><div class="hex">#07060D</div><div class="use">Outside the phone only</div></div></div>
+      <div class="swatch"><div class="chipbox hairline" style="background:#0D0B16"></div><div class="info"><div class="name">bg-app</div><div class="hex">#0D0B16</div><div class="use">App canvas base (under gradient)</div></div></div>
+      <div class="swatch"><div class="chipbox hairline" style="background:#1A1726"></div><div class="info"><div class="name">surface-1</div><div class="hex">#1A1726</div><div class="use">Resting cards, inputs</div></div></div>
+      <div class="swatch"><div class="chipbox hairline" style="background:#252134"></div><div class="info"><div class="name">surface-2</div><div class="hex">#252134</div><div class="use">Sheets, raised elements</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#332E48"></div><div class="info"><div class="name">stroke</div><div class="hex">#332E48</div><div class="use">Hairlines on surfaces</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#4A4268"></div><div class="info"><div class="name">stroke-strong</div><div class="hex">#4A4268</div><div class="use">Unselected radio rings</div></div></div>
+    </div>
+
+    <h3>Indigo · interactive</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="chipbox" style="background:#A8A1FF"></div><div class="info"><div class="name">indigo-300</div><div class="hex">#A8A1FF</div><div class="use">Serif accents, stats, links</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#8B84FF"></div><div class="info"><div class="name">indigo-400</div><div class="hex">#8B84FF</div><div class="use">Selected icons & text</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#6C63FF"></div><div class="info"><div class="name">indigo-500</div><div class="hex">#6C63FF</div><div class="use">Primary. Buttons, selection, focus</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#5348E8"></div><div class="info"><div class="name">indigo-600</div><div class="hex">#5348E8</div><div class="use">Pressed, gradient deep stop</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#3F35BE"></div><div class="info"><div class="name">indigo-700</div><div class="hex">#3F35BE</div><div class="use">Selected-card tint base</div></div></div>
+    </div>
+
+    <h3>Gold · progress & reward only</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="chipbox" style="background:#FFC96E"></div><div class="info"><div class="name">gold-300</div><div class="hex">#FFC96E</div><div class="use">Progress gradient tip, glints</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#F0A32F"></div><div class="info"><div class="name">gold-500</div><div class="hex">#F0A32F</div><div class="use">Progress fill, micro-labels</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#D6891C"></div><div class="info"><div class="name">gold-600</div><div class="hex">#D6891C</div><div class="use">Progress gradient root</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#43D6A0"></div><div class="info"><div class="name">green</div><div class="hex">#43D6A0</div><div class="use">Success, correct answers</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#E06A5A"></div><div class="info"><div class="name">red</div><div class="hex">#E06A5A</div><div class="use">Errors only, sparingly</div></div></div>
+      <div class="swatch"><div class="chipbox" style="background:#F5F4FA"></div><div class="info"><div class="name">text-hi</div><div class="hex">#F5F4FA</div><div class="use">+ #A29EB8 mid · #615C78 low</div></div></div>
+    </div>
+
+    <div class="rules">
+      <div class="rule do"><b>DO</b><ul>
+        <li>Use indigo-500 for every selected state and focus ring; the primary button is white</li>
+        <li>Keep gold exclusively on the progress system and reward moments</li>
+        <li>Layer surfaces: bg-app → surface-1 → surface-2, one step at a time</li>
+      </ul></div>
+      <div class="rule dont"><b>DON'T</b><ul>
+        <li>Put gold on buttons, inputs or selection states</li>
+        <li>Use pure #000 inside the app canvas</li>
+        <li>Introduce a second interactive hue (no teal/green CTAs)</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= 02 TYPOGRAPHY ================= -->
+  <section id="type">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Typography</h2></div>
+    <p class="sec-desc"><strong>Inter Display</strong> carries questions and actions, <strong>Geist</strong> carries supporting copy. The emotional word inside a question is accented by <strong>color only</strong> (indigo-300): same face, same weight, one per screen, max.</p>
+
+    <div class="panel">
+      <div class="spec">
+        <div class="meta"><b>Question / t-question</b>Inter Display 600<br>26px · 1.22 · −0.02em<br>+ indigo <code>em</code> accent</div>
+        <div class="t-question">What brings you to <em>English?</em></div>
+      </div>
+      <div class="spec">
+        <div class="meta"><b>Option / t-option</b>Inter Display 500<br>16px · 1.3</div>
+        <div class="t-option">Cracking job interviews</div>
+      </div>
+      <div class="spec">
+        <div class="meta"><b>Body / t-sub</b>Geist 400<br>15px · 1.5</div>
+        <div class="t-sub">This helps Sarah pick the right practice scenarios for your first session.</div>
+      </div>
+      <div class="spec">
+        <div class="meta"><b>Eyebrow / t-eyebrow</b>Geist 600 · caps<br>12px · +0.14em · gold</div>
+        <div class="t-eyebrow">Cool name!</div>
+      </div>
+      <div class="spec">
+        <div class="meta"><b>Stat / t-stat</b>Inter Display 700<br>30px · −0.02em · indigo-300</div>
+        <div class="t-stat">1,133,400+</div>
+      </div>
+      <div class="spec">
+        <div class="meta"><b>Label / t-label</b>Geist 500<br>13px · text-mid</div>
+        <div class="t-label">Your native language</div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="rule do"><b>DO</b><ul>
+        <li>One indigo-300 accent word per question, color only, same face</li>
+        <li>Keep questions under two lines at 26px on a 390pt screen</li>
+      </ul></div>
+      <div class="rule dont"><b>DON'T</b><ul>
+        <li>Set body copy in Inter Display, or questions in Geist</li>
+        <li>Use italics or a serif anywhere; the two faces are the whole system</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= 03 ICONOGRAPHY ================= -->
+  <section id="icons">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Iconography</h2></div>
+    <p class="sec-desc">Exploration, not yet locked. Emoji got us here, but they render differently on every phone and add color noise to the dark UI. Four directions below, same five glyphs each. <strong>Tap a direction card</strong> to preview it on live option cards underneath.</p>
+
+    <div class="grid g2">
+      <button class="dir" data-dir="emoji">
+        <span class="d-name">A · Emoji <span class="d-tag" style="color:var(--text-low);border-color:var(--stroke)">Status quo</span></span>
+        <span class="d-row"><span class="em">🎙️</span><span class="em">💼</span><span class="em">💬</span><span class="em">🏆</span><span class="em">🌏</span></span>
+        <p>Zero effort, instant warmth, learners know them. But iOS, Android and older devices all draw them differently, and the color noise competes with the UI.</p>
+      </button>
+
+      <button class="dir" data-dir="outline">
+        <span class="d-name">B · Outline mono</span>
+        <span class="d-row">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>
+        </span>
+        <p>One 24px grid, 1.75 stroke, rounded caps. Quietest and most premium; glyphs sit in text-mid and tint indigo-400 when selected. Lowest visual noise of the four.</p>
+      </button>
+
+      <button class="dir" data-dir="duo">
+        <span class="d-name">C · Duotone indigo</span>
+        <span class="d-row" style="color:var(--indigo-300)">
+          <svg class="ico" viewBox="0 0 24 24"><rect class="duo-fill" x="9" y="2.5" width="6" height="12" rx="3"/><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><rect class="duo-fill" x="3" y="7" width="18" height="13" rx="2.5"/><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path class="duo-fill" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path class="duo-fill" d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><circle class="duo-fill" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>
+        </span>
+        <p>Outline plus a soft indigo fill at 22% opacity. Richer than mono while staying strictly on-brand; risks reading "already selected" when every card glows indigo at rest.</p>
+      </button>
+
+      <button class="dir" data-dir="tile">
+        <span class="d-name">D · Outline in a tile</span>
+        <span class="d-row">
+          <span class="tile"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg></span>
+          <span class="tile"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="tile"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="tile"><svg class="ico" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg></span>
+          <span class="tile"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg></span>
+        </span>
+        <p>The outline glyph inside a 44px tile (radius 12, surface-2). Gives option cards a strong left anchor and the best selected-state payoff: the tile floods indigo when tapped.</p>
+      </button>
+
+      <button class="dir" data-dir="solid">
+        <span class="d-name">E · Solid fill</span>
+        <span class="d-row">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3" fill="currentColor" stroke="none"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="currentColor" stroke="none"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M3 12h18" stroke="var(--surface-1)"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z" stroke="var(--surface-1)"/></svg>
+        </span>
+        <p>Filled glyphs, iOS-tab-bar weight. Bolder and faster to scan than outline, slightly heavier feel; tints indigo-400 on selection like B.</p>
+      </button>
+
+      <button class="dir" data-dir="grad">
+        <span class="d-name">F · Gradient stroke</span>
+        <span class="d-row">
+          <svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>
+        </span>
+        <p>Outline geometry with an indigo-300 to indigo-600 gradient stroke. Distinctive and modern, but the gradient is always-on, so there is no color shift left for the selected state.</p>
+      </button>
+
+      <button class="dir" data-dir="neon">
+        <span class="d-name">G · Neon glow</span>
+        <span class="d-row">
+          <svg class="ico ico-neon" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico ico-neon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico ico-neon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg class="ico ico-neon" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico ico-neon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg>
+        </span>
+        <p>Indigo-400 outline with a soft glow, leaning into the dark UI. Atmospheric and gamey, but glow on every icon dilutes the glow language reserved for progress and rewards.</p>
+      </button>
+
+      <button class="dir" data-dir="disc">
+        <span class="d-name">H · Gradient disc</span>
+        <span class="d-row">
+          <span class="disc"><svg class="ico" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg></span>
+          <span class="disc"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="disc"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="disc"><svg class="ico" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg></span>
+          <span class="disc"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z"/></svg></span>
+        </span>
+        <p>White glyph on a 44px indigo gradient disc, Duolingo-energy. Friendliest and boldest of the set; heavy when five cards stack, and the disc color cannot double as a selected signal.</p>
+      </button>
+
+      <button class="dir is-selected" data-dir="tint">
+        <span class="d-name">I · Tinted solid <span class="d-tag">From your reference · Recommended</span></span>
+        <span class="d-row">
+          <svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-red)"><rect x="9" y="2.5" width="6" height="12" rx="3" fill="currentColor" stroke="none"/><path d="M5 11.5v.5a7 7 0 0 0 14 0v-.5"/><path d="M12 19.5V22"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-blue)"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-green)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-gold)"><path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="currentColor" stroke="none"/><path d="M7 6H4v1a3 3 0 0 0 3 3"/><path d="M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v4"/><path d="M8 21h8"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-purple)"><circle cx="12" cy="12" r="9" fill="currentColor" stroke="none"/><path d="M3 12h18" stroke="var(--surface-1)"/><path d="M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9z" stroke="var(--surface-1)"/></svg>
+        </span>
+        <p>Solid glyphs, each with its own muted tint from a fixed 5-hue decorative palette (gold, green, blue, purple, red) held at uniform luminance. Emoji warmth, single-grid consistency. Tints never signal state; selection stays on the border and check, in indigo.</p>
+      </button>
+    </div>
+    <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="igrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#A8A1FF"/><stop offset="1" stop-color="#5348E8"/></linearGradient></defs></svg>
+
+    <h3>Applied to the option card <span class="t-label" style="font-weight:400">(switches with the direction above)</span></h3>
+    <div class="panel">
+      <div class="icons-preview" id="iconPreview" data-dir="tint" style="display:flex;flex-direction:column;gap:12px;max-width:420px">
+        <button class="opt is-selected">
+          <span class="opt-emoji v v-emoji">💼</span>
+          <span class="opt-ico v v-outline"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="opt-ico v v-duo" style="color:var(--indigo-300)"><svg class="ico" viewBox="0 0 24 24"><rect class="duo-fill" x="3" y="7" width="18" height="13" rx="2.5"/><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="v v-tile"><span class="tile"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span></span>
+          <span class="opt-ico v v-solid"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="opt-ico v v-grad"><svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="opt-ico v v-neon"><svg class="ico ico-neon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="v v-disc"><span class="disc"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span></span>
+          <span class="opt-ico v v-tint"><svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-blue)"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></span>
+          <span class="t-option">Cracking job interviews</span>
+          <span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="opt">
+          <span class="opt-emoji v v-emoji">💬</span>
+          <span class="opt-ico v v-outline"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="opt-ico v v-duo" style="color:var(--indigo-300)"><svg class="ico" viewBox="0 0 24 24"><path class="duo-fill" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="v v-tile"><span class="tile"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></span>
+          <span class="opt-ico v v-solid"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/></svg></span>
+          <span class="opt-ico v v-grad"><svg class="ico" viewBox="0 0 24 24" style="stroke:url(#igrad)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="opt-ico v v-neon"><svg class="ico ico-neon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="v v-disc"><span class="disc"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></span>
+          <span class="opt-ico v v-tint"><svg class="ico" viewBox="0 0 24 24" style="color:var(--tint-green)"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/></svg></span>
+          <span class="t-option">Daily conversation</span>
+          <span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <h3>Grid & usage rules (apply to whichever direction wins)</h3>
+    <div class="grid g2">
+      <div class="panel">
+        <p class="t-sub"><strong style="color:var(--text-hi)">Grid:</strong> 24px viewBox, 1.75px stroke, round caps and joins, 1.5px minimum inner gap. Sizes: 20px inline, 24px in cards, 22px inside a 44px tile.</p>
+        <p class="t-sub" style="margin-top:12px"><strong style="color:var(--text-hi)">Color:</strong> mono directions rest at text-mid and select to indigo-400. The tinted direction uses a fixed 5-hue palette (tint-gold, green, blue, purple, red) muted to uniform luminance; tints are decorative and never change with state.</p>
+      </div>
+      <div class="panel">
+        <p class="t-sub"><strong style="color:var(--text-hi)">Flags stay emoji.</strong> The native-language question keeps 🇮🇳 🇮🇩 🇻🇳 flags regardless of direction; mono flags are unreadable at 24px and emoji flags are a familiar pattern there.</p>
+        <p class="t-sub" style="margin-top:12px"><strong style="color:var(--text-hi)">One icon per option, always leading.</strong> No trailing icons, no icon-only answers; the label carries meaning, the icon speeds scanning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 LAYOUT ================= -->
+  <section id="layout">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Layout, radius & depth</h2></div>
+    <p class="sec-desc">Everything sits on a <strong>4-pt grid</strong>. Screens use a 20px side gutter. Corners get rounder as elements get bigger; depth comes from surface steps + indigo glow, never gray drop shadows.</p>
+
+    <div class="grid g2">
+      <div class="panel">
+        <h3 style="margin-top:0">Spacing scale</h3>
+        <div class="space-row">
+          <div class="space-item"><div class="bar" style="height:4px"></div><div class="lab">s-1 · 4</div></div>
+          <div class="space-item"><div class="bar" style="height:8px"></div><div class="lab">s-2 · 8</div></div>
+          <div class="space-item"><div class="bar" style="height:12px"></div><div class="lab">s-3 · 12</div></div>
+          <div class="space-item"><div class="bar" style="height:16px"></div><div class="lab">s-4 · 16</div></div>
+          <div class="space-item"><div class="bar" style="height:20px"></div><div class="lab">s-5 · 20</div></div>
+          <div class="space-item"><div class="bar" style="height:24px"></div><div class="lab">s-6 · 24</div></div>
+          <div class="space-item"><div class="bar" style="height:32px"></div><div class="lab">s-8 · 32</div></div>
+          <div class="space-item"><div class="bar" style="height:40px"></div><div class="lab">s-10 · 40</div></div>
+        </div>
+        <p class="t-sub" style="margin-top:22px">Key rhythms: 12px between option cards · 32px question-to-options · 20px screen gutters · 24px above the pinned CTA.</p>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0">Radius</h3>
+        <div class="rad-row">
+          <div class="rad-item" style="border-radius:10px">sm · 10</div>
+          <div class="rad-item" style="border-radius:16px">md · 16</div>
+          <div class="rad-item" style="border-radius:22px">lg · 22</div>
+          <div class="rad-item" style="border-radius:999px">pill</div>
+        </div>
+        <p class="t-sub" style="margin-top:22px">sm → tags & small controls · md → option cards & inputs · lg → sheets & feature cards · pill → buttons, chips, progress.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 COMPONENTS ================= -->
+  <section id="components">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Core components</h2></div>
+    <p class="sec-desc">Everything below is live. Tap it. These classes ship in <code>tokens.css</code> and are the only building blocks screens may use.</p>
+
+    <div class="grid g2">
+      <!-- buttons -->
+      <div class="panel">
+        <h3 style="margin-top:0">Buttons</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <button class="btn" style="align-self:stretch">Continue</button>
+          <button class="btn" disabled style="align-self:stretch">Continue</button>
+          <div style="display:flex;gap:12px;width:100%">
+            <button class="btn btn-ghost" style="flex:1"><svg class="ico" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg> Mute</button>
+            <button class="btn btn-quiet">Skip ⌄</button>
+          </div>
+        </div>
+        <p class="t-sub" style="margin-top:18px">Primary is white, the brightest element on screen, so the main action always wins the eye. Full-width, pinned to the bottom safe area, disabled until the screen is answerable. Skip is quiet text: visible, never competing.</p>
+      </div>
+
+      <!-- input -->
+      <div class="panel">
+        <h3 style="margin-top:0">Text input</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div class="t-label" style="margin-bottom:8px">What should Sarah call you?</div>
+            <input class="field" placeholder="Your name" />
+          </div>
+          <input class="field is-error" value="Pr@nav_99" />
+          <div class="t-label" style="color:var(--red);margin-top:-6px">Letters only, please</div>
+        </div>
+        <p class="t-sub" style="margin-top:18px">56px tall, indigo focus ring, indigo caret. Errors go red on the border + a 13px helper line, never a toast.</p>
+      </div>
+    </div>
+
+    <!-- option cards -->
+    <div class="panel" style="margin-top:16px">
+      <h3 style="margin-top:0">Option card · single-select <span class="t-label" style="font-weight:400">(tap one)</span></h3>
+      <div class="grid g2">
+        <div style="display:flex;flex-direction:column;gap:12px" data-single>
+          <button class="opt"><span class="opt-emoji">🇮🇳</span><span class="t-option">Hindi</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+          <button class="opt is-selected"><span class="opt-emoji">🇮🇩</span><span class="t-option">Bahasa Indonesia</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+          <button class="opt"><span class="opt-emoji">🇻🇳</span><span class="t-option">Tiếng Việt</span><span class="opt-check"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </div>
+        <div>
+          <p class="t-sub">Anatomy: 22px emoji · 16px Inter Display 500 label · 22px radio that springs to an indigo check.</p>
+          <p class="t-sub" style="margin-top:12px">Selection = indigo tint fill + indigo-500 border + soft outer glow. On single-select, auto-advance 350ms after the check lands.</p>
+          <p class="t-sub" style="margin-top:12px">Min height 60px, comfortably thumbable. Cards press to 0.98 scale on tap.</p>
+        </div>
+      </div>
+
+      <h3>Chips · multi-select <span class="t-label" style="font-weight:400">(tap several)</span></h3>
+      <div style="display:flex;flex-wrap:wrap;gap:10px" data-multi>
+        <button class="chip is-selected"><svg class="ico" style="width:17px;height:17px;color:var(--tint-gold)" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg> Job interviews</button>
+        <button class="chip"><svg class="ico" style="width:17px;height:17px;color:var(--tint-green)" viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3.25" fill="currentColor" stroke="none"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0z" fill="currentColor" stroke="none"/><circle cx="17" cy="8.5" r="2.5" fill="currentColor" stroke="none" opacity=".55"/><path d="M15.6 19.5h5a4.8 4.8 0 0 0-4.2-4.7 6.6 6.6 0 0 1-.8 4.7z" fill="currentColor" stroke="none" opacity=".55"/></svg> Team meetings</button>
+        <button class="chip is-selected"><svg class="ico" style="width:17px;height:17px;color:var(--tint-blue)" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="11" rx="2" fill="currentColor" stroke="none"/><path d="M12 15.5V18"/><path d="M8.5 21l3.5-3 3.5 3"/></svg> Presentations</button>
+        <button class="chip"><svg class="ico" style="width:17px;height:17px;color:var(--tint-red)" viewBox="0 0 24 24"><path d="M22 2l-7 20-4-9-9-4z" fill="currentColor" stroke="none"/></svg> Travel</button>
+        <button class="chip"><svg class="ico" style="width:17px;height:17px;color:var(--tint-purple)" viewBox="0 0 24 24"><path d="M12 3.5L2 8.5l10 5 10-5z" fill="currentColor" stroke="none"/><path d="M6 11v4.5c0 1.4 2.7 2.8 6 2.8s6-1.4 6-2.8V11"/><path d="M22 8.5V14"/></svg> IELTS / exams</button>
+        <button class="chip"><svg class="ico" style="width:17px;height:17px;color:var(--tint-gold)" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="currentColor" stroke="none"/></svg> Daily conversation</button>
+      </div>
+      <p class="t-sub" style="margin-top:18px">Multi-select never auto-advances; the pinned Continue button confirms. Cap visible chips at 8; selected count can echo in the CTA ("Continue · 2 picked").</p>
+    </div>
+
+    <!-- progress -->
+    <div class="panel" style="margin-top:16px">
+      <h3 style="margin-top:0">Progress · the gold system</h3>
+      <div class="phone-demo app-canvas">
+        <div class="t-eyebrow" id="progLabel" style="margin-bottom:12px">Cool name!</div>
+        <div class="progress" id="progDemo"><i style="width:35%"></i></div>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:18px">
+        <button class="btn btn-ghost" id="progBtn" style="min-height:44px;padding:0 24px;font-size:14px">Simulate an answer</button>
+      </div>
+      <p class="t-sub" style="margin-top:16px;text-align:center;max-width:520px;margin-left:auto;margin-right:auto">One continuous bar for the whole journey, and it only ever moves forward. Fill animates 450ms ease-out with a gold glow; the eyebrow micro-label celebrates each answer.</p>
+    </div>
+  </section>
+
+  <!-- ================= 06 PATTERNS ================= -->
+  <section id="patterns">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Onboarding patterns</h2></div>
+    <p class="sec-desc">The three screen archetypes every step maps to. Question screens do the collecting, proof screens do the convincing, reward screens do the retaining.</p>
+
+    <div class="grid g2">
+      <!-- question screen -->
+      <div class="panel">
+        <h3 style="margin-top:0">A · Question screen</h3>
+        <div class="phone-demo app-canvas">
+          <div class="t-eyebrow" style="margin-bottom:12px">About you</div>
+          <div class="progress" style="margin-bottom:28px"><i style="width:22%"></i></div>
+          <div class="t-question" style="font-size:23px;margin-bottom:6px">Where do you want English to <em>shine?</em></div>
+          <div class="t-sub" style="font-size:13.5px;margin-bottom:22px">Pick all that apply</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px" data-multi>
+            <button class="chip" style="min-height:40px;font-size:13.5px"><svg class="ico" style="width:15px;height:15px;color:var(--tint-gold)" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg> Interviews</button>
+            <button class="chip is-selected" style="min-height:40px;font-size:13.5px"><svg class="ico" style="width:15px;height:15px;color:var(--tint-green)" viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3.25" fill="currentColor" stroke="none"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0z" fill="currentColor" stroke="none"/><circle cx="17" cy="8.5" r="2.5" fill="currentColor" stroke="none" opacity=".55"/><path d="M15.6 19.5h5a4.8 4.8 0 0 0-4.2-4.7 6.6 6.6 0 0 1-.8 4.7z" fill="currentColor" stroke="none" opacity=".55"/></svg> Meetings</button>
+            <button class="chip" style="min-height:40px;font-size:13.5px"><svg class="ico" style="width:15px;height:15px;color:var(--tint-blue)" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="11" rx="2" fill="currentColor" stroke="none"/><path d="M12 15.5V18"/><path d="M8.5 21l3.5-3 3.5 3"/></svg> Presentations</button>
+            <button class="chip" style="min-height:40px;font-size:13.5px"><svg class="ico" style="width:15px;height:15px;color:var(--tint-red)" viewBox="0 0 24 24"><path d="M22 2l-7 20-4-9-9-4z" fill="currentColor" stroke="none"/></svg> Travel</button>
+          </div>
+          <button class="btn" style="width:100%;min-height:48px;font-size:15px">Continue</button>
+        </div>
+        <p class="t-sub" style="margin-top:16px">Fixed anatomy top-to-bottom: eyebrow → progress → question → helper → answers → pinned CTA. Nothing else.</p>
+      </div>
+
+      <!-- proof + reward -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="panel">
+          <h3 style="margin-top:0">B · Social-proof interstitial</h3>
+          <div class="phone-demo app-canvas" style="padding:24px 20px">
+            <div class="t-sub" style="font-size:13.5px;margin-bottom:6px">Meetings, huh? You're in good company:</div>
+            <div style="font-family:var(--font-display);font-weight:600;font-size:19px;line-height:1.3;margin-bottom:16px">Over <span style="color:var(--indigo-300);font-weight:700">1,133,400+</span> learners from India chose us</div>
+            <div style="background:var(--surface-2);border:1px solid var(--stroke);border-radius:14px;padding:14px 16px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--indigo-500),var(--indigo-700))"></div>
+                <div><div style="font-size:13px;font-weight:600">Syahrier</div><div class="t-label" style="font-size:11px">@rezsyah</div></div>
+              </div>
+              <div class="t-sub" style="font-size:13px">Downloaded it and got "hooked". Turns out I still have so much to improve 😅</div>
+            </div>
+          </div>
+          <p class="t-sub" style="margin-top:16px">Max one interstitial per chapter, always personalized by the previous answer. Stat in indigo-300: proof is informative, not a reward.</p>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top:0">C · Reward moment <span class="t-label" style="font-weight:400">(gold's one job)</span></h3>
+          <div class="phone-demo app-canvas" style="padding-bottom:28px">
+            <div class="reward-stage" id="rewardStage">
+              <div class="reward-badge">
+                <svg viewBox="0 0 24 24" style="width:42px;height:42px">
+                  <path d="M12 3c.7 4.2 2.6 6.1 6.8 6.8-4.2.7-6.1 2.6-6.8 6.8-.7-4.2-2.6-6.1-6.8-6.8 4.2-.7 6.1-2.6 6.8-6.8z" fill="var(--gold-300)"/>
+                  <path d="M19 15.5c.3 1.8 1.2 2.7 3 3-1.8.3-2.7 1.2-3 3-.3-1.8-1.2-2.7-3-3 1.8-.3 2.7-1.2 3-3z" fill="var(--gold-500)"/>
+                  <path d="M5.5 16c.25 1.5 1 2.25 2.5 2.5-1.5.25-2.25 1-2.5 2.5-.25-1.5-1-2.25-2.5-2.5 1.5-.25 2.25-1 2.5-2.5z" fill="var(--gold-500)"/>
+                </svg>
+              </div>
+              <div class="reward-cap">First speech done!</div>
+              <div class="t-sub" style="font-size:13.5px;text-align:center">You just spoke English for 14 seconds.<br>That's how every fluent speaker started.</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:center;margin-top:14px">
+            <button class="btn btn-ghost" id="rewardBtn" style="min-height:44px;padding:0 24px;font-size:14px">Replay celebration</button>
+          </div>
+          <p class="t-sub" style="margin-top:16px">Every celebration has three beats, always together: the badge pops (spring), <strong style="color:var(--text-hi)">confetti bursts</strong>, the micro-label lands. No celebration ships without confetti. Confetti draws from gold, indigo and the decorative tints, and is skipped under reduced motion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 07 MOTION ================= -->
+  <section id="motion">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Motion</h2></div>
+    <p class="sec-desc">Motion is the timing system for everything that moves in the flow: the press of a button, an option card filling in, one screen sliding to the next, the progress bar advancing, the celebration popping. Each row below is a speed, and the "used for" column says which moments get it. Two easings only: <strong>ease-out</strong> for everything functional, <strong>spring</strong> for moments of delight. Click a row to preview its timing.</p>
+
+    <div class="panel" style="padding:10px 6px">
+      <table class="motion-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Used for</th><th>Preview</th></tr></thead>
+        <tbody>
+          <tr data-dur=".14s" data-ease="cubic-bezier(.2,.7,.2,1)"><td>dur-fast</td><td><code>140ms · ease-out</code></td><td>Tap scale, toggles, hovers</td><td><div class="m-track"><div class="m-dot"></div></div></td></tr>
+          <tr data-dur=".26s" data-ease="cubic-bezier(.2,.7,.2,1)"><td>dur-base</td><td><code>260ms · ease-out</code></td><td>Selection fills, reveals, list stagger</td><td><div class="m-track"><div class="m-dot"></div></div></td></tr>
+          <tr data-dur=".45s" data-ease="cubic-bezier(.2,.7,.2,1)"><td>dur-slow</td><td><code>450ms · ease-out</code></td><td>Screen transitions, progress fill</td><td><div class="m-track"><div class="m-dot"></div></div></td></tr>
+          <tr data-dur=".55s" data-ease="cubic-bezier(.34,1.56,.64,1)"><td>ease-spring</td><td><code>cubic-bezier(.34,1.56,.64,1)</code></td><td>Check pops, badges, celebrations</td><td><div class="m-track"><div class="m-dot"></div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rules">
+      <div class="rule do"><b>DO</b><ul>
+        <li>Stagger option cards in by 40ms each on screen entry</li>
+        <li>Slide screens horizontally (forward = left) at dur-slow</li>
+        <li>Fire a confetti burst with every celebration, no exceptions</li>
+        <li>Respect <code>prefers-reduced-motion</code>: collapse to fades, drop confetti</li>
+      </ul></div>
+      <div class="rule dont"><b>DON'T</b><ul>
+        <li>Animate anything longer than 600ms except celebrations</li>
+        <li>Use spring easing on functional UI (inputs, screens)</li>
+        <li>Move more than one thing per moment of attention</li>
+      </ul></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // single-select groups
+  document.querySelectorAll('[data-single]').forEach(g=>{
+    g.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{
+      g.querySelectorAll('.opt').forEach(x=>x.classList.remove('is-selected'));
+      o.classList.add('is-selected');
+    }));
+  });
+  // multi-select groups
+  document.querySelectorAll('[data-multi]').forEach(g=>{
+    g.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('is-selected')));
+  });
+  // progress demo
+  const labels=['Cool name!','Nice pick!','Goal locked in!','Almost there!','First speech done!'];
+  let step=0;
+  const progFill=document.querySelector('#progDemo i');
+  const widths=[35,52,70,86,100];
+  document.getElementById('progBtn').addEventListener('click',()=>{
+    step=(step+1)%widths.length;
+    progFill.style.width=widths[step]+'%';
+    document.getElementById('progLabel').textContent=labels[step];
+  });
+  // reward replay: badge pop + confetti burst, always together
+  const stage=document.getElementById('rewardStage');
+  const rewardPhone=stage.closest('.phone-demo');
+  const CONFETTI_COLORS=['#FFC96E','#F0A32F','#A8A1FF','#6C63FF','#7FB07C','#D07A6E'];
+  function confettiBurst(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const badge=stage.querySelector('.reward-badge');
+    const pr=rewardPhone.getBoundingClientRect(),br=badge.getBoundingClientRect();
+    const cx=br.left-pr.left+br.width/2,cy=br.top-pr.top+br.height/2;
+    for(let i=0;i<26;i++){
+      const p=document.createElement('span');
+      p.className='confetti'+(Math.random()<.4?' round':'');
+      p.style.background=CONFETTI_COLORS[i%CONFETTI_COLORS.length];
+      p.style.left=cx+'px';p.style.top=cy+'px';
+      rewardPhone.appendChild(p);
+      const dx=(Math.random()-.5)*200;
+      const peak=-(70+Math.random()*100);
+      const fall=150+Math.random()*90;
+      const spin=(Math.random()-.5)*720;
+      p.animate([
+        {transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1},
+        {transform:`translate(${dx*.6}px,${peak}px) rotate(${spin*.5}deg) scale(1)`,opacity:1,offset:.35},
+        {transform:`translate(${dx}px,${fall}px) rotate(${spin}deg) scale(.7)`,opacity:0}
+      ],{duration:1000+Math.random()*500,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'})
+      .onfinish=()=>p.remove();
+    }
+  }
+  document.getElementById('rewardBtn').addEventListener('click',()=>{
+    stage.classList.remove('pop');void stage.offsetWidth;stage.classList.add('pop');
+    confettiBurst();
+  });
+  // iconography direction picker
+  const iconPrev=document.getElementById('iconPreview');
+  document.querySelectorAll('.dir').forEach(d=>d.addEventListener('click',()=>{
+    document.querySelectorAll('.dir').forEach(x=>x.classList.remove('is-selected'));
+    d.classList.add('is-selected');
+    iconPrev.dataset.dir=d.dataset.dir;
+  }));
+  // motion previews
+  document.querySelectorAll('.motion-table tbody tr').forEach(tr=>{
+    tr.style.cursor='pointer';
+    tr.addEventListener('click',()=>{
+      const d=tr.querySelector('.m-dot');
+      d.style.animationDuration=tr.dataset.dur;
+      d.style.animationTimingFunction=tr.dataset.ease;
+      tr.classList.remove('play');void d.offsetWidth;tr.classList.add('play');
+    });
+  });
+</script>
+</body>
+</html>

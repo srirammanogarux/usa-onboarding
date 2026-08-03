@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimuler Onboarding · Conversion Blueprint</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ============ blueprint chrome (dark-committed, matches product world) ============ */
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:
+      radial-gradient(120% 40% at 50% -6%, rgba(108,99,255,.14), transparent 60%),
+      var(--bg-page);
+    color:var(--text-hi);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    min-height:100vh;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 160px;}
+
+  /* sticky act-nav */
+  nav{position:sticky;top:0;z-index:60;background:rgba(7,6,13,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--stroke);}
+  nav .inner{max-width:1180px;margin:0 auto;padding:0 28px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;align-items:center;}
+  nav .inner::-webkit-scrollbar{display:none;}
+  nav .brand{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:-.01em;margin-right:16px;white-space:nowrap;}
+  nav .brand b{color:var(--indigo-300);}
+  nav a{font-family:var(--font-display);font-size:12.5px;font-weight:500;color:var(--text-mid);text-decoration:none;padding:15px 11px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .14s;}
+  nav a:hover{color:var(--text-hi);}
+
+  /* hero / thesis */
+  .hero{padding:74px 0 46px;}
+  .eyebrow{font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-300);}
+  .hero h1{font-family:var(--font-display);font-weight:700;font-size:46px;line-height:1.06;letter-spacing:-.03em;margin:18px 0 0;max-width:16ch;text-wrap:balance;}
+  .hero h1 em{font-style:normal;color:var(--indigo-300);}
+  .hero .lede{margin-top:20px;max-width:64ch;font-size:16px;line-height:1.62;color:var(--text-mid);}
+  .hero .lede b{color:var(--text-hi);font-weight:600;}
+
+  /* positioning strip (Speak <-> us <-> Praktika) */
+  .posn{margin-top:34px;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;}
+  @media(max-width:720px){.posn{grid-template-columns:1fr;}}
+  .posn .pole{border:1px solid var(--stroke);background:var(--surface-1);border-radius:var(--r-md);padding:16px 18px;}
+  .posn .pole h4{font-family:var(--font-display);font-size:13.5px;font-weight:600;margin-bottom:6px;}
+  .posn .pole p{font-size:12.5px;line-height:1.5;color:var(--text-mid);}
+  .posn .pole.us{border-color:var(--indigo-500);background:linear-gradient(150deg,rgba(108,99,255,.16),rgba(83,72,232,.06));}
+  .posn .pole.us h4{color:var(--indigo-300);}
+  .posn .arrow{display:grid;place-items:center;color:var(--text-low);font-size:20px;}
+  @media(max-width:720px){.posn .arrow{display:none;}}
+
+  /* legend */
+  .legend{margin-top:40px;border:1px solid var(--stroke);border-radius:var(--r-lg);padding:20px 24px;background:rgba(26,23,38,.5);}
+  .legend h3{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-low);margin-bottom:14px;}
+  .legend .keys{display:flex;flex-wrap:wrap;gap:10px 22px;}
+  .krow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-mid);}
+  .kstripe{width:11px;height:11px;border-radius:3px;flex:none;}
+
+  /* act sections */
+  .act{padding-top:64px;}
+  .act-head{display:flex;align-items:baseline;gap:16px;margin-bottom:4px;}
+  .act-num{font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--text-low);letter-spacing:.06em;font-variant-numeric:tabular-nums;}
+  .act-head h2{font-family:var(--font-display);font-weight:600;font-size:26px;letter-spacing:-.02em;}
+  .act-head h2 .em{color:var(--indigo-300);}
+  .act-purpose{margin:8px 0 22px;font-size:14px;line-height:1.55;color:var(--text-mid);max-width:70ch;}
+  .act-purpose b{color:var(--text-hi);font-weight:600;}
+
+  /* filmstrip */
+  .strip{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 18px;scroll-snap-type:x proximity;}
+  .strip::-webkit-scrollbar{height:8px;}
+  .strip::-webkit-scrollbar-thumb{background:var(--stroke);border-radius:4px;}
+  .strip::-webkit-scrollbar-track{background:transparent;}
+
+  .card{
+    scroll-snap-align:start;flex:0 0 236px;min-height:190px;
+    background:var(--surface-1);border:1px solid var(--stroke);
+    border-left:3px solid var(--stripe,var(--stroke-strong));
+    border-radius:14px;padding:15px 16px 14px;display:flex;flex-direction:column;gap:9px;
+    transition:transform .16s var(--ease-out),border-color .2s;
+  }
+  .card:hover{transform:translateY(-2px);border-color:var(--stroke-strong);}
+  .card .top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .card .step{font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--text-low);font-variant-numeric:tabular-nums;}
+  .card h4{font-family:var(--font-display);font-weight:600;font-size:15px;line-height:1.24;letter-spacing:-.01em;}
+  .card .note{font-size:12px;line-height:1.5;color:var(--text-mid);flex:1;}
+  .card .foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--text-low);line-height:1.4;}
+
+  /* hero card (activation, plan, paywall get a glow) */
+  .card.hero-card{border-color:var(--indigo-500);box-shadow:0 0 0 1px rgba(108,99,255,.18),0 14px 34px -20px var(--indigo-glow);}
+  .card .star{color:var(--indigo-300);font-size:11px;font-weight:700;letter-spacing:.04em;}
+
+  /* interaction chips */
+  .chip-t{display:inline-flex;align-items:center;font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:5px;background:var(--surface-2);color:var(--text-mid);border:1px solid var(--stroke);white-space:nowrap;}
+
+  /* source tags */
+  .src{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--text-mid);}
+  .src::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sc,var(--text-low));flex:none;}
+  .src.bitepal{--sc:var(--tint-green);}
+  .src.gleam{--sc:var(--tint-purple);}
+  .src.meplus{--sc:var(--tint-blue);}
+  .src.learna{--sc:var(--indigo-400);}
+  .src.brainrot{--sc:var(--tint-red);}
+  .src.speak{--sc:var(--tint-gold);}
+  .src.stimuler{--sc:var(--gold-500);}
+
+  /* internal (non-screen) derivation node */
+  .internal-node{margin:2px 0 8px;border:1.5px dashed var(--stroke-strong);border-radius:var(--r-lg);padding:18px 22px;background:linear-gradient(180deg,rgba(37,33,52,.5),rgba(26,23,38,.3));display:flex;gap:18px;align-items:flex-start;}
+  .internal-node .gear{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--stroke-strong);font-size:18px;}
+  .internal-node .tag{font-family:var(--font-body);font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-low);}
+  .internal-node h4{font-family:var(--font-display);font-weight:600;font-size:16px;margin:6px 0 6px;color:var(--text-hi);}
+  .internal-node p{font-size:13px;line-height:1.6;color:var(--text-mid);max-width:74ch;}
+  .internal-node .expr{font-family:var(--font-body);font-size:12.5px;color:var(--indigo-300);background:var(--surface-1);border:1px solid var(--stroke);border-radius:8px;padding:3px 9px;display:inline-block;margin-top:10px;}
+
+  /* rhythm hint pill inside act 2 */
+  .rhythm{margin:0 0 18px;display:inline-flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-mid);background:rgba(110,143,216,.08);border:1px solid rgba(110,143,216,.28);padding:9px 14px;border-radius:var(--r-pill);}
+  .rhythm b{color:var(--tint-blue);font-weight:600;}
+
+  /* cross-check + decisions */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+  @media(max-width:820px){.split{grid-template-columns:1fr;}}
+  .panel{border:1px solid var(--stroke);border-radius:var(--r-lg);padding:22px 24px;background:var(--surface-1);}
+  .panel h3{font-family:var(--font-display);font-weight:600;font-size:16px;margin-bottom:6px;}
+  .panel h3 .tag{font-size:11px;font-weight:600;color:var(--text-low);letter-spacing:.06em;}
+  .panel p,.panel li{font-size:13px;line-height:1.6;color:var(--text-mid);}
+  .panel ul{margin:10px 0 0;padding-left:18px;}
+  .panel li{margin:6px 0;}
+  .panel li b{color:var(--text-hi);font-weight:600;}
+
+  .decisions{margin-top:64px;}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;}
+  @media(max-width:820px){.dgrid{grid-template-columns:1fr;}}
+  .dcard{border:1px solid var(--stroke);border-radius:var(--r-md);padding:18px 20px;background:var(--surface-1);border-left:3px solid var(--dstripe,var(--stroke-strong));}
+  .dcard .dstat{font-family:var(--font-body);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .dcard h4{font-family:var(--font-display);font-weight:600;font-size:15px;margin-bottom:7px;line-height:1.3;}
+  .dcard p{font-size:12.5px;line-height:1.55;color:var(--text-mid);}
+  .dcard.open{--dstripe:var(--gold-500);} .dcard.open .dstat{color:var(--gold-500);}
+  .dcard.locked{--dstripe:var(--tint-green);} .dcard.locked .dstat{color:var(--tint-green);}
+  .dcard.you{--dstripe:var(--indigo-400);} .dcard.you .dstat{color:var(--indigo-300);}
+
+  h2.sec{font-family:var(--font-display);font-weight:600;font-size:26px;letter-spacing:-.02em;margin-top:0;}
+  .sec-lede{margin:8px 0 0;font-size:14px;color:var(--text-mid);max-width:70ch;line-height:1.55;}
+  .divider{height:1px;background:var(--stroke);margin:66px 0 0;}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="brand">Stimuler · <b>Onboarding Blueprint</b></span>
+  <a href="#a0">0 · Open</a>
+  <a href="#a1">1 · Value</a>
+  <a href="#a15">1.5 · Sign up</a>
+  <a href="#a2">2 · Profile</a>
+  <a href="#a3">3 · Activation</a>
+  <a href="#a4">4 · Plan</a>
+  <a href="#a5">5 · Paywall</a>
+  <a href="#a6">6 · Lock in</a>
+  <a href="#check">Cross-check</a>
+  <a href="#decisions">Decisions</a>
+  <a href="ack-library.html" style="margin-left:auto;color:var(--indigo-300)">Ack library →</a>
+  <a href="branch-map.html" style="color:var(--indigo-300)">Branch map →</a>
+</div></nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">Conversion Funnel · US / LATAM English · v1 draft</span>
+    <h1>The onboarding is the <em>product demo</em> nobody's bought yet.</h1>
+    <p class="lede">The whole app is locked behind a hard paywall, so the flow has to manufacture full conviction before a single lesson. This is the canonical act-by-act sequence, synthesized from the eight flows we tore down and tuned to your calls: <b>Bitepal's context-screen rhythm</b>, <b>me+'s mockup-led value open</b>, and our own unfair advantage — <b>the learner hears their own scored voice before they pay.</b></p>
+    <p class="lede" style="margin-top:14px"><b>Where Sarah lives:</b> she's the product's tutor, so she stars in the value-prop mockups and the hands-free calling demo, and she runs the activation. She is <b>not</b> the host of the Get-to-Know-You questions — those are clean, Gleam-style Q&amp;A with no avatar narrating. Product tutor, yes; onboarding mascot, no.</p>
+
+    <div class="posn">
+      <div class="pole">
+        <h4>Speak — the minimalist</h4>
+        <p>9 screens, ~4 min. Spoken answers are the activation, but <b style="color:var(--text-hi)">no personalized plan reveal</b> before the wall. Fast, but leaves conviction on the table.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="pole us">
+        <h4>Stimuler — the one you remember</h4>
+        <p>Speak's spoken signal, scored on their real voice. Praktika's depth, made effortless by Bitepal's rhythm. Plus the plan reveal neither nails.</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="pole">
+        <h4>Praktika — the maximalist</h4>
+        <p>49 screens, ~15 min. Live-avatar lesson + "50× cheaper than a tutor." Deep, but a slog, and the aha is watching a face, not using your own voice.</p>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h3>How to read a card</h3>
+      <div class="keys">
+        <span class="krow"><span class="kstripe" style="background:var(--indigo-500)"></span>Value / demo</span>
+        <span class="krow"><span class="kstripe" style="background:var(--stroke-strong)"></span>Question</span>
+        <span class="krow"><span class="kstripe" style="background:var(--tint-blue)"></span>Context / science</span>
+        <span class="krow"><span class="kstripe" style="background:var(--tint-green)"></span>Acknowledgement</span>
+        <span class="krow"><span class="kstripe" style="background:var(--indigo-400)"></span>Activation ⭐</span>
+        <span class="krow"><span class="kstripe" style="background:var(--tint-purple)"></span>Social proof</span>
+        <span class="krow"><span class="kstripe" style="background:var(--gold-500)"></span>Plan / reward</span>
+        <span class="krow"><span class="kstripe" style="background:var(--tint-red)"></span>Paywall</span>
+        <span class="krow"><span class="kstripe" style="background:var(--text-low)"></span>System</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ACT 0 -->
+  <section class="act" id="a0">
+    <div class="act-head"><span class="act-num">ACT 0</span><h2>Open the door</h2></div>
+    <p class="act-purpose">Two low-friction taps and a wall of proof before we ask anything. <b>Get Started</b> is the hero; logging in is the quiet secondary. steal: Bitepal's splash → value-first entry, me+'s testimonial open.</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">01</span><span class="chip-t">Splash</span></div>
+        <h4>Brand splash</h4>
+        <p class="note">Logo moment. You're providing this asset.</p>
+        <div class="foot"><span class="src stimuler">Yours to supply</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">02</span><span class="chip-t">Tap</span></div>
+        <h4>Get Started</h4>
+        <p class="note">Value-first entry. "Get Started" primary, "I already have an account" secondary. No login gate up front.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> login-as-get-started</div>
+      </article>
+      <article class="card" style="--stripe:var(--tint-purple)">
+        <div class="top"><span class="step">03</span><span class="chip-t">Proof</span></div>
+        <h4>You're in good company</h4>
+        <p class="note">"4.9★ · 1M+ learners · Editor's Choice" + a named LATAM testimonial. Borrowed credibility before the ask.</p>
+        <div class="foot"><span class="src meplus">me+</span> testimonial open · award-card shrink-in</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 1 -->
+  <section class="act" id="a1">
+    <div class="act-head"><span class="act-num">ACT 1</span><h2>Why we're the one <span class="em">— 5 mockup slides</span></h2></div>
+    <p class="act-purpose">Five value props as cute app <b>mockups</b>, swiped via Next. This is where Sarah and the product are shown working, ending on the price anchor. steal: me+ mockup cards, Learna's feedback demo + tutor-cost anchor (echoed by Praktika).</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">04</span><span class="chip-t">Value 1</span></div>
+        <h4>100+ personalized lessons &amp; exercises</h4>
+        <p class="note">Practical, real-world English, not textbook drills. Mockup of the lesson library.</p>
+        <div class="foot"><span class="src meplus">me+</span> mockup card</div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">05</span><span class="chip-t">Value 2</span></div>
+        <h4>Practice real scenarios with Sarah</h4>
+        <p class="note">Role-play real conversations &amp; simulations. Mockup of a live scenario with Sarah.</p>
+        <div class="foot"><span class="src stimuler">Sarah = product tutor</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">06</span><span class="chip-t">Value 3</span></div>
+        <h4>Hands-free calls, Sarah speaks live</h4>
+        <p class="note">The speaking-ability hero: a dynamic hands-free call interface. Mockup of the call UI.</p>
+        <div class="foot"><span class="src stimuler">our differentiator</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">07</span><span class="chip-t">Value 4</span></div>
+        <h4>Instant feedback score</h4>
+        <p class="note">Your English scored on the spot. Primes the real activation to come.</p>
+        <div class="foot"><span class="src learna">Learna</span> feedback demo</div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-500)">
+        <div class="top"><span class="step">08</span><span class="chip-t">Value 5</span></div>
+        <h4>A tutor is $50/hr. This is cents a day.</h4>
+        <p class="note">The price anchor, landed early so the paywall feels obvious later.</p>
+        <div class="foot"><span class="src learna">Learna</span> · <span class="src speak">Praktika</span> 50× cheaper</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 1.5 — SIGNUP -->
+  <section class="act" id="a15">
+    <div class="act-head"><span class="act-num">ACT 1.5</span><h2>Save your spot <span class="em">— early signup</span></h2></div>
+    <p class="act-purpose"><b>Your call, and I agree with a tweak:</b> ask to sign up right after the value props — but make it <b>one-tap Apple / Google only</b>. Value has earned the right, friction is near-zero, and on a hard-paywall app the real prize is capturing a contactable lead <b>before</b> anyone can drop, so abandoned-onboarding remarketing can win them back. Keep the higher-friction <b>phone number deferred to post-paywall</b> (Act 6).</p>
+    <div class="strip">
+      <article class="card hero-card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">09</span><span class="star">Recommended</span></div>
+        <h4>Create your account</h4>
+        <p class="note">Continue with Apple / Google (one tap), email as fallback. "Save your progress and personalized plan." Guest option optional.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> early social signup · lead capture</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 2 -->
+  <section class="act" id="a2">
+    <div class="act-head"><span class="act-num">ACT 2</span><h2>Get to know you <span class="em">— building the JTBD</span></h2></div>
+    <p class="act-purpose">Three clusters, easy to hard: <b>identity basics</b> (warm, low-friction) → <b>the job</b> (the engaging heart, occupation leads it) → <b>calibration</b> (dry, quick — age batched here so it never breaks the emotional momentum). Every meaningful answer is met by a <b>context</b> or <b>acknowledgement</b> screen. Clean Q&amp;A, no avatar narrating.</p>
+    <div class="rhythm">Rhythm: <b>Question → Context / Acknowledgement → Question.</b> The ✦ cards are placeholders — real copy comes from the separate <b>Acknowledgement Library</b>.</div>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">10</span><span class="chip-t">Single · Identity</span></div>
+        <h4>Your native language</h4>
+        <p class="note">Español default, Português second, flags. Sets L1.</p>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">11</span><span class="chip-t">Single · Identity</span></div>
+        <h4>How did you hear about us?</h4>
+        <p class="note">Attribution, disguised as personalization.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> · <span class="src speak">Praktika</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">12</span><span class="chip-t">Text · Identity</span></div>
+        <h4>What should we call you?</h4>
+        <p class="note">Name capture, reused everywhere downstream.</p>
+      </article>
+      <article class="card" style="--stripe:var(--tint-green)">
+        <div class="top"><span class="step">13</span><span class="chip-t">Ack ✦</span></div>
+        <h4>"Encantada, [name]."</h4>
+        <p class="note">Warm beat in their L1. A tiny bilingual bridge that signals "we get you," not just "hi."</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> ack, upgraded</div>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">14</span><span class="chip-t">Single · The job</span></div>
+        <h4>What do you do?</h4>
+        <p class="note">Occupation leads the motivation cluster — it frames every scenario (nurse, driver, cook, sales, student…).</p>
+        <div class="foot"><span class="src speak">Praktika</span> identity depth</div>
+      </article>
+      <article class="card" style="--stripe:var(--tint-blue)">
+        <div class="top"><span class="step">15</span><span class="chip-t">Context ✦</span></div>
+        <h4>"English is what stands between you and the next rung."</h4>
+        <p class="note">Occupation-specific proof, e.g. "Bilingual [nurses] earn 12% more." Real, dignified stakes — not fabricated fear.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> science context</div>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">16</span><span class="chip-t">Single · The job</span></div>
+        <h4>Why English, why now?</h4>
+        <p class="note">Career · Daily life in the US · Studies · Family · Confidence.</p>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">17</span><span class="star">JTBD ⭐</span></div>
+        <h4>The one conversation you most want to nail</h4>
+        <p class="note">Drill past the goal to the job: speak up in a meeting · understand fast coworkers · ace an interview · talk to customers/patients · handle doctor/school/DMV · not be judged for your accent.</p>
+        <div class="foot"><span class="src stimuler">Our differentiator</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--tint-green)">
+        <div class="top"><span class="step">18</span><span class="chip-t">Ack ✦</span></div>
+        <h4>"Thousands of [drivers] started exactly here."</h4>
+        <p class="note">Ack + belonging: mirror their job back with a peer-proof line so the goal feels shared, not lonely.</p>
+        <div class="foot"><span class="src meplus">me+</span> empathy · <span class="src bitepal">Bitepal</span> ack</div>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">19</span><span class="star">Skill ⭐</span></div>
+        <h4>What should we sharpen first?</h4>
+        <p class="note">Vocabulary · Grammar · Fluency · Pronunciation. This picks the <b>activation exercise type</b> — the unit Sarah runs next.</p>
+        <div class="foot"><span class="src stimuler">drives the activation unit</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">20</span><span class="chip-t">Picker · Calibration</span></div>
+        <h4>How old are you?</h4>
+        <p class="note">Batched into the dry calibration cluster (not mid-motivation). Enables age-aware projections later.</p>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">21</span><span class="chip-t">Single · Calibration</span></div>
+        <h4>Preparing for something specific?</h4>
+        <p class="note">This week · this month · building for life. Tunes urgency.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> timeline</div>
+      </article>
+      <article class="card" style="--stripe:var(--stroke-strong)">
+        <div class="top"><span class="step">22</span><span class="chip-t">Single · Calibration</span></div>
+        <h4>Your English level, roughly?</h4>
+        <p class="note">Beginner → Advanced. Sets the hybrid guess the activation will confirm.</p>
+      </article>
+    </div>
+
+    <div class="internal-node">
+      <div class="gear">⚙</div>
+      <div>
+        <span class="tag">Internal · never shown to the user</span>
+        <h4>The JTBD brief we derive</h4>
+        <p>We silently compose occupation + age + the target conversation + the chosen skill into one working brief — <b style="color:var(--text-hi)">not a screen</b>. It's the spec that tells the activation which exercise to run and which scenario to set it in. The user just experiences the right activation; they never see the sentence.</p>
+        <span class="expr">nurse · 34 · "speak up in shift handovers" · fluency  →  activation = impromptu turn, hospital-handover scenario</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 3 -->
+  <section class="act" id="a3">
+    <div class="act-head"><span class="act-num">ACT 3</span><h2>Hear yourself <span class="em">— the activation</span></h2></div>
+    <p class="act-purpose">Our unfair advantage. Competitors only <b>demo</b> correction (Learna's scripted "60%"); we make the learner <b>speak or read and score their own voice</b>. The exercise is chosen by the <b>internally-derived JTBD brief + the target skill (step 19)</b> — a fluency learner gets an impromptu turn, a pronunciation learner a read-aloud, all on their actual job scenario. <b>Your existing activation flow slots in here</b> — my job is to present it better and branch it by occupation + skill.</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">23</span><span class="chip-t">Permission</span></div>
+        <h4>Mic warm-up</h4>
+        <p class="note">Framed around their JTBD, not a cold "allow mic."</p>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">24</span><span class="star">Speak / Read ⭐</span></div>
+        <h4>Branch by level</h4>
+        <p class="note">Higher: impromptu speak with a hint scaffold on a JTBD prompt. Beginner: read a JTBD line aloud → pronunciation.</p>
+        <div class="foot"><span class="src speak">Speak</span> spoken signal · <span class="src stimuler">scored, unlike Speak</span></div>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">25</span><span class="chip-t">Capture</span></div>
+        <h4>Live capture</h4>
+        <p class="note">Real mic waveform + count-up ring. The tactile heart of the flow.</p>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">26</span><span class="star">Deficit reveal ⭐</span></div>
+        <h4>Your voice, scored</h4>
+        <p class="note">Fluency / pronunciation / grammar on their own words. Beats Learna's fake 60% because it's theirs.</p>
+      </article>
+      <article class="card" style="--stripe:var(--indigo-400)">
+        <div class="top"><span class="step">27</span><span class="chip-t">Reveal</span></div>
+        <h4>What to improve</h4>
+        <p class="note">2–3 specific fixes, tied to their job. Concrete gap the plan will close.</p>
+      </article>
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">28</span><span class="chip-t">System</span></div>
+        <h4>Confirm level</h4>
+        <p class="note">Hybrid: adjust the self-reported level from the actual attempt.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 4 -->
+  <section class="act" id="a4">
+    <div class="act-head"><span class="act-num">ACT 4</span><h2>Your plan, built for you</h2></div>
+    <p class="act-purpose">The high-conversion crescendo: compute theater, a value graph, a commitment ritual, then the named plan reveal. steal: Gleam's glow loader + future-self letter + graph, Bitepal/Learna named plan, Brainrot's loss→gain viz.</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--tint-purple)">
+        <div class="top"><span class="step">29</span><span class="chip-t">Loading</span></div>
+        <h4>Building your plan…</h4>
+        <p class="note">Circular hollow-glow ring 0→100%, testimonials + LATAM faces cycling behind. Dead time as proof surface.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> glow loader · <span class="src bitepal">Bitepal</span> proof cycle</div>
+      </article>
+      <article class="card" style="--stripe:var(--gold-500)">
+        <div class="top"><span class="step">30</span><span class="chip-t">Graph</span></div>
+        <h4>"Interview-ready in 3 weeks"</h4>
+        <p class="note">Rising "with Stimuler" vs flat "on your own" line. Inaction framed as staying stuck.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> · <span class="src brainrot">Brainrot</span> value graph</div>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--gold-300)">
+        <div class="top"><span class="step">31</span><span class="star">Commitment ⭐</span></div>
+        <h4>Letter to future you</h4>
+        <p class="note">Dated, first-person, hold-to-commit press. "Future you, one promotion later." Fuses future-pacing with a physical pledge.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> future-self + hold ritual</div>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--gold-500)">
+        <div class="top"><span class="step">32</span><span class="star">The aha ⭐</span></div>
+        <h4>[Name]'s Plan</h4>
+        <p class="note">Mirrors goal + the specific job + level + the fixes from their voice + a dated projection. Confetti. The thing they'll pay to keep.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> · <span class="src learna">Learna</span> named plan</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 5 -->
+  <section class="act" id="a5">
+    <div class="act-head"><span class="act-num">ACT 5</span><h2>The decision</h2></div>
+    <p class="act-purpose">Proof wall at peak conviction → the hard paywall with the plan echoed inside → and the moment they try to leave, the limited-time offer you flagged as essential.</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--tint-purple)">
+        <div class="top"><span class="step">33</span><span class="chip-t">Proof</span></div>
+        <h4>Success stories</h4>
+        <p class="note">LATAM wins: "got the job," "stopped freezing in standups." Objection-killer right before price.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> · <span class="src bitepal">Bitepal</span> proof wall</div>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--tint-red)">
+        <div class="top"><span class="step">34</span><span class="star">Hard paywall</span></div>
+        <h4>Unlock your plan</h4>
+        <p class="note">Everything locked. The named plan repeats inside the wall (endowment). Anchored annual, outcome-framed.</p>
+        <div class="foot"><span class="src speak">Praktika</span> price anchor</div>
+      </article>
+      <article class="card hero-card" style="--stripe:var(--tint-red)">
+        <div class="top"><span class="step">35</span><span class="star">Exit-intent ⭐</span></div>
+        <h4>Limited-time offer</h4>
+        <p class="note">On close: discount + live countdown + strike-through anchor. You called this essential.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> −60% · <span class="src gleam">Gleam</span> 43% off</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ACT 6 -->
+  <section class="act" id="a6">
+    <div class="act-head"><span class="act-num">ACT 6</span><h2>Lock it in</h2></div>
+    <p class="act-purpose">The sensitive, high-friction asks come <b>last</b> — after the purchase, when every prior answer is sunk cost. steal: Bitepal/Learna deferring account + phone to the very end.</p>
+    <div class="strip">
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">36</span><span class="chip-t">Permission</span></div>
+        <h4>Turn on reminders</h4>
+        <p class="note">Notification opt-in with an arrow pointing at Allow.</p>
+        <div class="foot"><span class="src gleam">Gleam</span> allow-nudge</div>
+      </article>
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">37</span><span class="chip-t">System</span></div>
+        <h4>Save your progress</h4>
+        <p class="note">Account creation + phone number, deferred here on purpose.</p>
+        <div class="foot"><span class="src bitepal">Bitepal</span> · <span class="src learna">Learna</span> defer-to-end</div>
+      </article>
+      <article class="card" style="--stripe:var(--text-low)">
+        <div class="top"><span class="step">38</span><span class="chip-t">Done</span></div>
+        <h4>Into your first lesson</h4>
+        <p class="note">Hand-off to the unlocked product.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CROSS CHECK -->
+  <section class="act" id="check">
+    <div class="act-head" style="margin-bottom:2px"><h2 class="sec">Cross-checked against your two primary rivals</h2></div>
+    <p class="sec-lede">You asked whether the sequence holds up against what Speak and Praktika actually do. It's built to sit between them and beat both on the one thing that matters — conviction per minute.</p>
+    <div class="split">
+      <div class="panel">
+        <h3>vs Speak <span class="tag">9 screens · ~4 min</span></h3>
+        <ul>
+          <li>We <b>adopt</b> its best idea: spoken open answers as high-signal input (our Act 3).</li>
+          <li>We <b>go further</b>: Speak never scores the voice or shows a gap — we do, on their own words.</li>
+          <li>We <b>add what it lacks</b>: Speak shows "projection only, no plan reveal." Our Act 4 named plan is the conviction Speak skips.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>vs Praktika <span class="tag">49 screens · ~15 min</span></h3>
+        <ul>
+          <li>We <b>borrow</b> its depth-with-context and the "50× cheaper than a tutor" anchor (Act 1).</li>
+          <li>We <b>refuse</b> its 15-minute slog: Bitepal's context/ack rhythm makes our depth feel like momentum, not interrogation.</li>
+          <li>We <b>out-activate it</b>: Praktika's aha is watching a synthetic face. Ours is hearing <b>your own</b> voice improve.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section class="decisions" id="decisions">
+    <div class="act-head" style="margin-bottom:2px"><h2 class="sec">Open decisions &amp; what I need from you</h2></div>
+    <p class="sec-lede">Four things to lock before we start building individual screens.</p>
+    <div class="dgrid">
+      <div class="dcard open">
+        <div class="dstat">Needs a call</div>
+        <h4>Free-trial framing vs pure no-trial</h4>
+        <p>You picked "hard paywall, one-shot." But <b style="color:var(--text-hi)">every flow analyzed — Speak, Praktika, Gleam, me+, Bitepal, Learna — crosses the wall with a 7-day free trial.</b> It's the category's biggest friction-reducer. Recommend at least trial framing on a locked app. Lock this first.</p>
+      </div>
+      <div class="dcard locked">
+        <div class="dstat">Reconciled ✓</div>
+        <h4>Exit-intent offer is in</h4>
+        <p>You called the limited-time offer on paywall-close essential, so it's now Act 5. That refines the earlier "one-shot" answer — the downsell ladder is part of the plan.</p>
+      </div>
+      <div class="dcard locked">
+        <div class="dstat">Reconciled ✓</div>
+        <h4>Early signup, one-tap</h4>
+        <p>Agreed with a tweak: signup right after the value props (Act 1.5), but <b style="color:var(--text-hi)">Apple/Google one-tap only</b> — lead capture before drop-off matters most on a hard wall. Phone number still deferred to Act 6.</p>
+      </div>
+      <div class="dcard locked">
+        <div class="dstat">Clarified ✓</div>
+        <h4>Sarah: tutor, not host</h4>
+        <p>Sarah stars in the value-prop mockups + calling demo + activation, but never narrates the Q&amp;A. Clean, no-avatar questions in our dark-navy + indigo system.</p>
+      </div>
+      <div class="dcard you">
+        <div class="dstat">From you</div>
+        <h4>Two assets to send</h4>
+        <p>The <b style="color:var(--text-hi)">brand splash</b> (Act 0) and your <b style="color:var(--text-hi)">existing activation flow</b> (Act 3) — so I present your flow better and branch it across occupation + skill instead of inventing a new one.</p>
+      </div>
+      <div class="dcard you">
+        <div class="dstat">Building now</div>
+        <h4>Acknowledgement &amp; context library</h4>
+        <p>Cataloguing every ack/context screen across the five apps into named, reusable types so our in-between states carry real value and conviction — not filler. Lands shortly.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

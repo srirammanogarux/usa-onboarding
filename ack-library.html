@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimuler · Acknowledgement &amp; Context Library</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:radial-gradient(120% 40% at 50% -6%, rgba(108,99,255,.13), transparent 60%),var(--bg-page);color:var(--text-hi);-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px 150px;}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(7,6,13,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--stroke);}
+  nav .inner{max-width:1160px;margin:0 auto;padding:0 28px;display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none;}
+  nav .inner::-webkit-scrollbar{display:none;}
+  nav .brand{font-family:var(--font-display);font-weight:700;font-size:14px;margin-right:14px;white-space:nowrap;}
+  nav .brand b{color:var(--indigo-300);}
+  nav a{font-family:var(--font-display);font-size:12.5px;font-weight:500;color:var(--text-mid);text-decoration:none;padding:15px 11px;white-space:nowrap;transition:color .14s;}
+  nav a:hover{color:var(--text-hi);}
+  nav .home{margin-left:auto;color:var(--indigo-300);}
+
+  .hero{padding:70px 0 30px;}
+  .eyebrow{font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-300);}
+  h1{font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.06;letter-spacing:-.03em;margin:18px 0 0;max-width:20ch;text-wrap:balance;}
+  .lede{margin-top:20px;max-width:66ch;font-size:16px;line-height:1.62;color:var(--text-mid);}
+  .lede b{color:var(--text-hi);font-weight:600;}
+
+  /* bilingual principle banner */
+  .principle{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--stroke);border-radius:var(--r-lg);overflow:hidden;}
+  @media(max-width:720px){.principle{grid-template-columns:1fr;}}
+  .principle > div{padding:22px 26px;}
+  .principle .es{background:linear-gradient(150deg,rgba(127,176,124,.12),rgba(127,176,124,.04));border-right:1px solid var(--stroke);}
+  .principle .en{background:linear-gradient(150deg,rgba(108,99,255,.13),rgba(108,99,255,.04));}
+  @media(max-width:720px){.principle .es{border-right:none;border-bottom:1px solid var(--stroke);}}
+  .principle h3{font-family:var(--font-display);font-weight:600;font-size:15px;margin-bottom:7px;}
+  .principle .es h3{color:var(--tint-green);}
+  .principle .en h3{color:var(--indigo-300);}
+  .principle p{font-size:13.5px;line-height:1.55;color:var(--text-mid);}
+
+  section{padding-top:70px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .sec-num{font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--text-low);}
+  h2{font-family:var(--font-display);font-weight:600;font-size:28px;letter-spacing:-.02em;}
+  .sec-lede{margin:6px 0 30px;font-size:14px;color:var(--text-mid);max-width:72ch;line-height:1.55;}
+
+  /* taxonomy grid */
+  .types{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:820px){.types{grid-template-columns:1fr;}}
+  .type{border:1px solid var(--stroke);border-left:3px solid var(--tc,var(--stroke-strong));border-radius:var(--r-md);padding:16px 18px;background:var(--surface-1);}
+  .type .th{display:flex;align-items:baseline;gap:9px;margin-bottom:7px;}
+  .type .tn{font-family:var(--font-display);font-weight:700;font-size:12px;color:var(--tc,var(--text-low));font-variant-numeric:tabular-nums;}
+  .type h4{font-family:var(--font-display);font-weight:600;font-size:15px;}
+  .type .job{font-size:12.5px;line-height:1.5;color:var(--text-mid);}
+  .type .when{margin-top:8px;font-size:11.5px;color:var(--text-low);line-height:1.45;}
+  .type .when b{color:var(--text-mid);font-weight:600;}
+
+  /* designed screens */
+  .screens{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media(max-width:900px){.screens{grid-template-columns:1fr;}}
+  .sc{border:1px solid var(--stroke);border-radius:var(--r-lg);overflow:hidden;background:var(--surface-1);display:flex;flex-direction:column;}
+  .sc .preview{padding:26px 24px 24px;background:radial-gradient(120% 60% at 50% -10%, rgba(108,99,255,.14), transparent 55%),linear-gradient(180deg,#16122A,#0D0B16);position:relative;min-height:210px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
+  .sc .k-es{font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.22;letter-spacing:-.02em;color:var(--text-hi);text-wrap:balance;}
+  .sc .k-en{font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.22;letter-spacing:-.02em;color:var(--text-hi);text-wrap:balance;}
+  .sc .sub{font-size:13.5px;line-height:1.55;color:var(--text-mid);}
+  .sc .sub .es{color:var(--tint-green);}
+  .sc .btns{display:flex;gap:8px;margin-top:4px;}
+  .sc .b{font-family:var(--font-display);font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:var(--r-pill);}
+  .sc .b1{background:linear-gradient(180deg,#fff,#EDEBF6);color:#0D0B16;}
+  .sc .b2{background:rgba(255,255,255,.05);border:1px solid var(--stroke-strong);color:var(--text-hi);}
+  .sc .viz{display:flex;align-items:flex-end;gap:6px;height:52px;margin-top:2px;}
+  .sc .bar{width:34px;border-radius:5px 5px 0 0;}
+  .sc .barlab{font-size:9px;color:var(--text-low);text-align:center;margin-top:4px;display:block;}
+  .sc .meta{padding:15px 20px 17px;border-top:1px solid var(--stroke);display:flex;flex-direction:column;gap:9px;}
+  .sc .trigger{font-size:12px;color:var(--text-mid);}
+  .sc .trigger b{color:var(--indigo-300);font-weight:600;}
+  .sc .tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .tg{font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.03em;text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1px solid var(--stroke);color:var(--text-mid);background:var(--surface-2);}
+  .tg.type{color:var(--tc,var(--indigo-300));border-color:color-mix(in srgb, var(--tc,var(--indigo-400)) 40%, transparent);}
+  .sc .viznote{font-size:11.5px;color:var(--text-low);line-height:1.45;}
+  .sc .viznote b{color:var(--text-mid);font-weight:600;}
+
+  /* letter card */
+  .letter{background:linear-gradient(180deg,#1d1930,#161226);border:1px solid var(--stroke-strong);border-radius:12px;padding:16px 18px;font-size:13px;line-height:1.6;color:var(--text-mid);}
+  .letter .sig{margin-top:10px;font-family:var(--font-display);font-style:italic;color:var(--text-hi);}
+  .hold{margin-top:10px;display:inline-flex;align-items:center;gap:9px;font-size:12px;color:var(--indigo-300);}
+  .hold .ring{width:26px;height:26px;border-radius:50%;border:2px solid var(--indigo-500);box-shadow:0 0 12px var(--indigo-glow);}
+
+  /* rhythm table */
+  .rhythm-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .rhythm-table th{text-align:left;font-family:var(--font-display);font-weight:600;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-low);padding:11px 14px;border-bottom:1px solid var(--stroke);}
+  .rhythm-table td{padding:13px 14px;border-bottom:1px solid var(--stroke);color:var(--text-mid);vertical-align:top;}
+  .rhythm-table td:first-child{color:var(--text-hi);font-family:var(--font-display);font-weight:600;white-space:nowrap;}
+  .rhythm-table tr:last-child td{border-bottom:none;}
+  .rhythm-table .best{color:var(--gold-300);}
+  .ratio{font-variant-numeric:tabular-nums;color:var(--indigo-300);font-weight:600;}
+
+  .callout{margin-top:22px;border:1px solid rgba(240,163,47,.3);background:rgba(240,163,47,.06);border-radius:var(--r-md);padding:16px 20px;font-size:13px;line-height:1.6;color:var(--text-mid);}
+  .callout b{color:var(--gold-300);font-weight:600;}
+  .divider{height:1px;background:var(--stroke);margin:70px 0 0;}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="brand">Stimuler · <b>Ack Library</b></span>
+  <a href="#principle">Principle</a>
+  <a href="#screens">8 screens</a>
+  <a href="#types">10 types</a>
+  <a href="#rhythm">Rhythm</a>
+  <a href="blueprint.html" class="home">← Blueprint</a>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero" id="principle">
+    <span class="eyebrow">The connective tissue · from 5 teardowns</span>
+    <h1>Acknowledgement &amp; context library</h1>
+    <p class="lede">The screens <b>between</b> the questions — the ones that celebrate, educate, reassure, mirror a pain, or prove value. Bitepal and me+ run roughly <b>one per answer</b>; that rhythm is what makes a long form feel like a guided diagnosis instead of a survey. Below: the one governing principle, eight screens written for our audience, the ten reusable types, and who does it best.</p>
+
+    <div class="principle">
+      <div class="es">
+        <h3>Español = safety</h3>
+        <p>Reassurance, reframes and empathy land in Spanish (or Spanish-led). It's the language where "it's not your fault" and "we get you" actually feel true.</p>
+      </div>
+      <div class="en">
+        <h3>English = aspiration</h3>
+        <p>Proof, stats and the future-win land in English — so the learner <i>feels</i> the target state they're buying. Every screen below is deliberately bilingual on this split.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- 8 SCREENS -->
+  <section id="screens">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Eight screens, written for US / LATAM</h2></div>
+    <p class="sec-lede">Ready-to-use copy, each triggered by one of our questions and mapped to a type. These are the high-conviction states — the ✦ placeholders in the blueprint get filled from here.</p>
+
+    <div class="screens">
+
+      <!-- 1 reframe -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-es">"No es que seas malo<br>para el inglés."</div>
+          <p class="sub">You never had a safe place to practice — one where no one laughs, no one rushes you, and mistakes are the point. <span class="es">Empezamos hoy.</span></p>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>native language = Spanish</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--tint-purple)">Reframe · not your fault</span></div>
+          <div class="viznote"><b>Visual:</b> a Spanish speech bubble morphing into English. Warm two-tone, no red / error colors.</div>
+        </div>
+      </article>
+
+      <!-- 2 stat -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">Confident English can raise your pay <b style="color:var(--indigo-300)">15–30%</b>.</div>
+          <p class="sub">Same job, same hours — the difference is being understood in the interview and the meeting. <span class="es">Ese es el trabajo que vamos a hacer.</span></p>
+          <div class="viz">
+            <div><div class="bar" style="height:22px;background:var(--stroke-strong)"></div><span class="barlab">Español only</span></div>
+            <div><div class="bar" style="height:50px;background:linear-gradient(180deg,var(--indigo-400),var(--indigo-600))"></div><span class="barlab">Bilingual</span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>goal = better job / promotion</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--tint-blue)">Did-you-know stat</span><span class="tg">+ you-vs-nothing</span></div>
+          <div class="viznote"><b>Visual:</b> two-bar chart + tiny "Source: U.S. labor data" credibility line.</div>
+        </div>
+      </article>
+
+      <!-- 3 empathy mirror -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">They talk fast, you catch 1 word in 3 — and you nod so nobody notices.</div>
+          <p class="sub"><span class="es">¿Te pasa?</span> You're not slow. Native speed just needs its own kind of practice — and it's the first thing we'll train.</p>
+          <div class="btns"><span class="b b1">Sí, exacto</span><span class="b b2">A veces</span></div>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>JTBD = understanding fast coworkers</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--tint-green)">Empathy mirror</span></div>
+          <div class="viznote"><b>Visual:</b> break-room scene, a blur of overlapping words; listener half-smiling. me+ "do you relate?" pattern.</div>
+        </div>
+      </article>
+
+      <!-- 4 future-pace scenario -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">Your next shift: a customer asks a question — and you answer without freezing.</div>
+          <p class="sub"><span class="es">En 4 semanas, 10 minutos al día,</span> this is the exact moment we're building toward. No memorized script — real answers, in real time.</p>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>occupation = customer-facing</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--gold-500)">Future-pace · scenario</span></div>
+          <div class="viznote"><b>Visual:</b> bright counter/customer scene, soft green "you" glow, forward-leaning body language.</div>
+        </div>
+      </article>
+
+      <!-- 5 reframe accent -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">The goal isn't to erase your accent. It's to be understood the first time.</div>
+          <p class="sub"><span class="es">Tu acento es parte de ti — no lo vamos a borrar.</span> We train clarity: the sounds that actually change whether people get you.</p>
+          <div class="viz" style="align-items:center;gap:3px;height:40px">
+            <div style="width:3px;height:12px;background:var(--stroke-strong);border-radius:2px"></div>
+            <div style="width:3px;height:26px;background:var(--indigo-400);border-radius:2px"></div>
+            <div style="width:3px;height:18px;background:var(--indigo-400);border-radius:2px"></div>
+            <div style="width:3px;height:34px;background:var(--indigo-400);border-radius:2px"></div>
+            <div style="width:3px;height:16px;background:var(--indigo-400);border-radius:2px"></div>
+            <div style="width:3px;height:24px;background:var(--stroke-strong);border-radius:2px"></div>
+            <span style="margin-left:8px;color:var(--green);font-size:16px">✓</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>skill = pronunciation</b> / accent JTBD</div>
+          <div class="tags"><span class="tg type" style="--tc:var(--tint-purple)">Reframe · reassure</span></div>
+          <div class="viznote"><b>Visual:</b> a clean waveform with a single green "understood" check. Explicitly no accent "score".</div>
+        </div>
+      </article>
+
+      <!-- 6 deficit reveal -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">Meet your profile:<br>"The Silent Knower."</div>
+          <p class="sub">You understand far more than you can say out loud. <span class="es">Tu comprensión va adelante</span> — your speaking just hasn't caught up. That gap closes fastest with the right practice.</p>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-top:2px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;font-size:10px;color:var(--text-low)">Comprehension</span><span style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--green),var(--green)) left/86% no-repeat,rgba(255,255,255,.08)"></span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;font-size:10px;color:var(--text-low)">Speaking</span><span style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--indigo-400),var(--indigo-400)) left/52% no-repeat,rgba(255,255,255,.08)"></span></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:92px;font-size:10px;color:var(--text-low)">Confidence</span><span style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--amber,var(--gold-500)),var(--gold-500)) left/34% no-repeat,rgba(255,255,255,.08)"></span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>level + skill answered</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--tint-red)">Personalized deficit reveal</span></div>
+          <div class="viznote"><b>Visual:</b> three "from your answers" bars + a named archetype badge. Optional scratch-to-reveal (Gleam).</div>
+        </div>
+      </article>
+
+      <!-- 7 you-vs-nothing -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-en">In 30 days you could hold a 5-minute conversation. Most quit their free app in week 2.</div>
+          <p class="sub">3x faster than the apps you download and abandon. <span class="es">Con Stimuler,</span> 10 minutes a day compounds — <span class="es">solo,</span> it flatlines.</p>
+          <svg viewBox="0 0 200 46" style="width:100%;height:46px;margin-top:2px">
+            <polyline points="4,40 60,38 120,36 196,34" fill="none" stroke="var(--stroke-strong)" stroke-width="2"/>
+            <polyline points="4,40 60,30 120,16 196,5" fill="none" stroke="var(--indigo-400)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="196" cy="5" r="3" fill="var(--gold-400,var(--gold-300))"/>
+          </svg>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>timeline = has an interview soon</b></div>
+          <div class="tags"><span class="tg type" style="--tc:var(--indigo-400)">You-vs-nothing graph</span></div>
+          <div class="viznote"><b>Visual:</b> "Con Stimuler" rising to a "1st interview" flag vs "By yourself" flat. Learna pattern.</div>
+        </div>
+      </article>
+
+      <!-- 8 letter + commitment -->
+      <article class="sc">
+        <div class="preview">
+          <div class="k-es">Una carta de tu futuro tú.</div>
+          <div class="letter">Soy tú, en 90 días. Today I did the whole interview in English — and they called me back. It started the day you gave it 10 minutes, even when you were tired. <span class="es" style="color:var(--tint-green)">Sigue. Vale la pena.</span>
+            <div class="sig">— Tú</div>
+          </div>
+          <div class="hold"><span class="ring"></span> Mantén presionado para firmar y empezar</div>
+        </div>
+        <div class="meta">
+          <div class="trigger">Triggered by <b>after the plan loader</b> (final beat)</div>
+          <div class="tags"><span class="tg type" style="--tc:var(--gold-500)">Future-pace</span><span class="tg">+ commitment ritual</span></div>
+          <div class="viznote"><b>Visual:</b> paper-letter card, hold-to-sign glow. Gleam "Future Sriram" + me+ contract, fused &amp; bilingual.</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="callout"><b>Bonus — science-authority screen (type #3), triggered by age:</b> <i>"Tu cerebro adulto aprende idiomas mejor de lo que crees"</i> / "Adults learn languages faster than kids in the first 6 months — you have context and motivation they don't." A two-brain or growth-curve visual. It also gives the otherwise-dry age question a reason to earn its own beat.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 10 TYPES -->
+  <section id="types">
+    <div class="sec-head"><span class="sec-num">02</span><h2>The ten reusable types</h2></div>
+    <p class="sec-lede">Every acknowledgement screen across the five apps clusters into one of these. Use them as a kit: pick a type by the emotional job the moment needs.</p>
+    <div class="types">
+      <div class="type" style="--tc:var(--tint-green)"><div class="th"><span class="tn">01</span><h4>Micro-celebration</h4></div><p class="job">Reward the answer, keep momentum. Confetti or a warm line.</p><p class="when"><b>When:</b> after effortful or final answers · <b>e.g.</b> me+ "This is a very good start, Well done!"</p></div>
+      <div class="type" style="--tc:var(--tint-blue)"><div class="th"><span class="tn">02</span><h4>Did-you-know stat</h4></div><p class="job">A surprising, credible number that raises the stakes.</p><p class="when"><b>When:</b> 1 per 2–4 questions · <b>e.g.</b> Brainrot "58 times per day without realizing"</p></div>
+      <div class="type" style="--tc:var(--tint-blue)"><div class="th"><span class="tn">03</span><h4>Science / authority</h4></div><p class="job">Borrow institutional credibility so the method feels legit.</p><p class="when"><b>When:</b> once, after a struggle admitted · <b>e.g.</b> Bitepal "The New England Journal of Medicine…"</p></div>
+      <div class="type" style="--tc:var(--indigo-400)"><div class="th"><span class="tn">04</span><h4>You-vs-nothing graph</h4></div><p class="job">Visualize the gap between using us and doing nothing.</p><p class="when"><b>When:</b> near the loader/plan · <b>e.g.</b> Learna "600 more phrases than by yourself"</p></div>
+      <div class="type" style="--tc:var(--tint-red)"><div class="th"><span class="tn">05</span><h4>Deficit / profile reveal</h4></div><p class="job">A named identity or score "from their answers" = a gap to close.</p><p class="when"><b>When:</b> once, after profiling · <b>e.g.</b> Gleam "You're an Emerging Voice — 44/100"</p></div>
+      <div class="type" style="--tc:var(--tint-green)"><div class="th"><span class="tn">06</span><h4>Empathy mirror</h4></div><p class="job">Quote their private pain back so they feel seen.</p><p class="when"><b>When:</b> repeatedly · <b>e.g.</b> me+ "I feel anxious when I have a lot to do…"</p></div>
+      <div class="type" style="--tc:var(--tint-purple)"><div class="th"><span class="tn">07</span><h4>Reframe</h4></div><p class="job">Relocate blame off the user — dissolves "I've failed before".</p><p class="when"><b>When:</b> after past-failure admitted · <b>e.g.</b> Gleam "charisma… is a skill"</p></div>
+      <div class="type" style="--tc:var(--tint-red)"><div class="th"><span class="tn">08</span><h4>Loss / agitation</h4></div><p class="job">Make the cost of inaction visceral, then relieve it fast.</p><p class="when"><b>When:</b> sparingly, short arc · <b>e.g.</b> Brainrot "on track to spend 21 years"</p></div>
+      <div class="type" style="--tc:var(--gold-500)"><div class="th"><span class="tn">09</span><h4>Future-pace</h4></div><p class="job">Let them pre-live the win so the plan feels theirs.</p><p class="when"><b>When:</b> late, near plan/paywall · <b>e.g.</b> Gleam "letter from Future Sriram"</p></div>
+      <div class="type" style="--tc:var(--gold-300)"><div class="th"><span class="tn">10</span><h4>Commitment ritual</h4></div><p class="job">Extract a physical act of consent (sign, hold, "I will").</p><p class="when"><b>When:</b> once, pre-paywall · <b>e.g.</b> me+ "Let's make a contract" (finger-sign)</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RHYTHM -->
+  <section id="rhythm">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Rhythm &amp; who does it best</h2></div>
+    <p class="sec-lede">How densely each app inserts context screens between questions — and the signature move worth stealing from each.</p>
+    <div style="overflow-x:auto;border:1px solid var(--stroke);border-radius:var(--r-lg);">
+      <table class="rhythm-table">
+        <thead><tr><th>App</th><th>Context : questions</th><th>Signature move</th></tr></thead>
+        <tbody>
+          <tr><td>Bitepal</td><td><span class="ratio">~1 : 1</span></td><td>Mascot micro-celebration + stat card after nearly every answer. Relentless; some are thin.</td></tr>
+          <tr><td>Brainrot</td><td><span class="ratio">~1.5 : 1</span></td><td>The escalating loss arc (21 years / memento-mori) + interactive rituals. The single most powerful sequence.</td></tr>
+          <tr><td class="best">Gleam ★</td><td><span class="ratio">~1 : 2</span></td><td class="best">Best conviction-per-screen: scratch-to-reveal score, editorial "Did you know" cards, the future-self letter. Every interstitial earns its place.</td></tr>
+          <tr><td>Learna</td><td><span class="ratio">~1 : 3</span></td><td>Leanest during Q&amp;A; batches all proof into the "Personalizing…" loader. The structural template for a language app.</td></tr>
+          <tr><td>me+</td><td><span class="ratio">~1 : 1</span></td><td>Heaviest on empathy-mirror ("Do you relate?" ×4) + behavior-science authority brains.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>The takeaway for us:</b> copy <b style="color:var(--text-hi)">Learna's structure</b> (chat-lean Q&amp;A, proof batched into the loader, personalized-plan reveal), but borrow <b style="color:var(--text-hi)">Gleam's + me+'s conviction techniques</b> — the scratch reveal, the future-self letter, the empathy mirrors — to fill the emotion Learna lacks. Aim for a <b style="color:var(--text-hi)">~1 : 2</b> rhythm: rich, but every context screen must earn its place.</div>
+  </section>
+
+</div>
+</body>
+</html>

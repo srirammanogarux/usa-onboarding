@@ -1,0 +1,348 @@
+{
+  "order": [
+    "hero",
+    "signup",
+    "valueprop",
+    "q1",
+    "q2",
+    "ackname",
+    "q3",
+    "q5",
+    "ack",
+    "q6",
+    "qphone",
+    "qocc",
+    "qgoal",
+    "ctxout",
+    "ctxstat",
+    "qwhy",
+    "ackielts",
+    "qwhen",
+    "qband",
+    "qjtbd",
+    "ctxba",
+    "qskill",
+    "ctxfeat",
+    "qlevel",
+    "ctxsci",
+    "qtime",
+    "qdaily",
+    "qnotif",
+    "qsummary",
+    "act",
+    "acthint",
+    "listen",
+    "hintscore",
+    "score",
+    "loader",
+    "plan",
+    "letter",
+    "paywall",
+    "exitoffer",
+    "bridge"
+  ],
+  "noBack": [
+    "hero",
+    "signup",
+    "act",
+    "listen",
+    "acthint",
+    "hintscore",
+    "score",
+    "loader",
+    "paywall",
+    "exitoffer",
+    "bridge"
+  ],
+  "skipBack": [
+    "hero",
+    "signup",
+    "ackname",
+    "ack",
+    "ackielts",
+    "loader"
+  ],
+  "variantAxes": {
+    "ctxout": [
+      "goal",
+      "mode"
+    ],
+    "qjtbd": [
+      "goal",
+      "mode"
+    ],
+    "ctxstat": [
+      "goal",
+      "mode"
+    ],
+    "ctxba": [
+      "goal",
+      "fam",
+      "gender"
+    ],
+    "act": [
+      "goal",
+      "occ",
+      "level"
+    ],
+    "acthint": [
+      "goal",
+      "occ",
+      "level"
+    ],
+    "listen": [
+      "goal",
+      "occ"
+    ],
+    "hintscore": [
+      "fam",
+      "level"
+    ],
+    "score": [
+      "fam",
+      "skill"
+    ],
+    "ctxfeat": [
+      "skill"
+    ],
+    "ctxsci": [
+      "level"
+    ],
+    "plan": [
+      "goal",
+      "mode",
+      "fam",
+      "level",
+      "skill",
+      "time",
+      "min"
+    ],
+    "ackielts": [
+      "why"
+    ],
+    "qsummary": [
+      "goal",
+      "occ",
+      "fam",
+      "level",
+      "time",
+      "min"
+    ],
+    "loader": [
+      "fam",
+      "time",
+      "min"
+    ],
+    "ack": [
+      "lang"
+    ],
+    "qskill": [
+      "goal"
+    ],
+    "letter": [
+      "goal",
+      "skill",
+      "min"
+    ],
+    "paywall": [
+      "goal",
+      "skill",
+      "fam"
+    ],
+    "exitoffer": [
+      "goal",
+      "fam"
+    ]
+  },
+  "axes": {
+    "goal": "Goal",
+    "mode": "Work mode",
+    "occ": "Occupation",
+    "fam": "Conversation",
+    "level": "Level",
+    "skill": "Skill",
+    "lang": "Native language",
+    "gender": "Gender",
+    "why": "IELTS test",
+    "time": "Timeframe",
+    "min": "Minutes a day"
+  },
+  "devRailGroups": {
+    "1 · Intro": [
+      [
+        "hero",
+        "Splash"
+      ],
+      [
+        "signup",
+        "Sign up"
+      ],
+      [
+        "valueprop",
+        "Value prop"
+      ]
+    ],
+    "2 · Profile": [
+      [
+        "q5",
+        "Language"
+      ],
+      [
+        "ack",
+        "¡Perfecto!"
+      ],
+      [
+        "q6",
+        "App language"
+      ],
+      [
+        "q2",
+        "Name"
+      ],
+      [
+        "ackname",
+        "Meet Sarah"
+      ],
+      [
+        "qphone",
+        "Phone"
+      ],
+      [
+        "q1",
+        "Source"
+      ],
+      [
+        "q3",
+        "About you"
+      ]
+    ],
+    "3 · Motivation": [
+      [
+        "qgoal",
+        "Goal"
+      ],
+      [
+        "ctxout",
+        "Outcome"
+      ],
+      [
+        "qocc",
+        "Situation"
+      ],
+      [
+        "qjtbd",
+        "JTBD"
+      ],
+      [
+        "ctxba",
+        "Before/After"
+      ]
+    ],
+    "3b · IELTS only": [
+      [
+        "qwhy",
+        "IELTS test",
+        "ielts"
+      ],
+      [
+        "ackielts",
+        "IELTS ack",
+        "ielts"
+      ],
+      [
+        "qwhen",
+        "Exam when",
+        "ielts"
+      ],
+      [
+        "qband",
+        "Band",
+        "ielts"
+      ]
+    ],
+    "4 · Calibration": [
+      [
+        "qskill",
+        "Skill"
+      ],
+      [
+        "ctxfeat",
+        "Skill beat"
+      ],
+      [
+        "qlevel",
+        "Level"
+      ],
+      [
+        "ctxsci",
+        "Science"
+      ],
+      [
+        "qtime",
+        "Progress when"
+      ],
+      [
+        "qdaily",
+        "Daily goal"
+      ]
+    ],
+    "5 · Permission": [
+      [
+        "qnotif",
+        "Notify ask"
+      ],
+      [
+        "qsummary",
+        "Summary"
+      ]
+    ],
+    "6 · Activation": [
+      [
+        "act",
+        "Speak task"
+      ],
+      [
+        "listen",
+        "Listening"
+      ],
+      [
+        "score",
+        "Score"
+      ],
+      [
+        "acthint",
+        "Hint flow"
+      ],
+      [
+        "hintscore",
+        "Hint results"
+      ]
+    ],
+    "7 · Plan → Pay": [
+      [
+        "loader",
+        "Loader"
+      ],
+      [
+        "plan",
+        "Plan"
+      ],
+      [
+        "letter",
+        "Promise"
+      ],
+      [
+        "paywall",
+        "Paywall"
+      ],
+      [
+        "exitoffer",
+        "Exit offer"
+      ],
+      [
+        "bridge",
+        "Bridge"
+      ]
+    ]
+  }
+}

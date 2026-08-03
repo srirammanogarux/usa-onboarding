@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimuler · Branch Matrix</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;background:#07060D;color:var(--text-hi);font-family:var(--font-body);padding:32px 26px 80px;}
+h1{font-family:var(--font-display);font-weight:700;font-size:25px;letter-spacing:-.02em;margin:0;}
+.lede{margin-top:8px;font-size:14px;line-height:1.6;color:var(--text-mid);max-width:80ch;}
+.lede b{color:var(--text-hi);}
+h2{font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-300);margin:34px 0 12px;}
+.key{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--text-mid);}
+.key i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;}
+.wrap{overflow-x:auto;border:1px solid #1e1a30;border-radius:14px;}
+table{border-collapse:collapse;width:100%;font-size:12.5px;}
+th,td{border-bottom:1px solid #1a1728;border-right:1px solid #1a1728;padding:10px 11px;vertical-align:top;text-align:left;}
+th{position:sticky;top:0;background:#0c0a16;font-family:var(--font-display);font-weight:600;font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid);z-index:2;}
+td.rowh{position:sticky;left:0;background:#0c0a16;font-weight:600;color:var(--text-hi);white-space:nowrap;z-index:1;}
+td.base{background:rgba(255,255,255,.018);}
+td.over{background:rgba(108,99,255,.10);}
+td.flag{background:rgba(224,106,90,.12);}
+.tag{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9.5px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;}
+.tag.over{background:rgba(108,99,255,.3);color:#CFCAFF;}
+.tag.base{background:rgba(255,255,255,.09);color:var(--text-low);}
+.tag.flag{background:rgba(224,106,90,.28);color:#FFC9C0;}
+ul{margin:0;padding-left:15px;}
+li{margin:2px 0;line-height:1.4;color:var(--text-mid);}
+li b{color:var(--text-hi);font-weight:500;}
+.fam{display:inline-block;margin:4px 4px 0 0;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.06);
+  font-size:10px;color:var(--text-low);}
+.note{margin-top:10px;font-size:12px;color:var(--text-low);}
+.cover{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.cover span{padding:7px 12px;border-radius:999px;font-size:12px;background:rgba(255,255,255,.05);border:1px solid #241f38;}
+.cover span.zero{background:rgba(224,106,90,.16);border-color:rgba(224,106,90,.4);color:#FFC9C0;}
+</style>
+</head>
+<body>
+<h1>Branch Matrix</h1>
+<p class="lede">Generated live from <b>content.js</b> — it cannot drift from the build. Each cell is the
+JTBD list a user actually sees for that <b>goal × work mode</b>, plus the conversation families behind it.
+<b>Indigo</b> cells are hand-written overrides. <b>Grey</b> cells fall back to the goal's base list —
+fine where the base genuinely fits, wrong where it does not. <b>Red</b> cells are fallbacks I have flagged
+as likely mismatches worth reviewing.</p>
+<div class="key">
+  <span><i style="background:rgba(108,99,255,.5)"></i>override</span>
+  <span><i style="background:rgba(255,255,255,.14)"></i>base fallback</span>
+  <span><i style="background:rgba(224,106,90,.5)"></i>flagged fallback</span>
+</div>
+
+<h2>Goal × work mode → what they are offered</h2>
+<div class="wrap"><table id="grid"></table></div>
+<p class="note" id="gridNote"></p>
+
+<h2>Conversation family coverage</h2>
+<p class="lede">How many of the 48 cells can reach each family. A zero means that family's scenario,
+hint framework and practice words are written but unreachable.</p>
+<div class="cover" id="cover"></div>
+
+<script src="content.js"></script>
+<script>
+const MODES=['corporate','independent','seeking','returning','frontline','site','academic','domestic','general'];
+const GOAL_KEYS=Object.keys(GOALS);
+/* fallbacks worth a second look: the base list assumes a workplace the mode does not have */
+const FLAG={
+  /* Reviewed 31 Jul. The first pass flagged 8 cells heuristically; reading the actual base
+     lists showed 5 were fine (school/travel/other bases are occupation-neutral by design).
+     The one real defect was in the convo BASE list, not a fallback — it offered
+     "Talk to customers with confidence", a work job inside a social goal, to everyone.
+     Fixed at the base, plus frontline/site/independent overrides. No open flags. */
+};
+function listFor(goal,mode){
+  const over=(typeof JTBD_MODE!=='undefined'&&JTBD_MODE[goal]&&JTBD_MODE[goal][mode])||null;
+  return {list:over||(GOALS[goal]||GOALS.other).jtbd, over:!!over};
+}
+/* grid */
+let h='<tr><th>Goal</th>'+MODES.map(m=>'<th>'+m+'</th>').join('')+'</tr>';
+const famCount={};
+Object.keys(FAMILIES).forEach(f=>famCount[f]=0);
+let overs=0, bases=0, flags=0;
+GOAL_KEYS.forEach(g=>{
+  h+='<tr><td class="rowh">'+GOALS[g].label+'</td>';
+  MODES.forEach(m=>{
+    const {list,over}=listFor(g,m);
+    const flagged=!over&&FLAG[g+'|'+m];
+    over?overs++:bases++; if(flagged)flags++;
+    const fams=[...new Set(list.map(j=>j.fam))];
+    fams.forEach(f=>{if(famCount[f]!==undefined)famCount[f]++;});
+    h+='<td class="'+(over?'over':(flagged?'flag':'base'))+'">'+
+       '<span class="tag '+(over?'over':(flagged?'flag':'base'))+'">'+(over?'override':(flagged?'review':'base'))+'</span>'+
+       '<ul>'+list.map(j=>'<li><b>'+j.label+'</b></li>').join('')+'</ul>'+
+       fams.map(f=>'<span class="fam">'+f+'</span>').join('')+
+       (flagged?'<div class="note">'+flagged+'</div>':'')+'</td>';
+  });
+  h+='</tr>';
+});
+document.getElementById('grid').innerHTML=h;
+document.getElementById('gridNote').textContent=
+  overs+' of '+(overs+bases)+' cells are hand-written overrides · '+bases+' fall back to the goal base · '+
+  flags+' fallbacks flagged for review.';
+/* coverage */
+document.getElementById('cover').innerHTML=Object.keys(FAMILIES).map(f=>
+  '<span class="'+(famCount[f]?'':'zero')+'">'+f+' · '+famCount[f]+'</span>').join('');
+</script>
+</body>
+</html>

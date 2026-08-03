@@ -1,0 +1,7 @@
+.DS_Store
+.vercel
+node_modules/
+
+# working files, not part of the prototype
+backups/
+_*.html

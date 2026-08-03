@@ -1,0 +1,1697 @@
+{
+  "generatedFrom": [
+    "index.html",
+    "content.js"
+  ],
+  "counts": {
+    "occupations": 8,
+    "workModes": 7,
+    "goals": 6,
+    "reachableFamilies": 9,
+    "reachableGoalFamilyPairs": 20,
+    "distinctJtbdLabels": 47,
+    "planCopyOverrides": 12,
+    "screens": 40
+  },
+  "goals": {
+    "ielts": {
+      "label": "IELTS",
+      "defaultJtbd": [
+        {
+          "id": "band",
+          "label": "Pass the speaking test",
+          "fam": "exam"
+        },
+        {
+          "id": "twomin",
+          "label": "Speak two minutes without freezing",
+          "fam": "exam"
+        },
+        {
+          "id": "audio",
+          "label": "Understand fast native audio",
+          "fam": "fastspeech"
+        }
+      ]
+    },
+    "career": {
+      "label": "Improve my career",
+      "defaultJtbd": [
+        {
+          "id": "interview",
+          "label": "Ace a job interview",
+          "fam": "interview"
+        },
+        {
+          "id": "meetings",
+          "label": "Speak up in meetings",
+          "fam": "meetings"
+        },
+        {
+          "id": "fastco",
+          "label": "Understand fast coworkers",
+          "fam": "fastspeech"
+        },
+        {
+          "id": "boss",
+          "label": "Talk to my boss with confidence",
+          "fam": "interview"
+        },
+        {
+          "id": "custcalls",
+          "label": "Handle customer calls",
+          "fam": "customer"
+        }
+      ]
+    },
+    "convo": {
+      "label": "Improve social conversations",
+      "defaultJtbd": [
+        {
+          "id": "neighbors",
+          "fam": "smalltalk",
+          "label": "Make small talk feel natural"
+        },
+        {
+          "id": "meetnew",
+          "fam": "smalltalk",
+          "label": "Meet new people and make friends"
+        },
+        {
+          "id": "offices",
+          "fam": "services",
+          "label": "Handle doctors and offices solo"
+        },
+        {
+          "id": "inlaws",
+          "fam": "family",
+          "label": "Win over my partner’s family"
+        }
+      ]
+    },
+    "travel": {
+      "label": "Travel",
+      "defaultJtbd": [
+        {
+          "id": "airports",
+          "label": "Breeze through airports and hotels",
+          "fam": "services"
+        },
+        {
+          "id": "meetppl",
+          "label": "Make friends while traveling",
+          "fam": "smalltalk"
+        },
+        {
+          "id": "problems",
+          "label": "Sort out any mix-up abroad",
+          "fam": "services"
+        }
+      ]
+    },
+    "school": {
+      "label": "Excel at my school",
+      "defaultJtbd": [
+        {
+          "id": "examoral",
+          "label": "Pass my speaking exam",
+          "fam": "exam"
+        },
+        {
+          "id": "lectures",
+          "label": "Keep up with fast lectures",
+          "fam": "fastspeech"
+        },
+        {
+          "id": "classtalk",
+          "label": "Speak up in class discussions",
+          "fam": "meetings"
+        },
+        {
+          "id": "classmates",
+          "label": "Make friends on campus",
+          "fam": "smalltalk"
+        }
+      ]
+    },
+    "other": {
+      "label": "Any other goal",
+      "defaultJtbd": [
+        {
+          "id": "nofear",
+          "label": "Speak without overthinking",
+          "fam": "smalltalk"
+        },
+        {
+          "id": "friends",
+          "label": "Start conversations anywhere",
+          "fam": "smalltalk"
+        },
+        {
+          "id": "native",
+          "label": "Understand native speakers at full speed",
+          "fam": "fastspeech"
+        },
+        {
+          "id": "someday",
+          "label": "Be ready when opportunity knocks",
+          "fam": "interview"
+        }
+      ]
+    }
+  },
+  "workModes": [
+    "careerbreak",
+    "office",
+    "ownboss",
+    "jobhunt",
+    "athome",
+    "student",
+    "other"
+  ],
+  "occupations": {
+    "careerbreak": {
+      "mode": "careerbreak",
+      "title": "Career break",
+      "cohort": "people returning to work"
+    },
+    "office": {
+      "mode": "office",
+      "title": "Office professional",
+      "cohort": "office professionals"
+    },
+    "freelancer": {
+      "mode": "ownboss",
+      "title": "Freelancer",
+      "cohort": "freelancers"
+    },
+    "business": {
+      "mode": "ownboss",
+      "title": "Business owner",
+      "cohort": "business owners"
+    },
+    "jobseek": {
+      "mode": "jobhunt",
+      "title": "Job seeker",
+      "cohort": "job seekers"
+    },
+    "home": {
+      "mode": "athome",
+      "title": "At home",
+      "cohort": "parents"
+    },
+    "student": {
+      "mode": "student",
+      "title": "Student",
+      "cohort": "students"
+    },
+    "other": {
+      "mode": "other",
+      "title": "Learner",
+      "cohort": "learners"
+    }
+  },
+  "goalCohorts": {
+    "ielts": "IELTS candidates",
+    "travel": "travellers",
+    "school": "students",
+    "convo": "everyday learners",
+    "other": "learners"
+  },
+  "families": [
+    "customer",
+    "exam",
+    "family",
+    "fastspeech",
+    "interview",
+    "meetings",
+    "pitch",
+    "services",
+    "smalltalk"
+  ],
+  "pairs": [
+    {
+      "key": "career|customer",
+      "goal": "career",
+      "family": "customer",
+      "labels": [
+        "Handle a walk-in customer",
+        "Handle customer calls"
+      ],
+      "occupations": [
+        "office",
+        "business",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "career|fastspeech",
+      "goal": "career",
+      "family": "fastspeech",
+      "labels": [
+        "Understand fast clients",
+        "Understand fast coworkers"
+      ],
+      "occupations": [
+        "office",
+        "freelancer",
+        "business",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "career|interview",
+      "goal": "career",
+      "family": "interview",
+      "labels": [
+        "Ace a job interview",
+        "Answer \"tell me about yourself\"",
+        "Explain a gap in my CV",
+        "Land an internship",
+        "Speak up in interviews",
+        "Start working again",
+        "Talk about skills I built at home",
+        "Talk to my boss with confidence"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "career|meetings",
+      "goal": "career",
+      "family": "meetings",
+      "labels": [
+        "Speak up in meetings",
+        "Speak up in meetings again"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "home",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "career|pitch",
+      "goal": "career",
+      "family": "pitch",
+      "labels": [
+        "Chase a late payment",
+        "Explain and defend my price",
+        "Negotiate the offer",
+        "Pitch on a client call",
+        "Win a new client"
+      ],
+      "occupations": [
+        "freelancer",
+        "business",
+        "jobseek"
+      ],
+      "override": false
+    },
+    {
+      "key": "career|smalltalk",
+      "goal": "career",
+      "family": "smalltalk",
+      "labels": [
+        "Handle work small talk again",
+        "Make friends at a new workplace",
+        "Network on campus",
+        "Network to find openings"
+      ],
+      "occupations": [
+        "careerbreak",
+        "jobseek",
+        "home",
+        "student"
+      ],
+      "override": true
+    },
+    {
+      "key": "convo|family",
+      "goal": "convo",
+      "family": "family",
+      "labels": [
+        "Support my kids at school",
+        "Win over my partner’s family"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "convo|services",
+      "goal": "convo",
+      "family": "services",
+      "labels": [
+        "Handle doctors and offices solo",
+        "Talk to teachers and doctors solo"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "convo|smalltalk",
+      "goal": "convo",
+      "family": "smalltalk",
+      "labels": [
+        "Chat with colleagues outside work",
+        "Get back into everyday chat",
+        "Make friends at the school gate",
+        "Make friends on campus",
+        "Make small talk feel natural",
+        "Meet new people and make friends",
+        "Meet new people at events"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": false
+    },
+    {
+      "key": "ielts|exam",
+      "goal": "ielts",
+      "family": "exam",
+      "labels": [
+        "Pass the speaking test",
+        "Speak two minutes without freezing"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "ielts|fastspeech",
+      "goal": "ielts",
+      "family": "fastspeech",
+      "labels": [
+        "Understand fast native audio"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "other|fastspeech",
+      "goal": "other",
+      "family": "fastspeech",
+      "labels": [
+        "Understand native speakers at full speed"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "other|interview",
+      "goal": "other",
+      "family": "interview",
+      "labels": [
+        "Be ready when opportunity knocks"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "other|smalltalk",
+      "goal": "other",
+      "family": "smalltalk",
+      "labels": [
+        "Speak without overthinking",
+        "Start conversations anywhere"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "school|exam",
+      "goal": "school",
+      "family": "exam",
+      "labels": [
+        "Pass my speaking exam"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "school|fastspeech",
+      "goal": "school",
+      "family": "fastspeech",
+      "labels": [
+        "Keep up with fast lectures"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "school|meetings",
+      "goal": "school",
+      "family": "meetings",
+      "labels": [
+        "Speak up in class discussions"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "school|smalltalk",
+      "goal": "school",
+      "family": "smalltalk",
+      "labels": [
+        "Make friends on campus"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "travel|services",
+      "goal": "travel",
+      "family": "services",
+      "labels": [
+        "Breeze through airports and hotels",
+        "Sort out any mix-up abroad"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    },
+    {
+      "key": "travel|smalltalk",
+      "goal": "travel",
+      "family": "smalltalk",
+      "labels": [
+        "Make friends while traveling"
+      ],
+      "occupations": [
+        "careerbreak",
+        "office",
+        "freelancer",
+        "business",
+        "jobseek",
+        "home",
+        "student",
+        "other"
+      ],
+      "override": true
+    }
+  ],
+  "matrix": {
+    "careerbreak": {
+      "mode": "careerbreak",
+      "title": "Career break",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "gap",
+            "label": "Explain a gap in my CV",
+            "fam": "interview"
+          },
+          {
+            "id": "interview",
+            "label": "Ace a job interview",
+            "fam": "interview"
+          },
+          {
+            "id": "backin",
+            "label": "Speak up in meetings again",
+            "fam": "meetings"
+          },
+          {
+            "id": "worktalk",
+            "label": "Handle work small talk again",
+            "fam": "smalltalk"
+          }
+        ],
+        "convo": [
+          {
+            "id": "backchat",
+            "label": "Get back into everyday chat",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "meetnew",
+            "label": "Meet new people and make friends",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "kidshelp",
+            "label": "Support my kids at school",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "office": {
+      "mode": "office",
+      "title": "Office professional",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "interview",
+            "label": "Ace a job interview",
+            "fam": "interview"
+          },
+          {
+            "id": "meetings",
+            "label": "Speak up in meetings",
+            "fam": "meetings"
+          },
+          {
+            "id": "fastco",
+            "label": "Understand fast coworkers",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "boss",
+            "label": "Talk to my boss with confidence",
+            "fam": "interview"
+          },
+          {
+            "id": "custcalls",
+            "label": "Handle customer calls",
+            "fam": "customer"
+          }
+        ],
+        "convo": [
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "colleagues",
+            "label": "Chat with colleagues outside work",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "freelancer": {
+      "mode": "ownboss",
+      "title": "Freelancer",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "clientcall",
+            "label": "Pitch on a client call",
+            "fam": "pitch"
+          },
+          {
+            "id": "newclient",
+            "label": "Win a new client",
+            "fam": "pitch"
+          },
+          {
+            "id": "price",
+            "label": "Explain and defend my price",
+            "fam": "pitch"
+          },
+          {
+            "id": "fastcli",
+            "label": "Understand fast clients",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "payment",
+            "label": "Chase a late payment",
+            "fam": "pitch"
+          }
+        ],
+        "convo": [
+          {
+            "id": "events",
+            "label": "Meet new people at events",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "business": {
+      "mode": "ownboss",
+      "title": "Business owner",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "walkin",
+            "label": "Handle a walk-in customer",
+            "fam": "customer"
+          },
+          {
+            "id": "newclient",
+            "label": "Win a new client",
+            "fam": "pitch"
+          },
+          {
+            "id": "price",
+            "label": "Explain and defend my price",
+            "fam": "pitch"
+          },
+          {
+            "id": "fastcli",
+            "label": "Understand fast clients",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "payment",
+            "label": "Chase a late payment",
+            "fam": "pitch"
+          }
+        ],
+        "convo": [
+          {
+            "id": "events",
+            "label": "Meet new people at events",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "jobseek": {
+      "mode": "jobhunt",
+      "title": "Job seeker",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "interview",
+            "label": "Ace a job interview",
+            "fam": "interview"
+          },
+          {
+            "id": "tellme",
+            "label": "Answer \"tell me about yourself\"",
+            "fam": "interview"
+          },
+          {
+            "id": "network",
+            "label": "Network to find openings",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offer",
+            "label": "Negotiate the offer",
+            "fam": "pitch"
+          }
+        ],
+        "convo": [
+          {
+            "id": "meetnew",
+            "label": "Meet new people and make friends",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "home": {
+      "mode": "athome",
+      "title": "At home",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "startagain",
+            "label": "Start working again",
+            "fam": "interview"
+          },
+          {
+            "id": "homeskills",
+            "label": "Talk about skills I built at home",
+            "fam": "interview"
+          },
+          {
+            "id": "meetings",
+            "label": "Speak up in meetings",
+            "fam": "meetings"
+          },
+          {
+            "id": "newwork",
+            "label": "Make friends at a new workplace",
+            "fam": "smalltalk"
+          }
+        ],
+        "convo": [
+          {
+            "id": "kidshelp",
+            "label": "Support my kids at school",
+            "fam": "family"
+          },
+          {
+            "id": "teachers",
+            "label": "Talk to teachers and doctors solo",
+            "fam": "services"
+          },
+          {
+            "id": "gate",
+            "label": "Make friends at the school gate",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "student": {
+      "mode": "student",
+      "title": "Student",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "intern",
+            "label": "Land an internship",
+            "fam": "interview"
+          },
+          {
+            "id": "gradint",
+            "label": "Speak up in interviews",
+            "fam": "interview"
+          },
+          {
+            "id": "network",
+            "label": "Network on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "convo": [
+          {
+            "id": "campus",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    },
+    "other": {
+      "mode": "other",
+      "title": "Learner",
+      "goals": {
+        "ielts": [
+          {
+            "id": "band",
+            "label": "Pass the speaking test",
+            "fam": "exam"
+          },
+          {
+            "id": "twomin",
+            "label": "Speak two minutes without freezing",
+            "fam": "exam"
+          },
+          {
+            "id": "audio",
+            "label": "Understand fast native audio",
+            "fam": "fastspeech"
+          }
+        ],
+        "career": [
+          {
+            "id": "interview",
+            "label": "Ace a job interview",
+            "fam": "interview"
+          },
+          {
+            "id": "meetings",
+            "label": "Speak up in meetings",
+            "fam": "meetings"
+          },
+          {
+            "id": "fastco",
+            "label": "Understand fast coworkers",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "boss",
+            "label": "Talk to my boss with confidence",
+            "fam": "interview"
+          },
+          {
+            "id": "custcalls",
+            "label": "Handle customer calls",
+            "fam": "customer"
+          }
+        ],
+        "convo": [
+          {
+            "id": "neighbors",
+            "label": "Make small talk feel natural",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "meetnew",
+            "label": "Meet new people and make friends",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "offices",
+            "label": "Handle doctors and offices solo",
+            "fam": "services"
+          },
+          {
+            "id": "inlaws",
+            "label": "Win over my partner’s family",
+            "fam": "family"
+          }
+        ],
+        "travel": [
+          {
+            "id": "airports",
+            "label": "Breeze through airports and hotels",
+            "fam": "services"
+          },
+          {
+            "id": "meetppl",
+            "label": "Make friends while traveling",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "problems",
+            "label": "Sort out any mix-up abroad",
+            "fam": "services"
+          }
+        ],
+        "school": [
+          {
+            "id": "examoral",
+            "label": "Pass my speaking exam",
+            "fam": "exam"
+          },
+          {
+            "id": "lectures",
+            "label": "Keep up with fast lectures",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "classtalk",
+            "label": "Speak up in class discussions",
+            "fam": "meetings"
+          },
+          {
+            "id": "classmates",
+            "label": "Make friends on campus",
+            "fam": "smalltalk"
+          }
+        ],
+        "other": [
+          {
+            "id": "nofear",
+            "label": "Speak without overthinking",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "friends",
+            "label": "Start conversations anywhere",
+            "fam": "smalltalk"
+          },
+          {
+            "id": "native",
+            "label": "Understand native speakers at full speed",
+            "fam": "fastspeech"
+          },
+          {
+            "id": "someday",
+            "label": "Be ready when opportunity knocks",
+            "fam": "interview"
+          }
+        ]
+      }
+    }
+  },
+  "levels": [
+    {
+      "id": "A1",
+      "label": "A1",
+      "desc": "I’m completely new to English",
+      "mode": "read"
+    },
+    {
+      "id": "A2",
+      "label": "A2",
+      "desc": "I can take part in basic chats",
+      "mode": "read"
+    },
+    {
+      "id": "B1",
+      "label": "B1",
+      "desc": "I can handle short chats on familiar topics",
+      "mode": "hint"
+    },
+    {
+      "id": "B2",
+      "label": "B2",
+      "desc": "I can talk about everyday topics in detail",
+      "mode": "hint"
+    },
+    {
+      "id": "C1",
+      "label": "C1",
+      "desc": "I can talk fluently with native speakers",
+      "mode": "impromptu"
+    },
+    {
+      "id": "C2",
+      "label": "C2",
+      "desc": "I can communicate like a native speaker",
+      "mode": "impromptu"
+    }
+  ],
+  "skills": [
+    "fluency",
+    "pronunciation",
+    "vocabulary",
+    "grammar"
+  ]
+}

@@ -1,0 +1,1510 @@
+{
+  "pairs": [
+    {
+      "key": "career|customer",
+      "goal": "career",
+      "family": "customer",
+      "jtbdLabels": [
+        "Handle a walk-in customer",
+        "Handle customer calls"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "take a customer call without worrying",
+          "std": "handle any customer call calmly",
+          "deep": "handle any customer, even an angry one"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Customer calls",
+      "firstThreeSessions": [
+        "Opening the call",
+        "A complaint you did not cause",
+        "Saying no, keeping the customer"
+      ],
+      "endOutcomes": [
+        "Open a call without a script",
+        "Explain a problem you did not cause",
+        "Say no and keep the customer",
+        "Handle a complaint without freezing"
+      ],
+      "proofPractising": "practicing customer calls",
+      "graphMilestone": "you take it unprepared",
+      "beforeAfter": {
+        "heading": "Every customer call<br>stays calm.",
+        "bullets": {
+          "before": [
+            "You rehearse before calls",
+            "Complaints make you freeze",
+            "You pass the hard ones on"
+          ],
+          "after": [
+            "You pick up any call",
+            "You stay calm when they are not",
+            "You say no and keep them"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Is there a difference between these two?",
+          "before": "… This one is… also good…",
+          "after": "Big difference. This one lasts twice as long, and here is why."
+        },
+        "artwork": "images/ba2/ba_career_customer_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "career|fastspeech",
+      "goal": "career",
+      "family": "fastspeech",
+      "jtbdLabels": [
+        "Understand fast clients",
+        "Understand fast coworkers"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "stop asking people to repeat",
+          "std": "understand fast speakers the first time",
+          "deep": "understand anyone, at any speed"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Keeping up with fast speakers",
+      "firstThreeSessions": [
+        "A fast speaker, full speed",
+        "Catching numbers and names",
+        "Asking one good question"
+      ],
+      "endOutcomes": [
+        "Follow a fast speaker without stopping them",
+        "Catch numbers, dates and names first time",
+        "Ask one clarifying question, not three",
+        "Keep up on a group call"
+      ],
+      "proofPractising": "practicing keeping up with fast speakers",
+      "graphMilestone": "you stop asking twice",
+      "beforeAfter": {
+        "heading": "Fast coworkers stop<br>losing you.",
+        "bullets": {
+          "before": [
+            "You ask them to repeat",
+            "You lose the thread halfway",
+            "You nod without understanding"
+          ],
+          "after": [
+            "You keep up at full speed",
+            "You catch names and numbers",
+            "You ask one clear question"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Sorry, did you catch all that?",
+          "before": "… Yes… yes… no problem.",
+          "after": "Most of it. Can you say the second part again?"
+        },
+        "artwork": "images/ba2/ba_career_fastspeech_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "career|interview",
+      "goal": "career",
+      "family": "interview",
+      "jtbdLabels": [
+        "Ace a job interview",
+        "Answer \"tell me about yourself\"",
+        "Explain a gap in my CV",
+        "Land an internship",
+        "Speak up in interviews",
+        "Start working again",
+        "Talk about skills I built at home",
+        "Talk to my boss with confidence"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "stop freezing in interviews",
+          "std": "answer any interview question calmly",
+          "deep": "walk into any interview and speak freely"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Your next interview",
+      "firstThreeSessions": [
+        "\"Tell me about yourself\"",
+        "Why you want this role",
+        "The gap they will ask about"
+      ],
+      "endOutcomes": [
+        "Answer \"tell me about yourself\" without freezing",
+        "Explain a gap or a change calmly",
+        "Ask the interviewer your own questions",
+        "Hold your answer when they push back"
+      ],
+      "proofPractising": "practicing for interviews",
+      "graphMilestone": "you answer without a pause",
+      "beforeAfter": {
+        "heading": "Interviews stop<br>being the hard part.",
+        "bullets": {
+          "before": [
+            "You rehearse for hours",
+            "Your mind goes blank",
+            "You answer too short"
+          ],
+          "after": [
+            "You think on your feet",
+            "You give real examples",
+            "You ask them questions"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, why should we hire you?",
+          "before": "… Sorry, can you repeat the question?",
+          "after": "I stay calm under pressure, and my team trusts me. Let me give you an example."
+        },
+        "artwork": "images/ba2/ba_career_interview_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "career|meetings",
+      "goal": "career",
+      "family": "meetings",
+      "jtbdLabels": [
+        "Speak up in meetings",
+        "Speak up in meetings again"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say one thing in every meeting",
+          "std": "speak up in meetings without planning it",
+          "deep": "lead the talking in your meetings"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Speaking up in meetings",
+      "firstThreeSessions": [
+        "Saying your point first",
+        "Disagreeing without softening it",
+        "Summarising the decision"
+      ],
+      "endOutcomes": [
+        "Say your point while it is still relevant",
+        "Interrupt politely and be heard",
+        "Disagree without softening it away",
+        "Summarise the decision out loud"
+      ],
+      "proofPractising": "practicing speaking up in meetings",
+      "graphMilestone": "you speak before it ends",
+      "beforeAfter": {
+        "heading": "The room hears you<br>while it still matters.",
+        "bullets": {
+          "before": [
+            "You plan it too long",
+            "The moment passes",
+            "You agree to avoid talking"
+          ],
+          "after": [
+            "You speak in the moment",
+            "You disagree politely",
+            "You sum up the decision"
+          ]
+        },
+        "quotedMoment": {
+          "q": "What do you think we should do?",
+          "before": "… I agree… with the other points.",
+          "after": "I see it differently, and here is why."
+        },
+        "artwork": "images/ba2/ba_career_meetings_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "career|pitch",
+      "goal": "career",
+      "family": "pitch",
+      "jtbdLabels": [
+        "Chase a late payment",
+        "Explain and defend my price",
+        "Negotiate the offer",
+        "Pitch on a client call",
+        "Win a new client"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say your price out loud",
+          "std": "say your price without getting nervous",
+          "deep": "talk about money with any client"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Defending your price",
+      "firstThreeSessions": [
+        "\"So what do you charge for this?\"",
+        "What is included, in one breath",
+        "When they say it is too expensive"
+      ],
+      "endOutcomes": [
+        "Say your price without softening it",
+        "Explain what is included in one breath",
+        "Answer \"that is too expensive\" calmly",
+        "Chase a late payment without apologising"
+      ],
+      "proofPractising": "practicing their price conversations",
+      "graphMilestone": "you say the number first",
+      "beforeAfter": {
+        "heading": "Clients hear your value,<br>not your hesitation.",
+        "bullets": {
+          "before": [
+            "You drop your rate first",
+            "You avoid the money talk",
+            "You explain it by email"
+          ],
+          "after": [
+            "You say the number",
+            "You explain what is included",
+            "You handle “too expensive”"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So what do you charge for this?",
+          "before": "… It depends… I can send… email later?",
+          "after": "My rate is fixed, and here is exactly what you get for it."
+        },
+        "artwork": "images/ba2/ba_career_pitch_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "career|smalltalk",
+      "goal": "career",
+      "family": "smalltalk",
+      "jtbdLabels": [
+        "Handle work small talk again",
+        "Make friends at a new workplace",
+        "Network on campus",
+        "Network to find openings"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say more than good morning",
+          "std": "join the conversation at work",
+          "deep": "talk easily with anyone at work"
+        },
+        "longLane": {
+          "light": "English stops slowing you down at work",
+          "std": "English stops blocking your career",
+          "deep": "English is no longer a problem at work"
+        }
+      },
+      "sectionTitle": "Small talk at work",
+      "firstThreeSessions": [
+        "The first two minutes of the day",
+        "Lunch with people you barely know",
+        "Introducing yourself at an event"
+      ],
+      "endOutcomes": [
+        "Join the conversation before work starts",
+        "Talk to people you barely know at lunch",
+        "Introduce yourself at a work event",
+        "Leave a conversation without it going flat"
+      ],
+      "proofPractising": "practicing small talk at work",
+      "graphMilestone": "you start it",
+      "beforeAfter": {
+        "heading": "The right people<br>remember you.",
+        "bullets": {
+          "before": [
+            "You skip the networking part",
+            "You run out after hello",
+            "You leave without a contact"
+          ],
+          "after": [
+            "You start the conversation",
+            "You keep it going",
+            "You leave with a name"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, tell me about yourself.",
+          "before": "… I am… how to say… normal person…",
+          "after": "Three things about me, and one of them surprises people."
+        },
+        "artwork": "images/ba2/ba_career_smalltalk_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "convo|family",
+      "goal": "convo",
+      "family": "family",
+      "jtbdLabels": [
+        "Support my kids at school",
+        "Win over my partner’s family"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "talk to the teacher without a script",
+          "std": "talk to the teacher with confidence",
+          "deep": "ask the teacher any question you want"
+        },
+        "longLane": {
+          "light": "everyday conversations get easier",
+          "std": "you talk to anyone without planning it",
+          "deep": "you speak without thinking in your language first"
+        }
+      },
+      "sectionTitle": "Talking to teachers",
+      "firstThreeSessions": [
+        "Asking the teacher directly",
+        "Explaining your child’s situation",
+        "Speaking at a parent meeting"
+      ],
+      "endOutcomes": [
+        "Ask the teacher a direct question",
+        "Explain your child’s situation clearly",
+        "Understand the form and fill it in",
+        "Speak up at a parent meeting"
+      ],
+      "proofPractising": "practicing talking to teachers",
+      "graphMilestone": "you ask directly",
+      "beforeAfter": {
+        "heading": "You belong<br>in the room.",
+        "bullets": {
+          "before": [
+            "You smile and stay quiet",
+            "You miss the joke",
+            "You let others speak for you"
+          ],
+          "after": [
+            "You join in",
+            "You ask about them",
+            "They talk to you directly"
+          ]
+        },
+        "quotedMoment": {
+          "q": "How is she doing with her reading?",
+          "before": "… She is… good… thank you…",
+          "after": "She loves it. I would like ideas to challenge her more."
+        },
+        "artwork": "images/ba2/ba_convo_family_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "convo|services",
+      "goal": "convo",
+      "family": "services",
+      "jtbdLabels": [
+        "Handle doctors and offices solo",
+        "Talk to teachers and doctors solo"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "book an appointment on your own",
+          "std": "handle the doctor and the bank on your own",
+          "deep": "walk into any office and sort things out"
+        },
+        "longLane": {
+          "light": "everyday conversations get easier",
+          "std": "you talk to anyone without planning it",
+          "deep": "you speak without thinking in your language first"
+        }
+      },
+      "sectionTitle": "Appointments and offices",
+      "firstThreeSessions": [
+        "Booking the appointment",
+        "Describing the problem",
+        "Asking what you usually skip"
+      ],
+      "endOutcomes": [
+        "Book an appointment on the phone",
+        "Describe a problem clearly, first time",
+        "Ask the question you usually skip",
+        "Push back when the answer is wrong"
+      ],
+      "proofPractising": "practicing appointments and offices",
+      "graphMilestone": "you book it yourself",
+      "beforeAfter": {
+        "heading": "You sort it out<br>on your own.",
+        "bullets": {
+          "before": [
+            "You take someone with you",
+            "You skip your question",
+            "You accept a wrong answer"
+          ],
+          "after": [
+            "You book it yourself",
+            "You describe it clearly",
+            "You ask again if it is wrong"
+          ]
+        },
+        "quotedMoment": {
+          "q": "What seems to be the problem today?",
+          "before": "… The pain is… here… sometimes…",
+          "after": "It started last week, and it is worse in the morning."
+        },
+        "artwork": "images/ba2/ba_convo_services_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "convo|smalltalk",
+      "goal": "convo",
+      "family": "smalltalk",
+      "jtbdLabels": [
+        "Chat with colleagues outside work",
+        "Get back into everyday chat",
+        "Make friends at the school gate",
+        "Make friends on campus",
+        "Make small talk feel natural",
+        "Meet new people and make friends",
+        "Meet new people at events"
+      ],
+      "usesOverride": false,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say the first sentence to someone new",
+          "std": "start a conversation with anyone",
+          "deep": "talk to new people without thinking about it"
+        },
+        "longLane": {
+          "light": "everyday conversations get easier",
+          "std": "you talk to anyone without planning it",
+          "deep": "you speak without thinking in your language first"
+        }
+      },
+      "sectionTitle": "Starting conversations",
+      "firstThreeSessions": [
+        "The first sentence",
+        "Keeping it going",
+        "Leaving politely"
+      ],
+      "endOutcomes": [
+        "Start with a stranger instead of waiting",
+        "Keep it going past two exchanges",
+        "Tell a short story about yourself",
+        "Leave a conversation politely"
+      ],
+      "proofPractising": "practicing starting conversations",
+      "graphMilestone": "you start it",
+      "beforeAfter": {
+        "heading": "Small talk stops<br>feeling like work.",
+        "bullets": {
+          "before": [
+            "You wait to be spoken to",
+            "You answer in two words",
+            "You leave early"
+          ],
+          "after": [
+            "You open with a question",
+            "You keep it going",
+            "You leave people smiling"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, tell me about yourself.",
+          "before": "… I am… how to say… normal person…",
+          "after": "Three things about me, and one of them surprises people."
+        },
+        "artwork": "images/ba2/ba_convo_smalltalk_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "ielts|exam",
+      "goal": "ielts",
+      "family": "exam",
+      "jtbdLabels": [
+        "Pass the speaking test",
+        "Speak two minutes without freezing"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "stop pausing in the speaking test",
+          "std": "answer every question in the speaking test",
+          "deep": "speak in the test like you do outside it"
+        },
+        "longLane": {
+          "light": "you stop guessing your band",
+          "std": "you know your band before the test",
+          "deep": "you get the band you need"
+        }
+      },
+      "sectionTitle": "Simple Speaking mock test",
+      "firstThreeSessions": [
+        "Part 1, the warm-up questions",
+        "Part 2, the two-minute turn",
+        "Part 3, the follow-ups"
+      ],
+      "endOutcomes": [
+        "Speak for two minutes without stopping",
+        "Answer the follow-up you did not expect",
+        "Use the words the examiner rewards",
+        "Keep going when you lose the thread"
+      ],
+      "proofPractising": "practicing full mock tests",
+      "graphMilestone": "you fill the two minutes",
+      "beforeAfter": {
+        "heading": "Exam day sounds<br>like practice.",
+        "bullets": {
+          "before": [
+            "You freeze in part two",
+            "Pauses cost you marks",
+            "Your answers stay short"
+          ],
+          "after": [
+            "You fill the two minutes",
+            "You handle follow ups",
+            "You use examiner words"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Describe a place you enjoy visiting.",
+          "before": "… I like… the beach… it is nice…",
+          "after": "A small beach near my home. I go there to think, and here is why."
+        },
+        "artwork": "images/ba2/ba_ielts_exam_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "ielts|fastspeech",
+      "goal": "ielts",
+      "family": "fastspeech",
+      "jtbdLabels": [
+        "Understand fast native audio"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "understand more of the listening test",
+          "std": "follow the audio at full speed",
+          "deep": "understand the audio the first time"
+        },
+        "longLane": {
+          "light": "you stop guessing your band",
+          "std": "you know your band before the test",
+          "deep": "you get the band you need"
+        }
+      },
+      "sectionTitle": "Fast audio in the test",
+      "firstThreeSessions": [
+        "Native speed, with no slowing down",
+        "Catching numbers, dates and names",
+        "Hearing the answer change mid sentence"
+      ],
+      "endOutcomes": [
+        "Follow native speed without falling behind",
+        "Catch numbers, dates and names first time",
+        "Hear the answer change mid sentence",
+        "Stay with a long talk to the end"
+      ],
+      "proofPractising": "practicing fast listening for the test",
+      "graphMilestone": "you stop asking twice",
+      "beforeAfter": {
+        "heading": "The audio stops<br>going too fast.",
+        "bullets": {
+          "before": [
+            "You lose the speaker halfway",
+            "You miss the numbers",
+            "You guess the answer"
+          ],
+          "after": [
+            "You follow the whole clip",
+            "You catch dates and names",
+            "You answer from what you heard"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Sorry, did you catch all that?",
+          "before": "… Yes… yes… no problem.",
+          "after": "Most of it. Can you say the second part again?"
+        },
+        "artwork": "images/ba2/ba_ielts_fastspeech_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "other|fastspeech",
+      "goal": "other",
+      "family": "fastspeech",
+      "jtbdLabels": [
+        "Understand native speakers at full speed"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "stop pretending you understood",
+          "std": "understand native speakers the first time",
+          "deep": "understand anyone, at any speed"
+        },
+        "longLane": {
+          "light": "English gets easier every week",
+          "std": "English stops getting in your way",
+          "deep": "you use English without thinking about it"
+        }
+      },
+      "sectionTitle": "Understanding native speakers",
+      "firstThreeSessions": [
+        "A native speaker at full speed",
+        "Catching what actually matters",
+        "Asking them to repeat it, once"
+      ],
+      "endOutcomes": [
+        "Follow a native speaker without stopping them",
+        "Catch the part that actually matters",
+        "Ask once instead of nodding along",
+        "Keep up when everyone talks at once"
+      ],
+      "proofPractising": "practicing with fast native speakers",
+      "graphMilestone": "you stop asking twice",
+      "beforeAfter": {
+        "heading": "Native speed stops<br>leaving you behind.",
+        "bullets": {
+          "before": [
+            "You ask people to repeat",
+            "You lose the thread",
+            "You nod without understanding"
+          ],
+          "after": [
+            "You keep up at full speed",
+            "You catch what matters",
+            "You ask one clear question"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Sorry, did you catch all that?",
+          "before": "… Yes… yes… no problem.",
+          "after": "Most of it. Can you say the second part again?"
+        },
+        "artwork": "images/ba2/ba_other_fastspeech_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "other|interview",
+      "goal": "other",
+      "family": "interview",
+      "jtbdLabels": [
+        "Be ready when opportunity knocks"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "introduce yourself without freezing",
+          "std": "be ready when the chance comes",
+          "deep": "speak well whenever it matters"
+        },
+        "longLane": {
+          "light": "English gets easier every week",
+          "std": "English stops getting in your way",
+          "deep": "you use English without thinking about it"
+        }
+      },
+      "sectionTitle": "Being ready when it matters",
+      "firstThreeSessions": [
+        "Saying who you are in three lines",
+        "Why you, in one answer",
+        "The question you hope they skip"
+      ],
+      "endOutcomes": [
+        "Introduce yourself without rehearsing it",
+        "Say what you are good at without shrinking",
+        "Answer the question you hoped they would skip",
+        "Sound like yourself when it matters"
+      ],
+      "proofPractising": "practicing for the moments that matter",
+      "graphMilestone": "you answer without a pause",
+      "beforeAfter": {
+        "heading": "You are ready<br>when it comes.",
+        "bullets": {
+          "before": [
+            "You put it off",
+            "You feel unprepared",
+            "You let the chance pass"
+          ],
+          "after": [
+            "You speak when asked",
+            "You say what you mean",
+            "You take the chance"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, why should we hire you?",
+          "before": "… Sorry, can you repeat the question?",
+          "after": "I stay calm under pressure, and my team trusts me. Let me give you an example."
+        },
+        "artwork": "images/ba2/ba_other_interview_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "other|smalltalk",
+      "goal": "other",
+      "family": "smalltalk",
+      "jtbdLabels": [
+        "Speak without overthinking",
+        "Start conversations anywhere"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say it without planning it first",
+          "std": "speak without practising in your head",
+          "deep": "stop translating before you speak"
+        },
+        "longLane": {
+          "light": "English gets easier every week",
+          "std": "English stops getting in your way",
+          "deep": "you use English without thinking about it"
+        }
+      },
+      "sectionTitle": "Speaking without overthinking",
+      "firstThreeSessions": [
+        "Saying it before you translate it",
+        "Keeping it going past two lines",
+        "Letting a small mistake pass"
+      ],
+      "endOutcomes": [
+        "Say it before you translate it in your head",
+        "Keep a conversation going past two lines",
+        "Let a small mistake pass and carry on",
+        "Start instead of waiting to be spoken to"
+      ],
+      "proofPractising": "practicing speaking without overthinking",
+      "graphMilestone": "you start it",
+      "beforeAfter": {
+        "heading": "You speak<br>before you overthink.",
+        "bullets": {
+          "before": [
+            "You plan the sentence first",
+            "The moment passes",
+            "You stay quiet"
+          ],
+          "after": [
+            "You just say it",
+            "The words keep coming",
+            "You enjoy talking"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, tell me about yourself.",
+          "before": "… I am… how to say… normal person…",
+          "after": "Three things about me, and one of them surprises people."
+        },
+        "artwork": "images/ba2/ba_other_smalltalk_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "school|exam",
+      "goal": "school",
+      "family": "exam",
+      "jtbdLabels": [
+        "Pass my speaking exam"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "stop going blank in your oral exam",
+          "std": "answer every question in your oral exam",
+          "deep": "speak in the exam like you do outside it"
+        },
+        "longLane": {
+          "light": "you speak up in class more often",
+          "std": "you speak in class without practising first",
+          "deep": "English stops lowering your marks"
+        }
+      },
+      "sectionTitle": "Your speaking exam",
+      "firstThreeSessions": [
+        "The questions you know are coming",
+        "Explaining your answer, not just saying it",
+        "A question you did not prepare"
+      ],
+      "endOutcomes": [
+        "Answer in full sentences, not one word",
+        "Explain your reason so it counts",
+        "Handle a question you did not prepare",
+        "Finish your turn without drying up"
+      ],
+      "proofPractising": "practicing for their speaking exam",
+      "graphMilestone": "you fill the two minutes",
+      "beforeAfter": {
+        "heading": "Your oral exam<br>stops being scary.",
+        "bullets": {
+          "before": [
+            "You blank in front of the teacher",
+            "Long pauses cost marks",
+            "You answer in one line"
+          ],
+          "after": [
+            "You speak for the full time",
+            "You handle the follow up",
+            "You use the right words"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Describe a place you enjoy visiting.",
+          "before": "… I like… the beach… it is nice…",
+          "after": "A small beach near my home. I go there to think, and here is why."
+        },
+        "artwork": "images/ba2/ba_school_exam_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "school|fastspeech",
+      "goal": "school",
+      "family": "fastspeech",
+      "jtbdLabels": [
+        "Keep up with fast lectures"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "follow more of every lecture",
+          "std": "follow a lecture at full speed",
+          "deep": "understand lectures without extra effort"
+        },
+        "longLane": {
+          "light": "you speak up in class more often",
+          "std": "you speak in class without practising first",
+          "deep": "English stops lowering your marks"
+        }
+      },
+      "sectionTitle": "Keeping up in lectures",
+      "firstThreeSessions": [
+        "A lecturer at full speed",
+        "Catching the terms that matter",
+        "Asking one question after class"
+      ],
+      "endOutcomes": [
+        "Follow a lecture without falling behind",
+        "Catch the key terms and write them down",
+        "Ask the lecturer one clear question",
+        "Keep up when the class discusses it"
+      ],
+      "proofPractising": "practicing keeping up in lectures",
+      "graphMilestone": "you stop asking twice",
+      "beforeAfter": {
+        "heading": "Lectures stop<br>getting away from you.",
+        "bullets": {
+          "before": [
+            "You miss half the lecture",
+            "You copy without understanding",
+            "You ask friends afterwards"
+          ],
+          "after": [
+            "You follow the lecturer",
+            "You catch the key points",
+            "You ask in the moment"
+          ]
+        },
+        "quotedMoment": {
+          "q": "Sorry, did you catch all that?",
+          "before": "… Yes… yes… no problem.",
+          "after": "Most of it. Can you say the second part again?"
+        },
+        "artwork": "images/ba2/ba_school_fastspeech_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "school|meetings",
+      "goal": "school",
+      "family": "meetings",
+      "jtbdLabels": [
+        "Speak up in class discussions"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say one thing in class",
+          "std": "speak up in class without practising first",
+          "deep": "start the discussion in class"
+        },
+        "longLane": {
+          "light": "you speak up in class more often",
+          "std": "you speak in class without practising first",
+          "deep": "English stops lowering your marks"
+        }
+      },
+      "sectionTitle": "Speaking up in class",
+      "firstThreeSessions": [
+        "Saying your idea first",
+        "Disagreeing with a classmate",
+        "Building on what someone said"
+      ],
+      "endOutcomes": [
+        "Say your idea while it is still the topic",
+        "Disagree with a classmate politely",
+        "Build on what someone else said",
+        "Answer when the teacher looks at you"
+      ],
+      "proofPractising": "practicing speaking up in class",
+      "graphMilestone": "you speak before it ends",
+      "beforeAfter": {
+        "heading": "Your idea reaches<br>the discussion.",
+        "bullets": {
+          "before": [
+            "You plan it too long",
+            "The topic moves on",
+            "You agree to stay safe"
+          ],
+          "after": [
+            "You speak while it counts",
+            "You disagree politely",
+            "You build on others"
+          ]
+        },
+        "quotedMoment": {
+          "q": "What do you think we should do?",
+          "before": "… I agree… with the other points.",
+          "after": "I see it differently, and here is why."
+        },
+        "artwork": "images/ba2/ba_school_meetings_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "school|smalltalk",
+      "goal": "school",
+      "family": "smalltalk",
+      "jtbdLabels": [
+        "Make friends on campus"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say the first line on campus",
+          "std": "start conversations on campus",
+          "deep": "make friends easily at school"
+        },
+        "longLane": {
+          "light": "you speak up in class more often",
+          "std": "you speak in class without practising first",
+          "deep": "English stops lowering your marks"
+        }
+      },
+      "sectionTitle": "Making friends on campus",
+      "firstThreeSessions": [
+        "The first line before class",
+        "Joining a group that is already talking",
+        "Making a plan for later"
+      ],
+      "endOutcomes": [
+        "Start a conversation before class",
+        "Join a group that is already talking",
+        "Ask someone to study or eat together",
+        "Keep it going the second time you meet"
+      ],
+      "proofPractising": "practicing making friends on campus",
+      "graphMilestone": "you start it",
+      "beforeAfter": {
+        "heading": "Campus stops<br>feeling lonely.",
+        "bullets": {
+          "before": [
+            "You eat lunch alone",
+            "You answer in two words",
+            "You leave early"
+          ],
+          "after": [
+            "You start the conversation",
+            "You keep it going",
+            "You make plans"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, tell me about yourself.",
+          "before": "… I am… how to say… normal person…",
+          "after": "Three things about me, and one of them surprises people."
+        },
+        "artwork": "images/ba2/ba_school_smalltalk_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "travel|services",
+      "goal": "travel",
+      "family": "services",
+      "jtbdLabels": [
+        "Breeze through airports and hotels",
+        "Sort out any mix-up abroad"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "ask for what you need at the hotel",
+          "std": "sort out any problem on your own",
+          "deep": "travel without worrying about English"
+        },
+        "longLane": {
+          "light": "you handle the basics on your own",
+          "std": "you travel and handle everything yourself",
+          "deep": "you travel without worrying about English"
+        }
+      },
+      "sectionTitle": "Airports, hotels and mix-ups",
+      "firstThreeSessions": [
+        "Checking in and asking for what you need",
+        "Something is wrong with the room",
+        "A connection you just missed"
+      ],
+      "endOutcomes": [
+        "Check in and ask for what you need",
+        "Say what is wrong with the room",
+        "Sort out a missed flight at the desk",
+        "Ask for help when the plan changes"
+      ],
+      "proofPractising": "practicing airports and hotels",
+      "graphMilestone": "you book it yourself",
+      "beforeAfter": {
+        "heading": "You handle the trip<br>on your own.",
+        "bullets": {
+          "before": [
+            "You point instead of asking",
+            "You accept the wrong room",
+            "You avoid the front desk"
+          ],
+          "after": [
+            "You ask for what you need",
+            "You fix problems yourself",
+            "You get things changed"
+          ]
+        },
+        "quotedMoment": {
+          "q": "What seems to be the problem today?",
+          "before": "… The pain is… here… sometimes…",
+          "after": "It started last week, and it is worse in the morning."
+        },
+        "artwork": "images/ba2/ba_travel_services_{f|m}_{before|after}.webp"
+      }
+    },
+    {
+      "key": "travel|smalltalk",
+      "goal": "travel",
+      "family": "smalltalk",
+      "jtbdLabels": [
+        "Make friends while traveling"
+      ],
+      "usesOverride": true,
+      "planTitleClaim": {
+        "shortLane": {
+          "light": "say the first line to a stranger",
+          "std": "make friends while you travel",
+          "deep": "talk to anyone you meet abroad"
+        },
+        "longLane": {
+          "light": "you handle the basics on your own",
+          "std": "you travel and handle everything yourself",
+          "deep": "you travel without worrying about English"
+        }
+      },
+      "sectionTitle": "Meeting people as you travel",
+      "firstThreeSessions": [
+        "The first line with a stranger",
+        "Where you are from, made interesting",
+        "Making a plan with someone new"
+      ],
+      "endOutcomes": [
+        "Start with a stranger in a hostel or a cafe",
+        "Say where you are from without a script",
+        "Make a plan with someone you just met",
+        "Leave the conversation on good terms"
+      ],
+      "proofPractising": "practicing meeting people abroad",
+      "graphMilestone": "you start it",
+      "beforeAfter": {
+        "heading": "Strangers become<br>travel friends.",
+        "bullets": {
+          "before": [
+            "You keep to yourself",
+            "You answer in two words",
+            "You miss the invite"
+          ],
+          "after": [
+            "You start the conversation",
+            "You swap stories",
+            "You get invited along"
+          ]
+        },
+        "quotedMoment": {
+          "q": "So, tell me about yourself.",
+          "before": "… I am… how to say… normal person…",
+          "after": "Three things about me, and one of them surprises people."
+        },
+        "artwork": "images/ba2/ba_travel_smalltalk_{f|m}_{before|after}.webp"
+      }
+    }
+  ],
+  "skills": {
+    "fluency": {
+      "title": "Learners who stay<br>talk without pausing.",
+      "lead": "They practice",
+      "n": 500,
+      "unit": "real conversations before it stops feeling hard",
+      "tags": [
+        "Job interviews",
+        "Team meetings",
+        "Small talk",
+        "Phone calls",
+        "Client pitches",
+        "Meeting new people",
+        "Asking for help",
+        "Telling a story",
+        "Disagreeing politely",
+        "Ordering food"
+      ],
+      "head": "Speak confidently as you<br>practice with <em>real feedback</em>.",
+      "body": "500 real conversations, practiced until it stops feeling hard.",
+      "big": "500+",
+      "bigLab": "real conversation scenarios",
+      "chips": [
+        "Interviews",
+        "Meetings",
+        "Small talk",
+        "Phone calls"
+      ],
+      "testi": {
+        "quote": "I stopped rehearsing sentences in my head. Now I just talk.",
+        "name": "Priya S.",
+        "city": "Toronto"
+      }
+    },
+    "pronunciation": {
+      "title": "Learners who stay<br>get understood.",
+      "lead": "They drill",
+      "n": 44,
+      "unit": "English sounds, until they land every time",
+      "tags": [
+        "TH sounds",
+        "Word stress",
+        "Vowel length",
+        "Word endings",
+        "R and L",
+        "V and W",
+        "Silent letters",
+        "Sentence rhythm",
+        "Linking words",
+        "Intonation"
+      ],
+      "head": "Sound like a native with<br><em>pronunciation practice</em>.",
+      "body": "All 44 English sounds, drilled until they land every time.",
+      "big": "44",
+      "bigLab": "English sounds covered",
+      "chips": [
+        "Word stress",
+        "Vowel length",
+        "Th sounds",
+        "Endings"
+      ],
+      "testi": {
+        "quote": "Nobody asks me to repeat myself anymore.",
+        "name": "Diego A.",
+        "city": "Miami"
+      }
+    },
+    "vocabulary": {
+      "title": "Learners who stay<br>find words faster.",
+      "lead": "They learn",
+      "n": 3000,
+      "unit": "high-use words and phrases they actually reach for",
+      "tags": [
+        "Work words",
+        "Everyday words",
+        "Linking phrases",
+        "Idioms",
+        "Polite requests",
+        "Describing problems",
+        "Opinions",
+        "Numbers and dates",
+        "Phrasal verbs",
+        "Small talk openers"
+      ],
+      "head": "Find the right words with<br><em>daily word practice</em>.",
+      "body": "3,000 high-use words and phrases, learned until you actually reach for them.",
+      "big": "3,000",
+      "bigLab": "high-use words and phrases",
+      "chips": [
+        "Work words",
+        "Everyday words",
+        "Linking phrases",
+        "Idioms"
+      ],
+      "testi": {
+        "quote": "My words finally match what I am trying to say.",
+        "name": "Lucía P.",
+        "city": "Los Ángeles"
+      }
+    },
+    "grammar": {
+      "title": "Learners who stay<br>make fewer mistakes.",
+      "lead": "They master",
+      "n": 120,
+      "unit": "grammar rules, practiced inside real sentences",
+      "tags": [
+        "Tenses",
+        "Articles",
+        "Prepositions",
+        "Word order",
+        "Questions",
+        "Plurals",
+        "Conditionals",
+        "Modals",
+        "Comparatives",
+        "Reported speech"
+      ],
+      "head": "Speak correctly with<br><em>grammar practice</em>.",
+      "body": "120 grammar rules, practiced inside real sentences.",
+      "big": "120",
+      "bigLab": "grammar rules covered",
+      "chips": [
+        "Tenses",
+        "Articles",
+        "Prepositions",
+        "Word order"
+      ],
+      "testi": {
+        "quote": "I stopped guessing tenses. It just comes out right now.",
+        "name": "Wei L.",
+        "city": "Boston"
+      }
+    }
+  },
+  "practice": {
+    "career|office": {
+      "ctx": "Your team is mid-discussion and your manager turns to you.",
+      "q": "Can you give us a quick update on where things are?",
+      "steps": [
+        "Say where it stands",
+        "Give the detail",
+        "Name the blocker",
+        "Say the next step"
+      ],
+      "parts": [
+        "The redesign is on track for Friday.",
+        "Three of the five screens are done.",
+        "We are still waiting on copy for the last two.",
+        "I will chase that today and confirm tomorrow."
+      ]
+    },
+    "career|ownboss": {
+      "ctx": "A client likes your work, and now they ask about money.",
+      "q": "So what do you charge for this?",
+      "steps": [
+        "Say the number",
+        "Say what is included",
+        "Give the reason",
+        "Hold it"
+      ],
+      "parts": [
+        "My rate for this is two thousand.",
+        "That covers the work, two rounds of changes, and the files.",
+        "It takes me about three weeks of full days.",
+        "That is my rate, and I think it is fair."
+      ]
+    },
+    "career|jobhunt": {
+      "ctx": "You are in the final interview for a job you want.",
+      "q": "So, why should we hire you?",
+      "steps": [
+        "Answer it directly",
+        "Give your reason",
+        "Give an example",
+        "Close it"
+      ],
+      "parts": [
+        "I am a strong fit for this role.",
+        "I stay calm under pressure, and my team trusts me.",
+        "Last month I ran our busiest week with no mistakes.",
+        "That is why I know I can deliver here."
+      ]
+    },
+    "career|careerbreak": {
+      "ctx": "The interviewer stops at the gap on your CV.",
+      "q": "What were you doing during this time?",
+      "steps": [
+        "Name it plainly",
+        "Say what you did",
+        "Show it kept you sharp",
+        "Bring it back"
+      ],
+      "parts": [
+        "I took two years out to care for my family.",
+        "I kept taking small projects through it.",
+        "I finished a course in the last six months.",
+        "I am ready to come back full time now."
+      ]
+    },
+    "career|athome": {
+      "ctx": "You are applying for your first role in years.",
+      "q": "You have not worked for a while. Why now?",
+      "steps": [
+        "Answer it directly",
+        "Say what changed",
+        "Say what you bring",
+        "Say what you want"
+      ],
+      "parts": [
+        "My youngest started school this year.",
+        "That gives me time I did not have before.",
+        "I have run a household budget and schedule for years.",
+        "I want to put that into a real job."
+      ]
+    },
+    "career|student": {
+      "ctx": "You are interviewing for your first internship.",
+      "q": "You have no work experience. Why should we take you?",
+      "steps": [
+        "Answer it directly",
+        "Give your reason",
+        "Give an example",
+        "Close it"
+      ],
+      "parts": [
+        "I learn fast, and I finish what I start.",
+        "I ran the events for our student society all year.",
+        "We doubled the turnout in two terms.",
+        "I would bring the same energy here."
+      ]
+    },
+    "career|other": {
+      "ctx": "You are interviewing for a job you want.",
+      "q": "Tell me about yourself.",
+      "steps": [
+        "Start with now",
+        "Say one strength",
+        "Give an example",
+        "Say what you want"
+      ],
+      "parts": [
+        "Right now I work in customer support.",
+        "What I am good at is staying calm with people.",
+        "Last year I handled our busiest month with no complaints.",
+        "I am looking for somewhere I can do more of that."
+      ]
+    },
+    "convo": {
+      "ctx": "You meet an old friend at a cafe after a long time. They sit down and ask:",
+      "q": "So what are you doing these days?",
+      "steps": [
+        "Say what you do now",
+        "Add one detail",
+        "Say what is new",
+        "Ask them back"
+      ],
+      "parts": [
+        "I am still at the same company, but I moved to a new team last year.",
+        "I work with customers now, and I like that part a lot.",
+        "Outside work I started running in the mornings.",
+        "What about you, are you still living near the old place?"
+      ]
+    },
+    "travel": {
+      "ctx": "There is no hot water in your hotel room. You go down to the desk, and the receptionist asks:",
+      "q": "Can you tell me exactly what the problem is?",
+      "steps": [
+        "Say the problem",
+        "Say what you tried",
+        "Say what you need",
+        "Confirm"
+      ],
+      "parts": [
+        "There is no hot water in my room, three zero two.",
+        "I ran the shower for ten minutes and it stayed cold.",
+        "Could someone come and look at it this afternoon?",
+        "I will be back by four, so any time after that works."
+      ]
+    },
+    "school": {
+      "ctx": "Your class is discussing whether students should keep their phones in lessons. The teacher turns to you and asks:",
+      "q": "What is your opinion, and why do you think that?",
+      "steps": [
+        "Say your view",
+        "Give your reason",
+        "Give an example",
+        "Close it"
+      ],
+      "parts": [
+        "I think phones should stay in our bags during lessons.",
+        "It is hard to listen when a screen keeps lighting up next to you.",
+        "In our group project last week, nobody finished on time.",
+        "So I would allow them at break, but not in class."
+      ]
+    },
+    "ielts": {
+      "ctx": "IELTS Speaking, Part 2. You have one minute to talk.",
+      "q": "Describe a place you enjoy visiting.",
+      "steps": [
+        "Name it",
+        "Say where and when",
+        "Give the detail",
+        "Say why it matters"
+      ],
+      "parts": [
+        "I want to talk about a small beach near my home.",
+        "It is about thirty minutes away, and I go most weekends.",
+        "It is quiet, there is one cafe, and you can hear the water.",
+        "I go there to think, and I always leave calmer."
+      ]
+    },
+    "other": {
+      "ctx": "You are meeting someone new who could open a door for you. They ask:",
+      "q": "Tell me a little about yourself.",
+      "steps": [
+        "Start with now",
+        "Say one strength",
+        "Give an example",
+        "Say what you want"
+      ],
+      "parts": [
+        "Right now I am working and studying English on the side.",
+        "What I am good at is sticking with things.",
+        "I have practised every day for the last month.",
+        "I want to use English without thinking about it."
+      ]
+    }
+  },
+  "score": {
+    "base": {
+      "fluency": 64,
+      "vocabulary": 58,
+      "pronunciation": 61,
+      "grammar": 71
+    },
+    "messages": {
+      "fluency": {
+        "weak": "Long pauses broke your answer up.",
+        "mid": "You paused a few times mid-sentence.",
+        "strong": "You kept going without stopping."
+      },
+      "vocabulary": {
+        "weak": "You reached for the same few words.",
+        "mid": "Your words worked, but they repeated.",
+        "strong": "You reached for the right words."
+      },
+      "pronunciation": {
+        "weak": "Some words were hard to catch.",
+        "mid": "A few sounds landed soft.",
+        "strong": "You were easy to understand."
+      },
+      "grammar": {
+        "weak": "Tenses slipped more than once.",
+        "mid": "A couple of tense slips crept in.",
+        "strong": "Your sentences held together."
+      }
+    }
+  }
+}

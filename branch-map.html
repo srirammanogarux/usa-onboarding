@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stimuler · Branch Map &amp; Activation Engine</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);background:radial-gradient(120% 40% at 50% -6%, rgba(108,99,255,.13), transparent 60%),var(--bg-page);color:var(--text-hi);-webkit-font-smoothing:antialiased;min-height:100vh;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 150px;}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(7,6,13,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--stroke);}
+  nav .inner{max-width:1180px;margin:0 auto;padding:0 28px;display:flex;gap:2px;align-items:center;overflow-x:auto;scrollbar-width:none;}
+  nav .inner::-webkit-scrollbar{display:none;}
+  nav .brand{font-family:var(--font-display);font-weight:700;font-size:14px;margin-right:14px;white-space:nowrap;}
+  nav .brand b{color:var(--indigo-300);}
+  nav a{font-family:var(--font-display);font-size:12.5px;font-weight:500;color:var(--text-mid);text-decoration:none;padding:15px 11px;white-space:nowrap;transition:color .14s;}
+  nav a:hover{color:var(--text-hi);}
+  nav .home{margin-left:auto;color:var(--indigo-300);}
+
+  .hero{padding:70px 0 26px;}
+  .eyebrow{font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo-300);}
+  h1{font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.06;letter-spacing:-.03em;margin:18px 0 0;max-width:19ch;text-wrap:balance;}
+  h1 em{font-style:normal;color:var(--indigo-300);}
+  .lede{margin-top:20px;max-width:66ch;font-size:16px;line-height:1.62;color:var(--text-mid);}
+  .lede b{color:var(--text-hi);font-weight:600;}
+
+  /* model: spine vs payload */
+  .model{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:760px){.model{grid-template-columns:1fr;}}
+  .mcard{border:1px solid var(--stroke);border-radius:var(--r-lg);padding:22px 24px;background:var(--surface-1);}
+  .mcard.fixed{border-left:3px solid var(--tint-green);}
+  .mcard.vary{border-left:3px solid var(--gold-500);}
+  .mcard h3{font-family:var(--font-display);font-weight:600;font-size:16px;margin-bottom:4px;}
+  .mcard .k{font-family:var(--font-body);font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+  .mcard.fixed .k{color:var(--tint-green);}
+  .mcard.vary .k{color:var(--gold-500);}
+  .mcard p{font-size:13.5px;line-height:1.58;color:var(--text-mid);}
+  .mcard ul{margin:10px 0 0;padding-left:16px;}
+  .mcard li{font-size:12.5px;line-height:1.5;color:var(--text-mid);margin:4px 0;}
+
+  section{padding-top:68px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .sec-num{font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--text-low);}
+  h2{font-family:var(--font-display);font-weight:600;font-size:27px;letter-spacing:-.02em;}
+  .sec-lede{margin:7px 0 28px;font-size:14px;color:var(--text-mid);max-width:74ch;line-height:1.55;}
+  .sec-lede b{color:var(--text-hi);font-weight:600;}
+
+  /* activation matrix */
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--stroke);border-radius:var(--r-lg);}
+  table.matrix{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px;}
+  table.matrix th,table.matrix td{padding:13px 14px;border-bottom:1px solid var(--stroke);border-right:1px solid var(--stroke);text-align:left;vertical-align:top;}
+  table.matrix th{font-family:var(--font-display);font-weight:600;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-low);background:var(--surface-1);}
+  table.matrix td:first-child,table.matrix th:first-child{position:sticky;left:0;background:var(--surface-1);color:var(--text-hi);font-family:var(--font-display);font-weight:600;font-size:12.5px;text-transform:none;letter-spacing:0;}
+  table.matrix tr:last-child td{border-bottom:none;}
+  table.matrix td:last-child,table.matrix th:last-child{border-right:none;}
+  table.matrix td .ex{color:var(--text-hi);font-weight:600;display:block;margin-bottom:3px;}
+  table.matrix td .de{color:var(--text-mid);line-height:1.45;}
+  table.matrix td.gold{background:linear-gradient(135deg,rgba(108,99,255,.16),rgba(83,72,232,.06));box-shadow:inset 0 0 0 1.5px var(--indigo-500);}
+  .rd{display:inline-flex;gap:5px;align-items:center;font-size:11px;color:var(--text-low);margin-top:6px;}
+  .rd .p{width:8px;height:8px;border-radius:50%;background:var(--indigo-400);}
+  .rd .r{width:8px;height:8px;border-radius:50%;background:var(--tint-blue);}
+
+  /* goal tree */
+  .tree{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  @media(max-width:1000px){.tree{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.tree{grid-template-columns:1fr;}}
+  .goal{border:1px solid var(--stroke);border-radius:var(--r-md);background:var(--surface-1);overflow:hidden;display:flex;flex-direction:column;}
+  .goal .gh{padding:14px 16px;border-bottom:1px solid var(--stroke);background:var(--surface-2);}
+  .goal .gh .gl{font-family:var(--font-body);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-300);}
+  .goal .gh h4{font-family:var(--font-display);font-weight:600;font-size:15px;margin-top:4px;}
+  .goal ul{list-style:none;padding:8px;margin:0;display:flex;flex-direction:column;gap:4px;flex:1;}
+  .goal li{font-size:12.5px;line-height:1.35;color:var(--text-mid);padding:9px 10px;border-radius:8px;border:1px solid transparent;}
+  .goal li:hover{background:var(--surface-2);}
+  .goal li.gp{background:linear-gradient(135deg,rgba(108,99,255,.2),rgba(83,72,232,.08));border-color:var(--indigo-500);color:var(--text-hi);font-weight:600;}
+  .goal li.gp::after{content:"★ golden path";display:block;font-size:9.5px;font-weight:600;letter-spacing:.04em;color:var(--indigo-300);margin-top:3px;text-transform:uppercase;}
+  .goal li .jl{color:var(--text-low);font-size:10.5px;}
+
+  /* payload schema */
+  .schema{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media(max-width:820px){.schema{grid-template-columns:1fr;}}
+  .field{border:1px solid var(--stroke);border-left:3px solid var(--stroke-strong);border-radius:var(--r-md);padding:15px 17px;background:var(--surface-1);}
+  .field h4{font-family:var(--font-display);font-weight:600;font-size:14px;margin-bottom:5px;}
+  .field p{font-size:12px;line-height:1.5;color:var(--text-mid);}
+  .field .src{font-size:11px;color:var(--indigo-300);margin-top:7px;display:block;}
+
+  /* golden path worked spec */
+  .spec{border:1px solid var(--indigo-500);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 0 0 1px rgba(108,99,255,.14),0 20px 50px -30px var(--indigo-glow);}
+  .spec .sh{padding:20px 26px;background:linear-gradient(135deg,rgba(108,99,255,.18),rgba(83,72,232,.06));border-bottom:1px solid var(--stroke);}
+  .spec .sh .gl{font-family:var(--font-body);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo-300);}
+  .spec .sh h3{font-family:var(--font-display);font-weight:600;font-size:20px;margin-top:5px;letter-spacing:-.01em;}
+  .spec .sh .brief{margin-top:10px;font-size:12.5px;color:var(--indigo-300);background:var(--bg-app);border:1px solid var(--stroke);border-radius:8px;padding:6px 11px;display:inline-block;}
+  .spec .sb{padding:8px 26px 24px;}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:17px 0;border-bottom:1px solid var(--stroke);}
+  @media(max-width:640px){.row{grid-template-columns:1fr;gap:6px;}}
+  .row:last-child{border-bottom:none;}
+  .row .rl{font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--text-low);}
+  .row .rc{font-size:13.5px;line-height:1.6;color:var(--text-mid);}
+  .row .rc b{color:var(--text-hi);font-weight:600;}
+  .say{background:var(--surface-2);border:1px solid var(--stroke);border-radius:10px;padding:11px 14px;font-size:13px;color:var(--text-hi);margin:4px 0;}
+  .say .who{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--indigo-300);display:block;margin-bottom:4px;}
+  .fx{display:flex;flex-direction:column;gap:7px;}
+  .fx .f{display:flex;gap:9px;align-items:baseline;font-size:13px;color:var(--text-mid);}
+  .fx .f .n{width:18px;height:18px;border-radius:5px;background:var(--surface-2);border:1px solid var(--stroke);color:var(--indigo-300);font-size:11px;font-weight:700;display:grid;place-items:center;flex:none;}
+  .acks{display:flex;flex-wrap:wrap;gap:7px;}
+  .acks a{font-size:11.5px;color:var(--text-mid);text-decoration:none;padding:5px 10px;border:1px solid var(--stroke);border-radius:var(--r-pill);background:var(--surface-1);transition:border-color .15s;}
+  .acks a:hover{border-color:var(--indigo-500);color:var(--text-hi);}
+
+  /* build order */
+  .order{display:flex;flex-direction:column;gap:10px;}
+  .ord{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--stroke);border-radius:var(--r-md);padding:15px 18px;background:var(--surface-1);}
+  .ord .b{flex:none;width:26px;height:26px;border-radius:8px;background:var(--surface-2);border:1px solid var(--stroke-strong);color:var(--indigo-300);font-family:var(--font-display);font-weight:700;font-size:13px;display:grid;place-items:center;}
+  .ord h4{font-family:var(--font-display);font-weight:600;font-size:14.5px;margin-bottom:3px;}
+  .ord p{font-size:12.5px;line-height:1.5;color:var(--text-mid);}
+  .ord.now{border-color:var(--indigo-500);} .ord.now .b{background:var(--indigo-500);color:#fff;border-color:var(--indigo-500);}
+  .divider{height:1px;background:var(--stroke);margin:66px 0 0;}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="brand">Stimuler · <b>Branch Map</b></span>
+  <a href="#model">Model</a>
+  <a href="#matrix">Activation grid</a>
+  <a href="#tree">Goal tree</a>
+  <a href="#schema">Payload</a>
+  <a href="#golden">Golden path</a>
+  <a href="#order">Build order</a>
+  <a href="blueprint.html" class="home">← Blueprint</a>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero" id="model">
+    <span class="eyebrow">Taming the divergences</span>
+    <h1>Not sixty flows. <em>One flow</em>, swappable payloads.</h1>
+    <p class="lede">The branching feels infinite because goal × sub-goal × level × skill is a big number. But the <b>screens never change</b> — only the <b>content poured into them</b> does. Fix the machine once; fill it flow by flow. This map is the machine, plus the first payload built end-to-end.</p>
+
+    <div class="model">
+      <div class="mcard fixed">
+        <div class="k">Fixed · built once</div>
+        <h3>The structure</h3>
+        <p>The same for every learner, every branch. Build it, then never rebuild it.</p>
+        <ul>
+          <li>Screen types, order &amp; transitions (the whole spine)</li>
+          <li>The activation loop shape: speak / read → score → what-to-improve → plan</li>
+          <li>The component kit: phone shell, progress bar, options, buttons, ack template</li>
+        </ul>
+      </div>
+      <div class="mcard vary">
+        <div class="k">Varies · data, not screens</div>
+        <h3>The payload</h3>
+        <p>A content profile injected into the fixed screens. A "branch" is just a new payload.</p>
+        <ul>
+          <li>The scenario, the prompt, the hint, the sample answer</li>
+          <li>Which activation exercise runs (from level × skill)</li>
+          <li>The 2–3 feedback focuses &amp; which ack screens fire</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- ACTIVATION MATRIX -->
+  <section id="matrix">
+    <div class="sec-head"><span class="sec-num">01</span><h2>The activation grid — level × skill</h2></div>
+    <p class="sec-lede">The <b>skill</b> (step 19) picks the exercise; the <b>level</b> (step 22, hybrid-confirmed) sets its format and difficulty. Twelve exercise templates cover everyone. The JTBD only supplies the <b>scenario</b> these run inside. <span class="rd"><span class="p"></span> speak · <span class="r"></span> read</span></p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead><tr><th>Skill ↓ / Level →</th><th>Beginner</th><th>Intermediate</th><th>Advanced</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Fluency</td>
+            <td><span class="ex">Guided turn ●</span><span class="de">Answer a simple prompt with a sentence-starter scaffold.</span></td>
+            <td class="gold"><span class="ex">Impromptu turn ●</span><span class="de">Speak ~25s, hint available on tap. <b style="color:var(--indigo-300)">★ golden path</b></span></td>
+            <td><span class="ex">Open turn + follow-up ●</span><span class="de">No scaffold; Sarah asks a follow-up.</span></td>
+          </tr>
+          <tr>
+            <td>Pronunciation</td>
+            <td><span class="ex">Read a line ○</span><span class="de">Short target line, syllable-level feedback.</span></td>
+            <td><span class="ex">Read a sentence ○</span><span class="de">Tricky-sound sentence, phoneme feedback.</span></td>
+            <td><span class="ex">Minimal pairs / stress ○</span><span class="de">Paragraph, stress &amp; intonation.</span></td>
+          </tr>
+          <tr>
+            <td>Grammar</td>
+            <td><span class="ex">Build a sentence ●</span><span class="de">Complete a spoken sentence from a frame.</span></td>
+            <td><span class="ex">Respond &amp; correct ●</span><span class="de">Speak a reply; grammar-focused feedback.</span></td>
+            <td><span class="ex">Reformulate ●</span><span class="de">Fix / rephrase a flawed line aloud.</span></td>
+          </tr>
+          <tr>
+            <td>Vocabulary</td>
+            <td><span class="ex">Name &amp; use ●</span><span class="de">Use target words with a picture/prompt.</span></td>
+            <td><span class="ex">Use in scenario ●</span><span class="de">Work target words into a spoken answer.</span></td>
+            <td><span class="ex">Paraphrase / synonyms ●</span><span class="de">Swap in advanced vocabulary in context.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-lede" style="margin-top:16px">Read it as: <b>Beginner leans read-aloud / guided</b> (lower speaking load), <b>Advanced leans open impromptu</b>. The hybrid check in the activation can bump someone up or down a column after their first attempt.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GOAL TREE -->
+  <section id="tree">
+    <div class="sec-head"><span class="sec-num">02</span><h2>The goal → sub-goal tree</h2></div>
+    <p class="sec-lede">"Why English" (step 16) opens a goal; the sub-goal is the <b>specific conversation</b> (step 17) — that's the JTBD. Each leaf is one scenario payload. Tuned for LATAM immigrants building a life in the US.</p>
+    <div class="tree">
+      <div class="goal">
+        <div class="gh"><span class="gl">Goal A</span><h4>Career &amp; work</h4></div>
+        <ul>
+          <li class="gp">Ace a job interview</li>
+          <li>Speak up in meetings without freezing</li>
+          <li>Understand fast-talking coworkers</li>
+          <li>Talk to my boss / ask for a raise</li>
+          <li>Handle customer &amp; client calls</li>
+        </ul>
+      </div>
+      <div class="goal">
+        <div class="gh"><span class="gl">Goal B</span><h4>Daily life in the US</h4></div>
+        <ul>
+          <li>Customer-facing work <span class="jl">(server, cashier, driver)</span></li>
+          <li>Doctor, clinic &amp; pharmacy</li>
+          <li>My kids' school &amp; teachers</li>
+          <li>DMV, bank, landlord, government</li>
+          <li>Shops, restaurants &amp; neighbors</li>
+        </ul>
+      </div>
+      <div class="goal">
+        <div class="gh"><span class="gl">Goal C</span><h4>Studies</h4></div>
+        <ul>
+          <li>Pass an English exam <span class="jl">(IELTS / TOEFL)</span></li>
+          <li>Understand lectures &amp; join in class</li>
+          <li>Write essays / academic English</li>
+        </ul>
+      </div>
+      <div class="goal">
+        <div class="gh"><span class="gl">Goal D</span><h4>Family</h4></div>
+        <ul>
+          <li>Talk with my partner's family</li>
+          <li>Help my kids with schoolwork</li>
+          <li>Community, church &amp; events</li>
+        </ul>
+      </div>
+      <div class="goal">
+        <div class="gh"><span class="gl">Goal E</span><h4>Confidence</h4></div>
+        <ul>
+          <li>Just speak without fear</li>
+          <li>Make friends &amp; small talk</li>
+          <li>Travel with ease</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PAYLOAD SCHEMA -->
+  <section id="schema">
+    <div class="sec-head"><span class="sec-num">03</span><h2>What every leaf must define</h2></div>
+    <p class="sec-lede">The payload schema. Fill these six fields for a JTBD leaf and the whole flow personalizes itself — no new screens.</p>
+    <div class="schema">
+      <div class="field"><h4>1 · Scenario</h4><p>The setting Sarah stages the exercise in.</p><span class="src">→ activation + plan copy</span></div>
+      <div class="field"><h4>2 · Prompt</h4><p>The exact line Sarah says to open the turn.</p><span class="src">→ activation screen</span></div>
+      <div class="field"><h4>3 · Hint scaffold</h4><p>The optional sentence-starter for lower levels.</p><span class="src">→ activation (tap to reveal)</span></div>
+      <div class="field"><h4>4 · Feedback focuses</h4><p>The 2–3 things we grade &amp; coach, tied to the job.</p><span class="src">→ score + what-to-improve</span></div>
+      <div class="field"><h4>5 · Ack screens</h4><p>Which library screens fire on this branch, and where.</p><span class="src">→ Act 2 rhythm</span></div>
+      <div class="field"><h4>6 · Plan framing</h4><p>How the personalized plan names the journey.</p><span class="src">→ Act 4 reveal</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GOLDEN PATH -->
+  <section id="golden">
+    <div class="sec-head"><span class="sec-num">04</span><h2>The first payload, fully built</h2></div>
+    <p class="sec-lede">Career → <b>Ace a job interview</b>, Intermediate, Fluency. Build-ready: this is the vertical we prototype end-to-end to prove the machine.</p>
+    <div class="spec">
+      <div class="sh">
+        <span class="gl">Golden path · Goal A → interview · Intermediate × Fluency</span>
+        <h3>The mock-interview activation</h3>
+        <div class="brief">internal brief: [occupation] · [age] · "ace a job interview" · fluency → impromptu turn, interview scenario</div>
+      </div>
+      <div class="sb">
+        <div class="row"><div class="rl">Scenario</div><div class="rc">Sarah is the <b>hiring manager</b>. "You're in the interview now — I'll ask, you answer, just like the real thing." The room, not a lesson.</div></div>
+        <div class="row"><div class="rl">Prompt</div><div class="rc"><div class="say"><span class="who">Sarah asks</span>"Tell me a little about yourself, and why you want this job."</div></div></div>
+        <div class="row"><div class="rl">Hint scaffold</div><div class="rc"><div class="say"><span class="who">Tap for a hint</span>"I have ___ years of experience in ___. I'm good at ___. I want this job because ___."</div><span style="font-size:12px;color:var(--text-low)">Available but not pushed — using it is fine, and quietly flags a possible level bump-down.</span></div></div>
+        <div class="row"><div class="rl">Capture</div><div class="rc">~25s response. Real mic waveform + count-up ring. Sarah listens; no interruptions.</div></div>
+        <div class="row"><div class="rl">Feedback focuses</div><div class="rc"><div class="fx">
+          <div class="f"><span class="n">1</span><div><b style="color:var(--text-hi)">Smooth phrasing</b> — pauses &amp; restarts mid-sentence ("you paused 4 times — interviews reward steady phrasing").</div></div>
+          <div class="f"><span class="n">2</span><div><b style="color:var(--text-hi)">Filler control</b> — um / eh / "este" count ("6 fillers — we'll train interview-calm").</div></div>
+          <div class="f"><span class="n">3</span><div><b style="color:var(--text-hi)">Complete answers</b> — did the answer actually land the point ("strong content, let's tighten the ending").</div></div>
+        </div></div></div>
+        <div class="row"><div class="rl">Score reveal</div><div class="rc">Their own voice, scored on the three above (fluency-weighted). This is the real deficit reveal — frame it as a <b>starting point</b>, not a grade (Gleam pattern).</div></div>
+        <div class="row"><div class="rl">Ack screens (this branch)</div><div class="rc"><div class="acks">
+          <a href="ack-library.html#screens">Pay-raise stat (after occupation)</a>
+          <a href="ack-library.html#screens">Interview-nerves empathy (after JTBD)</a>
+          <a href="ack-library.html#screens">"The Silent Knower" reveal (after level)</a>
+          <a href="ack-library.html#screens">Interview-ready graph (pre-plan)</a>
+          <a href="ack-library.html#screens">Future-self letter (post-loader)</a>
+        </div></div></div>
+        <div class="row"><div class="rl">Plan framing</div><div class="rc"><b>"[Name]'s Interview Plan — 3 weeks to interview-ready."</b> Wk 1: smooth phrasing under pressure · Wk 2: the 10 questions you'll be asked · Wk 3: full mock interviews with Sarah. Mirrors the exact fixes from their scored turn.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BUILD ORDER -->
+  <section id="order">
+    <div class="sec-head"><span class="sec-num">05</span><h2>How we actually build</h2></div>
+    <p class="sec-lede">Flow by flow, spine outward. Each step reuses everything before it.</p>
+    <div class="order">
+      <div class="ord now"><div class="b">1</div><div><h4>This map → lock the golden-path payload</h4><p>Agree the interview payload above (copy, focuses, plan). It's the spec everything downstream builds toward.</p></div></div>
+      <div class="ord"><div class="b">2</div><div><h4>The spine screens (Acts 0 → 1 → 1.5 → identity)</h4><p>Real HTML: phone shell, progress bar, transitions, option/chip/button kit, ack template. Branch-free — every payload inherits it.</p></div></div>
+      <div class="ord"><div class="b">3</div><div><h4>The golden vertical</h4><p>Career/interview all the way through: branching questions → derived brief → mock-interview activation → feedback → plan → paywall. One complete, demoable flow.</p></div></div>
+      <div class="ord"><div class="b">4</div><div><h4>Fan out, one leaf at a time</h4><p>Add the next sub-goal (e.g. "understand fast coworkers") as a new payload row against the same components. Repeat across the tree by traffic priority.</p></div></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
