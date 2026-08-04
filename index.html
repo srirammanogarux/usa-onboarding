@@ -2466,9 +2466,11 @@ function renderPhaseA(id){
        on `act` first and only reaches it through the hint bulb */
     document.querySelector('#qsummary .fcta .btn').dataset.next=practiceMode()==='read'?'acthint':'act';
     ahFromBulb=false;
-    document.getElementById('sumNext').innerHTML=
-      'You will answer one real '+ask+' <b style="color:var(--text-hi)">out loud</b>, in about 20 seconds. '+
-      'Speak in your own words. There is no wrong answer.';
+    document.getElementById('sumNext').innerHTML=practiceMode()==='read'
+      ? 'You will read a few short lines <b style="color:var(--text-hi)">out loud</b>, in about 20 seconds. '+
+        'We will listen and find your level. There is no wrong answer.'
+      : 'You will answer one real '+ask+' <b style="color:var(--text-hi)">out loud</b>, in about 20 seconds. '+
+        'Speak in your own words. There is no wrong answer.';
   }
 
 }
@@ -2572,11 +2574,10 @@ function renderPhaseB(id){
   if(id==='act'){
     document.getElementById('actCtx').textContent=practiceCtx();
     document.getElementById('actQ').textContent='\u201C'+practiceQ()+'\u201D';
-    const m=document.getElementById('actMode');
-    const _sc=practiceSet();
-    m.innerHTML=mode==='read'?`<div class="modecard"><div class="mtag">Read this aloud</div><div class="mtxt">\u201C${_sc.parts.join(' ')}\u201D</div></div>`:'';
-    /* a beginner is reading a model, not improvising, so the mic must not say otherwise */
-    document.getElementById('actTip').textContent=mode==='read'?'Tap the mic and read it':'Answer in your own words';
+    /* beginners never land here: qsummary sends read mode straight to `acthint`,
+       so the old inline "Read this aloud" card only ever showed via the dev rail */
+    document.getElementById('actMode').innerHTML='';
+    document.getElementById('actTip').textContent='Answer in your own words';
     const b=document.getElementById('actBulb');
     b.classList.remove('show');b.hidden=true;
     document.getElementById('micRow').classList.remove('hint-active');
@@ -3035,8 +3036,19 @@ function cohortWho(){
   const g=answers.qgoal||'career';
   return g==='career' ? (OCCWHO[occKey()]||'learners') : (GOALWHO[g]||'learners');
 }
-/* the drill words belong to the practice passage, so they share its key */
-function pronSet(){ return PRONWORDS[practiceKey()]||PRONWORDS['career|other']; }
+/* beginners read an affirmation about themselves, not an answer to a question */
+function isBeginner(){ return practiceMode()==='read'; }
+function affirmSet(){ return AFFIRM[answers.qgoal||'career']||AFFIRM.other; }
+function readingParts(){
+  if(!isBeginner()) return practiceSet().parts;
+  const n=answers.name||'friend';
+  return affirmSet().lines.map(l=>l.split('{name}').join(n));
+}
+/* the drill words come from whatever they actually read */
+function pronSet(){
+  if(isBeginner()) return affirmSet().words;
+  return PRONWORDS[practiceKey()]||PRONWORDS['career|other'];
+}
 function practiceCtx(){ return practiceSet().ctx; }
 function practiceQ(){ return practiceSet().q; }
 function practiceMode(){
@@ -3109,7 +3121,9 @@ function enterHintScore(){
   view.classList.remove('gold');
   document.getElementById('hsSay').textContent=isAdvancedLearner()
     ? 'You already speak well. I scored the delivery, which is where the last few points hide.'
-    : 'You used the hint, so I scored your speech on pronunciation first. Here is where you stand.';
+    : isBeginner()
+      ? 'I listened to how you said it. Here is where you are starting from.'
+      : 'You used the hint, so I scored your speech on pronunciation first. Here is where you stand.';
   document.getElementById('hsHead').innerHTML='Your<br>speech<br>level';
   document.getElementById('hsNext1').style.visibility='hidden';
   document.querySelectorAll('#hsLabels span').forEach(sp=>sp.classList.remove('tgt'));
@@ -3138,9 +3152,8 @@ function enterHintScore(){
   },500);
 }
 function hsPassageHTML(){
-  const sc=practiceSet();
   const words=pronSet();
-  let text=sc.parts.join(' ');
+  let text=readingParts().join(' ');
   words.forEach((pw,i)=>{text=text.replace(new RegExp('\\b'+pw.w+'\\b','i'),m=>`<b class="hlw" data-i="${i}">${m}</b>`);});
   return '<p class="ah-para">'+text+'</p>';
 }
@@ -3263,17 +3276,23 @@ function ahEnterRead(){
     const sc=practiceSet();
     const card=document.getElementById('ahCard');
     card.style.minHeight=card.offsetHeight+'px';
-    document.getElementById('ahEye').textContent='Try reading this';
-    /* two plain paragraphs: the scenario, then the question. The heading weight
-       is dropped in .reading so neither one shouts over the passage below. */
     document.getElementById('acthint').classList.add('reading');
-    /* arriving from the bulb means the scenario was on screen a moment ago, so it
-       is repetition; arriving directly, this is the first time they see it */
-    const cx=document.getElementById('ahCtx');
-    cx.textContent=practiceCtx(); cx.hidden=ahFromBulb;
-    document.getElementById('ahTitle').hidden=false;
-    document.getElementById('ahTitle').textContent='\u201C'+practiceQ()+'\u201D';
-    card.innerHTML='<p class="ah-para" id="ahPara">'+sc.parts.join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>';
+    const cx=document.getElementById('ahCtx'), ttl=document.getElementById('ahTitle');
+    ttl.hidden=false;
+    if(isBeginner()){
+      /* no scenario and no question: they are not answering anything. Say plainly
+         what the recording is for, so the score screen is not a surprise. */
+      document.getElementById('ahEye').textContent='Let\u2019s hear you speak';
+      cx.hidden=true;
+      ttl.textContent='Read this out loud. We will listen and find your level.';
+    }else{
+      document.getElementById('ahEye').textContent='Try reading this';
+      /* arriving from the bulb means the scenario was on screen a moment ago, so
+         it is repetition; arriving directly, this is the first time they see it */
+      cx.textContent=practiceCtx(); cx.hidden=ahFromBulb;
+      ttl.textContent='\u201C'+practiceQ()+'\u201D';
+    }
+    card.innerHTML='<p class="ah-para" id="ahPara">'+readingParts().join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>';
     card.classList.add('readmode');
     document.getElementById('ahNext').hidden=true;
     document.getElementById('ahMicRow').hidden=false;
@@ -3371,9 +3390,11 @@ function runScore(fam,sk,iel){
   const S=scoreSet(), ORDER=['vocabulary','grammar','pronunciation','fluency'];
   document.getElementById('scoreEyebrow').textContent=iel?'Your first mock score':'Your first score';
   document.getElementById('scoreNote').textContent='Your starting point, before any practice.';
-  document.getElementById('scoreLine').innerHTML=iel
-    ?'That was a real exam rep. Imagine test day after three weeks of this.'
-    :`That was a real rep of <b style="color:var(--text-hi)">${fam.label}</b>. Imagine week three.`;
+  document.getElementById('scoreLine').innerHTML=isBeginner()
+    ?'That was your first English out loud. Imagine week three.'
+    :iel
+      ?'That was a real exam rep. Imagine test day after three weeks of this.'
+      :`That was a real rep of <b style="color:var(--text-hi)">${fam.label}</b>. Imagine week three.`;
   const CH='<svg viewBox="0 0 16 16" fill="none"><path d="M6 3.5 10.5 8 6 12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   document.getElementById('scCards').innerHTML=ORDER.map(k=>{
     const n=S[k], band=scoreBand(n);

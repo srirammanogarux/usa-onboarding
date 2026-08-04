@@ -392,6 +392,34 @@ const SCAFFOLD = {
 
 /* ---------- pronunciation practice pairs (hint-user results flow) ---------- */
 /* two tricky words per family, both present in that family's SCAFFOLD passage */
+
+/* ---------- what a beginner reads ----------
+   A1 and A2 do not answer an interview question: they read a short affirmation
+   about themselves. Same shape for both levels, one variant per goal so the
+   middle line names why they are here. Every sentence is A1-readable, and the
+   two drill words are chosen from this text so the pronunciation practice that
+   follows can only ever teach a word they actually said. */
+const AFFIRM = {
+  career:{ lines:['My name is {name}.','I am learning English for my work.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'learning',parts:['lear','n','ing'],ph:'lur.ning',tip:'The ear sounds like ur',start:48},
+           {w:'practice',parts:['prac','ti','ce'],ph:'prak.tis',tip:'End short on tis',       start:52}]},
+  ielts:{ lines:['My name is {name}.','I am learning English for my exam.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'exam',    parts:['e','xa','m'],   ph:'ig.zam',  tip:'The x sounds like gz',    start:50},
+           {w:'practice',parts:['prac','ti','ce'],ph:'prak.tis',tip:'End short on tis',       start:52}]},
+  convo:{ lines:['My name is {name}.','I am learning English to talk with people.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'people',  parts:['peo','p','le'], ph:'pee.pul', tip:'Two beats: pee.pul',      start:49},
+           {w:'learning',parts:['lear','n','ing'],ph:'lur.ning',tip:'The ear sounds like ur', start:48}]},
+  travel:{ lines:['My name is {name}.','I am learning English to travel.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'travel',  parts:['tra','ve','l'], ph:'tra.vul', tip:'Two beats: tra.vul',      start:51},
+           {w:'learning',parts:['lear','n','ing'],ph:'lur.ning',tip:'The ear sounds like ur', start:48}]},
+  school:{ lines:['My name is {name}.','I am learning English for school.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'English', parts:['Eng','li','sh'],ph:'ing.glish',tip:'It starts with ing',     start:47},
+           {w:'practice',parts:['prac','ti','ce'],ph:'prak.tis',tip:'End short on tis',       start:52}]},
+  other:{ lines:['My name is {name}.','I am learning English.','I will practice a little every day.','I know I can do this.'],
+    words:[{w:'learning',parts:['lear','n','ing'],ph:'lur.ning',tip:'The ear sounds like ur', start:48},
+           {w:'practice',parts:['prac','ti','ce'],ph:'prak.tis',tip:'End short on tis',       start:52}]}
+};
+
 const PRONWORDS = {
   /* Keyed the same as PRACTICE, because these two words must actually occur in
      that set's passage. Keying them on the JTBD family let the practice copy be
@@ -1468,6 +1496,11 @@ const ES_MONTH = { January:'enero', February:'febrero', March:'marzo', April:'ab
   October:'octubre', November:'noviembre', December:'diciembre' };
 
 const ES = {
+  'Let’s hear you speak':'Escuchemos tu voz',
+  'Read this out loud. We will listen and find your level.':'Lee esto en voz alta. Te escucharemos y ubicaremos tu nivel.',
+  'I listened to how you said it. Here is where you are starting from.':'Escuché cómo lo dijiste. Este es tu punto de partida.',
+  'That was your first English out loud. Imagine week three.':'Ese fue tu primer inglés en voz alta. Imagina la semana tres.',
+  'Tap the mic and read':'Toca el micro y lee',
   'A tiny nudge for your {n} minutes a day. No spam, ever.':'Un pequeño recordatorio para tus {n} minutos al día. Sin spam, nunca.',
   'Can’t find words? Try this':'¿No encuentras las palabras? Prueba esto',
   'Tap the mic and read':'Toca el micro y lee',
