@@ -670,6 +670,8 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 /* hint scaffold */
 .scaf-progress{width:100%;height:5px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:16px;overflow:hidden;}
 .scaf-progress i{display:block;height:100%;width:6%;background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));border-radius:inherit;transition:width .45s var(--ease-out);}
+#acthint .saybub{align-self:stretch;text-align:left;margin-top:12px;}
+#acthint .saybub[hidden]{display:none;}
 .ah-ctx{margin:9px 0 0;font-size:13px;line-height:1.45;color:var(--text-mid);text-align:left;align-self:stretch;}
 .ah-ctx[hidden]{display:none;}
 #acthint .ah-ctx + .fq{margin-top:5px!important;}
@@ -1685,6 +1687,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     <span class="eyebrow" style="margin-top:14px" id="ahEye">How to answer</span>
     <p class="ah-ctx" id="ahCtx" hidden></p>
     <h2 class="fq" style="font-size:21px;margin-top:8px" id="ahTitle">A simple 4-part answer.</h2>
+    <div class="saybub" id="ahBub" hidden><span class="say-ctx" id="ahBubCtx"></span><span class="say-q" id="ahBubQ" data-en></span></div>
     <div class="scaf-progress"><i id="ahFill"></i></div>
     <div class="scaf-card" id="ahCard" data-en></div>
     <div class="fcta" style="align-items:center">
@@ -3214,6 +3217,8 @@ function enterActHint(){
   document.getElementById('ahCard').style.minHeight='';
   document.getElementById('acthint').classList.remove('done');
   document.getElementById('ahCtx').hidden=true;
+  document.getElementById('ahBub').hidden=true;
+  document.getElementById('ahTitle').hidden=false;
   document.getElementById('ahEye').textContent='How to answer';
   document.getElementById('ahTitle').textContent='A simple 4-part answer.';
   ahIdx=0;ahPhase='explain';clearInterval(ahReadT);
@@ -3244,10 +3249,14 @@ function ahEnterRead(){
     const sc=practiceSet();
     const card=document.getElementById('ahCard');
     card.style.minHeight=card.offsetHeight+'px';
-    document.getElementById('ahEye').textContent='Try answering this';
-    const cx=document.getElementById('ahCtx');
-    cx.textContent=practiceCtx(); cx.hidden=false;
-    document.getElementById('ahTitle').textContent=practiceQ();
+    document.getElementById('ahEye').textContent='Try reading this';
+    /* the scenario and the question move into the chat bubble, so the top of the
+       screen carries one block instead of an eyebrow, a paragraph and a heading */
+    document.getElementById('ahCtx').hidden=true;
+    document.getElementById('ahTitle').hidden=true;
+    document.getElementById('ahBubCtx').textContent=practiceCtx();
+    document.getElementById('ahBubQ').textContent='\u201C'+practiceQ()+'\u201D';
+    document.getElementById('ahBub').hidden=false;
     card.innerHTML='<p class="ah-para" id="ahPara">'+sc.parts.join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>';
     card.classList.add('readmode');
     document.getElementById('ahNext').hidden=true;
