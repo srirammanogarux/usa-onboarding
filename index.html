@@ -715,9 +715,15 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .hs-track .lv-dot{position:absolute;left:50%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:50%;background:var(--indigo-300);opacity:.85;}
 .hs-track .lv-tick{position:absolute;left:50%;transform:translate(-50%,-50%);width:11px;height:1.5px;border-radius:2px;background:rgba(168,161,255,.4);}
 .hs-track .lv-cup{position:absolute;left:50%;top:5.5%;transform:translate(-50%,-50%);width:17px;height:17px;color:var(--indigo-300);}
-.hs-labels{position:relative;width:98px;}
-.hs-labels span{position:absolute;transform:translateY(-50%);font-family:var(--font-display);font-weight:500;font-size:13.5px;color:var(--text-mid);transition:color .4s,font-weight .4s;}
+.hs-labels{position:relative;width:132px;}
+.hs-labels span{position:absolute;transform:translateY(-50%);
+  font-family:var(--font-display);font-weight:500;font-size:13.5px;line-height:1.25;color:var(--text-mid);
+  transition:color .4s,font-weight .4s;}
+/* inline, not a flex sibling, so a two-word label keeps its code on the last line */
+.hs-labels span i{font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.04em;
+  margin-left:6px;color:var(--text-low);transition:color .4s;}
 .hs-labels span.tgt{color:var(--gold-300);font-weight:700;}
+.hs-labels span.tgt i{color:var(--gold-500);}
 .hs-bub{position:absolute;right:calc(100% + 9px);top:95.5%;transform:translateY(-50%);display:flex;align-items:baseline;white-space:nowrap;background:var(--indigo-500);color:#fff;border-radius:999px;padding:5px 11px;transition:background .5s var(--ease-out);box-shadow:0 8px 20px -8px rgba(108,99,255,.7);z-index:2;}
 
 .hs-bub span{font-family:var(--font-display);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;}
@@ -2749,12 +2755,15 @@ document.getElementById('pauseLink').addEventListener('click',()=>{
   document.getElementById('lisState').textContent=recPaused?'paused':'listening\u2026';
   if(recPaused)document.querySelectorAll('#listen .pr-wave i').forEach(d=>d.style.transform='scaleY(.6)');
 });
-const HS_LEVELS=['Native','Proficient','Advanced','Intermediate','Beginner','Novice'];
+const HS_LEVELS=['Proficient','Advanced','Upper intermediate','Intermediate','Beginner','Novice'];
+const HS_CEFR={'Proficient':'C2','Advanced':'C1','Upper intermediate':'B2','Intermediate':'B1','Beginner':'A2','Novice':'A1'};
 const HS_POS=[8,25.5,43,60.5,78,95.5];
 /* where a stated level lands, and where two rungs up sits.
    The score arrives just BELOW their own level — that gap is the under-pressure story. */
 const LVLSCORE={A1:22,A2:32,B1:45,B2:58,C1:74,C2:86};
-const RUNG_SCORE={Novice:0,Beginner:36,Intermediate:62,Advanced:80,Proficient:90,Native:100};
+/* one entry per rung; 'Native' is gone and B2 has its own step, so the meter
+   no longer falls back to a default for an Upper intermediate learner */
+const RUNG_SCORE={Novice:0,Beginner:32,Intermediate:52,'Upper intermediate':68,Advanced:82,Proficient:93};
 function targetLevelName(){
   if(answers.qgoal==='ielts')return 'Band '+(answers.qband||'7.0');
   const i=HS_LEVELS.indexOf(LVLNAME[answers.qlevel]||'Beginner');
@@ -3053,7 +3062,7 @@ function trajHTML(uid,p0,p1,p2){
     <span class="tr-pill p2">${p2}</span>
   </div>`;
 }
-const LVLNAME={A1:'Novice',A2:'Beginner',B1:'Beginner',B2:'Intermediate',C1:'Advanced',C2:'Proficient'};
+const LVLNAME={A1:'Novice',A2:'Beginner',B1:'Intermediate',B2:'Upper intermediate',C1:'Advanced',C2:'Proficient'};
 function curLevelName(){return LVLNAME[answers.qlevel]||'Beginner';}
 function goalLevelName(){return targetLevelName();}
 function hsPosForScore(sc){
@@ -3091,7 +3100,7 @@ function enterHintScore(){
     HS_POS.forEach((pos,i)=>{
       if(i>0)t+=`<i class="lv-dot" style="top:${pos}%"></i>`;
       if(i<5){t+=`<i class="lv-tick" style="top:${pos+5.5}%"></i><i class="lv-tick" style="top:${pos+11}%"></i>`;}
-      l+=`<span style="top:${pos}%" data-lv="${HS_LEVELS[i]}">${HS_LEVELS[i]}</span>`;
+      l+=`<span style="top:${pos}%" data-lv="${HS_LEVELS[i]}">${HS_LEVELS[i]}<i>${HS_CEFR[HS_LEVELS[i]]}</i></span>`;
     });
     track.innerHTML=t;labels.innerHTML=l;
   }
