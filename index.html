@@ -2578,7 +2578,7 @@ function renderPhaseB(id){
       if(document.querySelector('.screen.is-active')?.id!=='act')return;
       b.hidden=false;void b.offsetWidth;b.classList.add('show');
       document.getElementById('micRow').classList.add('hint-active');
-    },10000);
+    },5000);
   }
   if(id==='acthint')enterActHint();
   if(id==='hintscore')enterHintScore();
