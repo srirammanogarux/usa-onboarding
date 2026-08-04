@@ -2456,7 +2456,10 @@ function renderPhaseA(id){
     /* they are one tap from a microphone, so say so */
     const ask=PRACTICE_ASK[answers.fam]||'question out loud';
     /* A1/A2 read a model answer, so send them straight to the reading screen */
+    /* beginners are sent straight to the reading state; everyone else meets Sarah
+       on `act` first and only reaches it through the hint bulb */
     document.querySelector('#qsummary .fcta .btn').dataset.next=practiceMode()==='read'?'acthint':'act';
+    ahFromBulb=false;
     document.getElementById('sumNext').innerHTML=
       'You will answer one real '+ask+' <b style="color:var(--text-hi)">out loud</b>, in about 20 seconds. '+
       'Speak in your own words. There is no wrong answer.';
@@ -3211,7 +3214,7 @@ function hsShowDone(){
   setTimeout(()=>confetti(100),400);
 }
 document.getElementById('hsGo').addEventListener('click',()=>go('loader'));
-let actHintT,ahIdx=0,ahPhase='explain',ahReadT;
+let actHintT,ahIdx=0,ahPhase='explain',ahReadT,ahFromBulb=false;
 function enterActHint(){
   const sc=practiceSet();
   document.getElementById('ahCard').innerHTML=sc.parts.map((pt,i)=>`<div class="seg"><span class="st">${sc.steps[i]}</span><p>${pt}</p></div>`).join('');
@@ -3255,8 +3258,10 @@ function ahEnterRead(){
     /* two plain paragraphs: the scenario, then the question. The heading weight
        is dropped in .reading so neither one shouts over the passage below. */
     document.getElementById('acthint').classList.add('reading');
+    /* arriving from the bulb means the scenario was on screen a moment ago, so it
+       is repetition; arriving directly, this is the first time they see it */
     const cx=document.getElementById('ahCtx');
-    cx.textContent=practiceCtx(); cx.hidden=false;
+    cx.textContent=practiceCtx(); cx.hidden=ahFromBulb;
     document.getElementById('ahTitle').hidden=false;
     document.getElementById('ahTitle').textContent='\u201C'+practiceQ()+'\u201D';
     card.innerHTML='<p class="ah-para" id="ahPara">'+sc.parts.join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>';
@@ -3341,7 +3346,7 @@ document.getElementById('micAllow').addEventListener('click',()=>{
 document.getElementById('micDeny').addEventListener('click',()=>{
   document.getElementById('micPerm').hidden=true;   /* stay put: they can tap again */
 });
-document.getElementById('actBulb').addEventListener('click',()=>go('acthint'));
+document.getElementById('actBulb').addEventListener('click',()=>{ahFromBulb=true;go('acthint');});
 /* score: ring + count-up + lens bars + confetti */
 function scoreSet(){
   const pick=answers.qskill&&SCORE_BASE[answers.qskill]?answers.qskill:'fluency';
