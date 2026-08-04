@@ -259,7 +259,7 @@ const PRACTICE = {
     ]
   },
   "travel": {
-    "ctx": "There is no hot water in your hotel room. You go down to the desk, and the receptionist asks:",
+    "ctx": "There is no hot water in your hotel room. At the desk, the receptionist asks:",
     "q": "Can you tell me exactly what the problem is?",
     "steps": [
       "Say the problem",
@@ -275,7 +275,7 @@ const PRACTICE = {
     ]
   },
   "school": {
-    "ctx": "Your class is discussing whether students should keep their phones in lessons. The teacher turns to you and asks:",
+    "ctx": "Your class is debating phones in lessons. The teacher turns to you and asks:",
     "q": "What is your opinion, and why do you think that?",
     "steps": [
       "Say your view",

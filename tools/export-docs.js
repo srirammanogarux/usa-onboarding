@@ -240,6 +240,19 @@ inject('COPY.md', 'plan', copy.map(p => [
   '',
 ].join('\n')).join('\n'));
 
+/* the reading state gives the scenario two lines; anything longer spills and
+   pushes the passage down. Measured budget at that width is ~100 characters. */
+const CTX_BUDGET = 100;
+const longCtx = Object.entries(C.PRACTICE)
+  .filter(([, v]) => v.ctx.length > CTX_BUDGET)
+  .map(([k, v]) => `  ${k}: ${v.ctx.length} chars`);
+if (longCtx.length) {
+  console.warn('WARNING: practice context over ' + CTX_BUDGET + ' chars, will wrap past two lines:');
+  longCtx.forEach(l => console.warn(l));
+} else {
+  console.log('practice contexts all within the two-line budget');
+}
+
 console.log('wrote docs/data/branching.json  ' + pairList.length + ' pairs, ' + occupations.length + ' occupations');
 console.log('wrote docs/data/copy.json       ' + copy.length + ' resolved branch copy sets');
 console.log('wrote docs/data/screens.json    ' + screens.length + ' screens');
