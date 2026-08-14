@@ -965,7 +965,13 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .stopbtn{width:74px;height:74px;border-radius:50%;background:linear-gradient(180deg,#fff,#EDEBF6);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.06);transition:transform var(--dur-fast) var(--ease-out);}
 .stopbtn:active{transform:scale(.94);}
 .stopbtn span{width:24px;height:24px;border-radius:6px;background:#E06A5A;display:block;}
-/* analysing: an AI star over one line of copy at a time */
+/* analysing: an AI star over one line of copy at a time.
+   The ambient gradients are dropped for a near-flat ground with one soft pool of
+   light centred on the star, so nothing competes with it. */
+#analysing{background:
+  radial-gradient(46% 26% at 50% 41%, rgba(120,111,255,.16), transparent 70%),
+  linear-gradient(180deg,#0B0916 0%,#0A0814 46%,#08060F 100%);}
+
 #analysing .ana-wrap{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;width:100%;}
 .ana-star{position:relative;width:132px;height:132px;display:grid;place-items:center;}
 .ana-glow{position:absolute;inset:-24%;border-radius:50%;pointer-events:none;
@@ -2190,7 +2196,7 @@ function go(id){
   if(fill){fill.style.width='0%';requestAnimationFrame(()=>requestAnimationFrame(()=>{fill.style.width=fill.dataset.w+'%';}));}
   if(id==='valueprop'){enterValueProp();} else {vpStop();}
   if(id==='ack'){runAck();}
-  document.getElementById('app').classList.toggle('quiet-bg',['ctxstat','ctxfeat','act','acthint','listen','hintscore','plan','letter'].includes(id));
+  document.getElementById('app').classList.toggle('quiet-bg',['ctxstat','ctxfeat','act','acthint','listen','analysing','hintscore','plan','letter'].includes(id));
   const sarahOn=!!n.classList.contains('has-sarah');
   document.getElementById('app').classList.toggle('sarah-on',sarahOn);
   if(sarahOn){clearTimeout(swT);swT=setTimeout(sarahIdle,350);} /* blink lands with the incoming question */
