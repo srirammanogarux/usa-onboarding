@@ -240,6 +240,18 @@ inject('COPY.md', 'plan', copy.map(p => [
   '',
 ].join('\n')).join('\n'));
 
+/* the analysing screen reserves two rendered lines so its copy sits on a fixed
+   axis; past ~46 characters a line wraps to three and the layout shifts. */
+const ANA_BUDGET = 46;
+const anaLines = (fromContent(['ANALYSING']).ANALYSING || []);
+const longAna = anaLines.filter(l => l.t.length > ANA_BUDGET).map(l => `  ${l.t.length}: ${l.t}`);
+if (longAna.length) {
+  console.warn('WARNING: analysing line over ' + ANA_BUDGET + ' chars, will wrap to a third line:');
+  longAna.forEach(l => console.warn(l));
+} else {
+  console.log('analysing lines all within the two-line budget');
+}
+
 /* the reading state gives the scenario two lines; anything longer spills and
    pushes the passage down. Measured budget at that width is ~100 characters. */
 const CTX_BUDGET = 100;

@@ -970,18 +970,23 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .ana-star{position:relative;width:132px;height:132px;display:grid;place-items:center;}
 .ana-glow{position:absolute;inset:-24%;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle,rgba(139,132,255,.34),rgba(108,99,255,.08) 46%,transparent 70%);
-  animation:anaBreathe 3.2s ease-in-out infinite;}
+  animation:anaBreathe 5s ease-in-out infinite;}
 .ana-star svg{position:absolute;}
-.ana-s1{width:96px;height:96px;animation:anaSpin 6s linear infinite;
-  filter:drop-shadow(0 0 16px rgba(139,132,255,.55));}
-.ana-s2{width:46px;height:46px;transform-origin:50% 50%;translate:34px -30px;
-  fill:rgba(180,174,255,.5);animation:anaSpinBack 8s linear infinite;}
-@keyframes anaSpin{from{transform:rotate(0deg) scale(1);}
-  50%{transform:rotate(180deg) scale(1.07);} to{transform:rotate(360deg) scale(1);}}
-@keyframes anaSpinBack{from{transform:rotate(0deg);} to{transform:rotate(-360deg);}}
-@keyframes anaBreathe{0%,100%{opacity:.5;transform:scale(.9);}50%{opacity:1;transform:scale(1.06);}}
-.ana-line{margin:0;max-width:19ch;text-align:center;font-family:var(--font-display);
-  font-weight:600;font-size:19px;line-height:1.4;color:var(--text-hi);
+/* the swell and the shine ride the same 5s turn, so it brightens as it grows */
+.ana-s1{width:104px;height:104px;animation:anaSpin 5s ease-in-out infinite;}
+@keyframes anaSpin{
+  0%  {transform:rotate(0deg)   scale(.84);filter:drop-shadow(0 0 9px rgba(139,132,255,.40)) brightness(.96);}
+  50% {transform:rotate(180deg) scale(1.16);filter:drop-shadow(0 0 28px rgba(184,178,255,.95)) brightness(1.28);}
+  100%{transform:rotate(360deg) scale(.84);filter:drop-shadow(0 0 9px rgba(139,132,255,.40)) brightness(.96);}}
+@keyframes anaBreathe{0%,100%{opacity:.45;transform:scale(.86);}50%{opacity:1;transform:scale(1.1);}}
+.ana-line{--ana-lh:1.4;--ana-fs:19px;
+  /* every line measures 1 or 2 rendered lines in both languages, so reserving
+     two keeps the text on one axis and the bar below fixed. min-height, not
+     height: a longer line should grow the box rather than be clipped. */
+  margin:0;width:19ch;min-height:calc(var(--ana-fs) * var(--ana-lh) * 2);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--font-display);
+  font-weight:600;font-size:var(--ana-fs);line-height:var(--ana-lh);color:var(--text-hi);
   transition:opacity .32s var(--ease-out),transform .32s var(--ease-out);}
 .ana-line.out{opacity:0;transform:translateY(-6px);}
 .ana-bar{width:132px;height:3px;border-radius:2px;background:rgba(255,255,255,.10);overflow:hidden;}
@@ -989,7 +994,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
   background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));
   transition:width .5s linear;}
 @media (prefers-reduced-motion: reduce){
-  .ana-s1,.ana-s2,.ana-glow{animation:none;}
+  .ana-s1,.ana-glow{animation:none;}
 }
 /* score report — an overall gauge, then one card per skill */
 #score .sc-body{justify-content:flex-start;gap:0;overflow-y:auto;scrollbar-width:none;padding-top:10px;}
@@ -1763,7 +1768,6 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     <div class="ana-wrap">
       <div class="ana-star">
         <i class="ana-glow"></i>
-        <svg class="ana-s2" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 C34.4 19.6 44.4 29.6 61 32 C44.4 34.4 34.4 44.4 32 61 C29.6 44.4 19.6 34.4 3 32 C19.6 29.6 29.6 19.6 32 3 Z"/></svg>
         <svg class="ana-s1" viewBox="0 0 64 64" aria-hidden="true">
           <defs><linearGradient id="anaG" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#9E97FF"/><stop offset="1" stop-color="#6C63FF"/>
@@ -3742,7 +3746,7 @@ const DN={
   '3b · IELTS only':[['qwhy','IELTS test','ielts'],['ackielts','IELTS ack','ielts'],['qwhen','Exam when','ielts'],['qband','Band','ielts']],
   '4 · Calibration':[['qskill','Skill'],['ctxfeat','Skill beat'],['qlevel','Level'],['ctxsci','Science'],['qtime','Progress when'],['qdaily','Daily goal']],
   '5 · Permission':[['qnotif','Notify ask'],['qsummary','Summary']],
-  '6 · Activation':[['act','Speak task'],['listen','Listening'],['score','Score'],['acthint','Hint flow'],['hintscore','Hint results']],
+  '6 · Activation':[['act','Speak task'],['listen','Listening'],['analysing','Impromptu loader'],['score','Score'],['acthint','Hint flow'],['hintscore','Hint results']],
   '7 · Plan \u2192 Pay':[['loader','Loader'],['plan','Plan'],['letter','Promise'],['paywall','Paywall'],['exitoffer','Exit offer'],['bridge','Bridge']]
 };
 
