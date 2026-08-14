@@ -1495,7 +1495,24 @@ const ES_MONTH = { January:'enero', February:'febrero', March:'marzo', April:'ab
   May:'mayo', June:'junio', July:'julio', August:'agosto', September:'septiembre',
   October:'octubre', November:'noviembre', December:'diciembre' };
 
+
+/* the lines shown while the scoring API works. The first one is a celebration,
+   not a status: it is the first thing they hear back after speaking. The last
+   one holds until the results actually arrive, however long that takes. */
+const ANALYSING = [
+  { t:'You spoke your very first sentence in English.', ms:1900 },
+  { t:'Analysing your speech.',                          ms:1300 },
+  { t:'Evaluating your grammar.',                        ms:1300 },
+  { t:'Evaluating your pronunciation.',                  ms:1300 },
+  { t:'Almost there.',                                   ms:0    }   /* 0 = hold */
+];
+
 const ES = {
+  'You spoke your very first sentence in English.':'Dijiste tu primera frase en inglés.',
+  'Analysing your speech.':'Analizando tu manera de hablar.',
+  'Evaluating your grammar.':'Revisando tu gramática.',
+  'Evaluating your pronunciation.':'Revisando tu pronunciación.',
+  'Almost there.':'Ya casi está.',
   'Let’s hear you speak':'Escuchemos tu voz',
   'Read this out loud. We will listen and find your level.':'Lee esto en voz alta. Te escucharemos y ubicaremos tu nivel.',
   'I listened to how you said it. Here is where you are starting from.':'Escuché cómo lo dijiste. Este es tu punto de partida.',

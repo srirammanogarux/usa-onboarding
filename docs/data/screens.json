@@ -32,6 +32,7 @@
     "act",
     "acthint",
     "listen",
+    "analysing",
     "hintscore",
     "score",
     "loader",
@@ -48,6 +49,7 @@
     "listen",
     "acthint",
     "hintscore",
+    "analysing",
     "score",
     "loader",
     "paywall",
@@ -60,6 +62,7 @@
     "ackname",
     "ack",
     "ackielts",
+    "analysing",
     "loader"
   ],
   "variantAxes": {

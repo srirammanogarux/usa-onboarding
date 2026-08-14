@@ -965,6 +965,32 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .stopbtn{width:74px;height:74px;border-radius:50%;background:linear-gradient(180deg,#fff,#EDEBF6);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.06);transition:transform var(--dur-fast) var(--ease-out);}
 .stopbtn:active{transform:scale(.94);}
 .stopbtn span{width:24px;height:24px;border-radius:6px;background:#E06A5A;display:block;}
+/* analysing: an AI star over one line of copy at a time */
+#analysing .ana-wrap{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;width:100%;}
+.ana-star{position:relative;width:132px;height:132px;display:grid;place-items:center;}
+.ana-glow{position:absolute;inset:-24%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(139,132,255,.34),rgba(108,99,255,.08) 46%,transparent 70%);
+  animation:anaBreathe 3.2s ease-in-out infinite;}
+.ana-star svg{position:absolute;}
+.ana-s1{width:96px;height:96px;animation:anaSpin 6s linear infinite;
+  filter:drop-shadow(0 0 16px rgba(139,132,255,.55));}
+.ana-s2{width:46px;height:46px;transform-origin:50% 50%;translate:34px -30px;
+  fill:rgba(180,174,255,.5);animation:anaSpinBack 8s linear infinite;}
+@keyframes anaSpin{from{transform:rotate(0deg) scale(1);}
+  50%{transform:rotate(180deg) scale(1.07);} to{transform:rotate(360deg) scale(1);}}
+@keyframes anaSpinBack{from{transform:rotate(0deg);} to{transform:rotate(-360deg);}}
+@keyframes anaBreathe{0%,100%{opacity:.5;transform:scale(.9);}50%{opacity:1;transform:scale(1.06);}}
+.ana-line{margin:0;max-width:19ch;text-align:center;font-family:var(--font-display);
+  font-weight:600;font-size:19px;line-height:1.4;color:var(--text-hi);
+  transition:opacity .32s var(--ease-out),transform .32s var(--ease-out);}
+.ana-line.out{opacity:0;transform:translateY(-6px);}
+.ana-bar{width:132px;height:3px;border-radius:2px;background:rgba(255,255,255,.10);overflow:hidden;}
+.ana-bar i{display:block;height:100%;width:0;border-radius:inherit;
+  background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));
+  transition:width .5s linear;}
+@media (prefers-reduced-motion: reduce){
+  .ana-s1,.ana-s2,.ana-glow{animation:none;}
+}
 /* score report — an overall gauge, then one card per skill */
 #score .sc-body{justify-content:flex-start;gap:0;overflow-y:auto;scrollbar-width:none;padding-top:10px;}
 #score .sc-body::-webkit-scrollbar{display:none;}
@@ -1731,6 +1757,25 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 
   <!-- score reveal -->
   <!-- hint-user results: level meter -> fix pronunciation -> practice -> celebrate -->
+
+  <!-- analysing: the 5 to 8 seconds the scoring API actually takes -->
+  <section class="screen fs ctx" id="analysing">
+    <div class="ana-wrap">
+      <div class="ana-star">
+        <i class="ana-glow"></i>
+        <svg class="ana-s2" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 C34.4 19.6 44.4 29.6 61 32 C44.4 34.4 34.4 44.4 32 61 C29.6 44.4 19.6 34.4 3 32 C19.6 29.6 29.6 19.6 32 3 Z"/></svg>
+        <svg class="ana-s1" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="anaG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#9E97FF"/><stop offset="1" stop-color="#6C63FF"/>
+          </linearGradient></defs>
+          <path d="M32 3 C34.4 19.6 44.4 29.6 61 32 C44.4 34.4 34.4 44.4 32 61 C29.6 44.4 19.6 34.4 3 32 C19.6 29.6 29.6 19.6 32 3 Z" fill="url(#anaG)"/>
+        </svg>
+      </div>
+      <p class="ana-line" id="anaLine"></p>
+      <div class="ana-bar"><i id="anaBar"></i></div>
+    </div>
+  </section>
+
   <section class="screen fs" id="hintscore">
     <div class="hs-view" id="hsMeterView">
       <div class="coach" style="margin-top:26px;align-items:flex-start"><img class="av-img" src="images/sarah_av.webp" alt="Sarah"><p class="hs-say" id="hsSay">You used the hint, so I scored your speech on pronunciation first. Here is where you stand.</p></div>
@@ -2119,13 +2164,13 @@ function resetHero(){
 /* router */
 /* back navigation: remember where we came from, never land on a screen that auto-advances */
 let navStack=[],goingBack=false;
-const NO_BACK=new Set(['hero','signup','act','listen','acthint','hintscore','score','loader','paywall','exitoffer','bridge']);
-const SKIP_BACK=new Set(['hero','signup','ackname','ack','ackielts','loader']);
+const NO_BACK=new Set(['hero','signup','act','listen','acthint','hintscore','analysing','score','loader','paywall','exitoffer','bridge']);
+const SKIP_BACK=new Set(['hero','signup','ackname','ack','ackielts','analysing','loader']);
 function go(id){
   const c=document.querySelector('.screen.is-active'),n=document.getElementById(id);
   if(!n||c===n)return;
   if(c&&!goingBack)navStack.push(c.id);
-  try{clearInterval(recInt);recInt=null;clearInterval(waveInt);clearInterval(ahReadT);clearInterval(ahWaveT);clearTimeout(hsT1);clearTimeout(hsT2);clearInterval(hsScoreT);cancelAnimationFrame(hsRaf);clearTimeout(actHintT);clearInterval(ldTestiT);cancelAnimationFrame(ldRaf);
+  try{clearInterval(recInt);recInt=null;clearInterval(waveInt);clearInterval(ahReadT);clearInterval(ahWaveT);clearTimeout(hsT1);clearTimeout(hsT2);clearInterval(hsScoreT);cancelAnimationFrame(hsRaf);clearTimeout(actHintT);clearInterval(ldTestiT);cancelAnimationFrame(ldRaf);if(id!=='analysing')anaClear();
     if(id!=='hero'){clearTimeout(heroFallback);splashVideo.ontimeupdate=null;splashVideo.onended=null;}}catch(_){}
   if(c){c.classList.remove('is-active');c.classList.add('is-past');}
   n.classList.remove('is-past');n.classList.add('is-active');
@@ -2154,7 +2199,7 @@ function go(id){
   }
   if(['ctxout','ctxstat','ackielts','qjtbd','ctxba','qskill','ctxfeat','qlevel','ctxsci','qdaily','qnotif','qsummary'].includes(id))renderPhaseA(id);
   if(id!=='ctxfeat')stopPills();      /* the count-up itself lives in renderPhaseA */
-  if(['act','acthint','hintscore','listen','score','loader','plan','letter','paywall','exitoffer'].includes(id))renderPhaseB(id);
+  if(['act','acthint','hintscore','listen','analysing','score','loader','plan','letter','paywall','exitoffer'].includes(id))renderPhaseB(id);
   if(answers.name)n.querySelectorAll('[data-nq]').forEach(h=>{h.innerHTML=h.dataset.nq.replace('{name}',answers.name);});
   const bb=document.getElementById('backBtn');
   if(bb){
@@ -2593,6 +2638,7 @@ function renderPhaseB(id){
   if(id==='acthint')enterActHint();
   if(id==='hintscore')enterHintScore();
   if(id==='listen')startListen();
+  if(id==='analysing')enterAnalysing();
   if(id==='score')runScore(fam,sk,iel);
   if(id==='loader')runLoader(name);
   if(id==='plan'){
@@ -2747,7 +2793,62 @@ function startListen(){
     });
   },90);
 }
-function stopListen(){clearInterval(recInt);clearInterval(waveInt);recInt=null;go('score');}
+function stopListen(){clearInterval(recInt);clearInterval(waveInt);recInt=null;go('analysing');}
+
+/* ---------- analysing ----------
+   The scoring call takes 5 to 8 seconds. The lines advance on their own timer,
+   but leaving is gated on resultsReady(), so this works whether the backend
+   streams per skill or returns one payload at the end. Swap the simulated call
+   below for the real request and nothing else changes.
+
+     ANA_MIN  never flash past if the API is quick
+     ANA_MAX  give up waiting and show the score anyway               */
+const ANA_MIN=3000, ANA_MAX=12000;
+let anaTimers=[],anaReady=false,anaLeft=false,anaT0=0,anaIdx=0;
+function anaClear(){anaTimers.forEach(clearTimeout);anaTimers=[];}
+function anaShow(i){
+  anaIdx=i;
+  const el=document.getElementById('anaLine');
+  el.classList.add('out');
+  setTimeout(()=>{
+    el.textContent=ANALYSING[i].t;
+    if(esOn())applyES(el);
+    el.classList.remove('out');
+  },i===0?0:320);
+  const bar=document.getElementById('anaBar');
+  bar.style.width=Math.round(((i+1)/ANALYSING.length)*88)+'%';
+}
+function enterAnalysing(){
+  anaClear();anaReady=false;anaLeft=false;anaT0=performance.now();
+  document.getElementById('anaLine').textContent='';
+  document.getElementById('anaBar').style.width='0%';
+  let at=0;
+  ANALYSING.forEach((l,i)=>{
+    anaTimers.push(setTimeout(()=>anaShow(i),at));
+    at+=l.ms||0;
+  });
+  anaTimers.push(setTimeout(resultsReady,ANA_MAX));        /* safety net */
+  /* stand-in for the scoring request; delete when the real one is wired */
+  anaTimers.push(setTimeout(resultsReady,reduced?600:5000+Math.floor(Math.random()*3000)));
+}
+/* call this the moment the scores land, from anywhere */
+function resultsReady(){
+  if(anaReady)return;
+  anaReady=true;
+  anaFinish();
+}
+function anaFinish(){
+  if(anaLeft||!anaReady)return;
+  const waited=performance.now()-anaT0;
+  if(waited<ANA_MIN){setTimeout(anaFinish,ANA_MIN-waited);return;}
+  anaLeft=true;
+  anaClear();
+  const last=ANALYSING.length-1;
+  /* always land on the closing line, even if the data beat the timer to it */
+  if(anaIdx!==last)anaShow(last);
+  document.getElementById('anaBar').style.width='100%';
+  setTimeout(()=>go('score'),anaIdx===last?420:800);
+}
 document.getElementById('stopBtn').addEventListener('click',stopListen);
 document.getElementById('recX').addEventListener('click',()=>{clearInterval(recInt);clearInterval(waveInt);recInt=null;go('act');});
 document.getElementById('pauseLink').addEventListener('click',()=>{
@@ -3712,7 +3813,7 @@ varEl.addEventListener('click',e=>{
 });
 const dnEl=document.getElementById('devnav');
 const DN_A=['ctxout','ctxstat','ackielts','qjtbd','ctxba','qskill','ctxfeat','qlevel','ctxsci','qdaily','qnotif','qsummary'];
-const DN_B=['act','acthint','hintscore','listen','score','loader','plan','letter','paywall','exitoffer'];
+const DN_B=['act','acthint','hintscore','listen','analysing','score','loader','plan','letter','paywall','exitoffer'];
 function dnRefresh(){
   const cur=document.querySelector('.screen.is-active');
   if(!cur)return;
