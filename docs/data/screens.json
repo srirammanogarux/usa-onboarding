@@ -86,16 +86,19 @@
     "act": [
       "goal",
       "occ",
-      "level"
+      "level",
+      "lang"
     ],
     "acthint": [
       "goal",
       "occ",
-      "level"
+      "level",
+      "lang"
     ],
     "listen": [
       "goal",
-      "occ"
+      "occ",
+      "lang"
     ],
     "hintscore": [
       "fam",
