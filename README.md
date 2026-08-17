@@ -36,7 +36,9 @@ vercel deploy --prod --yes
 | path | what it is |
 |---|---|
 | `index.html` | ~250 KB. All markup, all CSS, all behaviour. The whole app. |
-| `content.js` | ~60 KB. Every authored string, as plain top-level `const` maps. |
+| `practice.js` | **The speaking task content.** Scenario, question, model answer and drill
+words for all 12 cohorts, plus the beginner affirmations. Edit copy here. |
+| `content.js` | ~50 KB. Every other authored string, as plain top-level `const` maps. |
 | `tokens.css` | Colour, type and spacing variables. Fonts declared here. |
 | `images/`, `videos/`, `video/`, `fonts/` | See [`docs/ASSETS.md`](docs/ASSETS.md) |
 | `tools/export-docs.js` | Regenerates the docs from source. Run after changing branch data. |
@@ -75,6 +77,7 @@ some are stale.
 | [`docs/COPY.md`](docs/COPY.md) | every branch-keyed string, where it lives, and the house copy rules |
 | [`docs/ASSETS.md`](docs/ASSETS.md) | every video, image and font, and which screen loads it |
 | [`docs/ANIMATIONS.md`](docs/ANIMATIONS.md) | motion tokens, the graph reveals, the glow recipes, the fingerprint interaction |
+| [`docs/PRACTICE.md`](docs/PRACTICE.md) | all 12 speaking tasks as one readable table, generated from `practice.js` |
 | [`docs/data/*.json`](docs/data) | the same information machine-readable, generated |
 
 ---

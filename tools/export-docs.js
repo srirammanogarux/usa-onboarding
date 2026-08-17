@@ -13,7 +13,8 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-const content = fs.readFileSync(path.join(ROOT, 'content.js'), 'utf8');
+const content = fs.readFileSync(path.join(ROOT, 'practice.js'), 'utf8') + '\n'
+  + fs.readFileSync(path.join(ROOT, 'content.js'), 'utf8');
 
 /* ---------- reading the maps ----------
    content.js is a plain script of top-level consts, so it evaluates whole.
@@ -240,6 +241,27 @@ inject('COPY.md', 'plan', copy.map(p => [
   '',
 ].join('\n')).join('\n'));
 
+/* the pronunciation screen highlights the drill words inside the passage the
+   learner just read, so a word that is not in that text teaches something they
+   never said. This is the check practice.js points at. */
+const speak = fromContent(['PRACTICE', 'AFFIRM', 'PRONWORDS']);
+const drillBad = [];
+for (const [k, v] of Object.entries(speak.PRACTICE)) {
+  const text = v.parts.join(' ');
+  for (const pw of (speak.PRONWORDS[k] || [])) {
+    if (!new RegExp('\\b' + pw.w + '\\b', 'i').test(text)) drillBad.push(`  ${k}: "${pw.w}" is not in the passage`);
+    if (pw.parts.join('') !== pw.w) drillBad.push(`  ${k}: ${pw.parts.join('+')} does not spell ${pw.w}`);
+  }
+}
+for (const [g, a] of Object.entries(speak.AFFIRM)) {
+  const text = a.lines.join(' ').replace('{name}', 'Sriram');
+  for (const pw of a.words) {
+    if (!pw || !new RegExp('\\b' + pw.w + '\\b', 'i').test(text)) drillBad.push(`  AFFIRM ${g}: "${pw ? pw.w : '?'}" is not in the lines`);
+  }
+}
+if (drillBad.length) { console.warn('WARNING: drill words out of sync with their passages:'); drillBad.forEach(l => console.warn(l)); }
+else console.log('every drill word appears in its own passage');
+
 /* the analysing screen reserves two rendered lines so its copy sits on a fixed
    axis; past ~46 characters a line wraps to three and the layout shifts. */
 const ANA_BUDGET = 46;
@@ -263,6 +285,33 @@ if (longCtx.length) {
   longCtx.forEach(l => console.warn(l));
 } else {
   console.log('practice contexts all within the two-line budget');
+}
+
+/* docs/PRACTICE.md: the speaking content as one readable table */
+{
+  const BT = String.fromCharCode(96);          // backtick, kept out of the template
+  const code = t => BT + t + BT;
+  let md = '# Speaking task content\n\n'
+    + 'Every scenario, question and model answer, one row per cohort. **This file\n'
+    + 'is generated** by ' + code('node tools/export-docs.js') + ' for reading and review.\n'
+    + 'To change the copy, edit [' + code('practice.js') + '](../practice.js) and rerun it.\n\n'
+    + '## The 12 cohorts\n\n';
+  for (const [k, v] of Object.entries(speak.PRACTICE)) {
+    const words = (speak.PRONWORDS[k] || []).map(x => x.w);
+    md += '### ' + code(k) + ' · ' + v.who + '\n\n'
+        + '> ' + v.ctx + '\n>\n> **"' + v.q + '"**\n\n'
+        + '| step | the learner says |\n|---|---|\n';
+    v.steps.forEach((st, i) => { md += '| ' + st + ' | ' + v.parts[i] + ' |\n'; });
+    md += '\nDrilled afterwards: **' + words.join('**, **') + '**\n\n';
+  }
+  md += '## Beginner affirmations (A1 and A2)\n\n'
+      + 'Read aloud instead of answering a question.\n\n'
+      + '| goal | what they read | drilled |\n|---|---|---|\n';
+  for (const [g, a] of Object.entries(speak.AFFIRM)) {
+    md += '| ' + code(g) + ' | ' + a.lines.join(' ') + ' | ' + a.words.map(x => x.w).join(', ') + ' |\n';
+  }
+  fs.writeFileSync(path.join(ROOT, 'docs', 'PRACTICE.md'), md);
+  console.log('wrote docs/PRACTICE.md            ' + Object.keys(speak.PRACTICE).length + ' cohorts');
 }
 
 console.log('wrote docs/data/branching.json  ' + pairList.length + ' pairs, ' + occupations.length + ' occupations');
