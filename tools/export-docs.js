@@ -274,19 +274,6 @@ if (longAna.length) {
   console.log('analysing lines all within the two-line budget');
 }
 
-/* the reading state gives the scenario two lines; anything longer spills and
-   pushes the passage down. Measured budget at that width is ~100 characters. */
-const CTX_BUDGET = 100;
-const longCtx = Object.entries(C.PRACTICE)
-  .filter(([, v]) => v.ctx.length > CTX_BUDGET)
-  .map(([k, v]) => `  ${k}: ${v.ctx.length} chars`);
-if (longCtx.length) {
-  console.warn('WARNING: practice context over ' + CTX_BUDGET + ' chars, will wrap past two lines:');
-  longCtx.forEach(l => console.warn(l));
-} else {
-  console.log('practice contexts all within the two-line budget');
-}
-
 /* docs/PRACTICE.md: the speaking content as one readable table */
 {
   const BT = String.fromCharCode(96);          // backtick, kept out of the template
@@ -299,7 +286,7 @@ if (longCtx.length) {
   for (const [k, v] of Object.entries(speak.PRACTICE)) {
     const words = (speak.PRONWORDS[k] || []).map(x => x.w);
     md += '### ' + code(k) + ' · ' + v.who + '\n\n'
-        + '> ' + v.ctx + '\n>\n> **"' + v.q + '"**\n\n'
+        + '> **"' + v.q + '"**\n\n'
         + '| step | the learner says |\n|---|---|\n';
     v.steps.forEach((st, i) => { md += '| ' + st + ' | ' + v.parts[i] + ' |\n'; });
     md += '\nDrilled afterwards: **' + words.join('**, **') + '**\n\n';

@@ -654,6 +654,10 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .micbtn svg{width:30px;height:30px;color:#fff;}
 .coach .av-img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;border:1.5px solid rgba(139,132,255,.5);}
 .say-ctx{display:block;font-size:13px;color:var(--text-mid);}
+.say-ctx[hidden]{display:none;}
+.say-es{display:block;margin-top:7px;font-size:14px;line-height:1.45;color:var(--indigo-300);}
+.say-es[hidden]{display:none;}
+.say-ctx[hidden] + .say-q{margin-top:0;}
 .say-q{display:block;margin-top:6px;font-family:var(--font-display);font-weight:600;font-size:17px;line-height:1.4;color:var(--text-hi);}
 .mic-row{position:relative;display:flex;align-items:center;justify-content:center;}
 .tip-bub{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--indigo-500);color:#fff;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:10px;box-shadow:0 6px 16px -6px rgba(108,99,255,.5);transition:opacity .3s var(--ease-out);}
@@ -673,6 +677,18 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 /* the bar carries the win too, not just the position */
 .scaf-progress.win i{background:linear-gradient(90deg,#2FBF8A,#5BE8B4);}
 .hs-view.alldone .scaf-progress i{background:var(--green);}
+/* translate and listen, offered at the foot of the reading card */
+#ahCard.readmode{position:relative;padding-bottom:66px;}
+.rd-tools{position:absolute;left:20px;bottom:16px;display:flex;gap:9px;}
+.rd-tool{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  color:var(--text-mid);transition:color .25s var(--ease-out),border-color .25s var(--ease-out),background .25s var(--ease-out);}
+.rd-tool svg{width:18px;height:18px;}
+.rd-tool:active{transform:scale(.94);}
+.rd-tool.on{color:var(--indigo-300);border-color:rgba(139,132,255,.5);background:rgba(108,99,255,.14);}
+.ah-es{display:none;margin:14px 0 0;padding-top:13px;border-top:1px solid rgba(255,255,255,.10);
+  font-size:15px;line-height:1.75;color:var(--indigo-300);}
+.scaf-card.showes .ah-es{display:block;}
 /* reading state: scenario then question, both plain, neither competing with the
    passage the learner is actually meant to read */
 #acthint.reading .ah-ctx{margin-top:12px;font-size:14px;line-height:1.55;}
@@ -682,6 +698,8 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .ah-ctx[hidden]{display:none;}
 #acthint .ah-ctx + .fq{margin-top:5px!important;}
 .scaf-card{margin-top:14px;width:100%;border-radius:18px;padding:4px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;}
+.seg-es{display:none;font-style:normal;margin-top:5px;font-size:13.5px;line-height:1.45;color:var(--indigo-300);}
+.seg.cur .seg-es{display:block;}
 .scaf-card .seg{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07);transition:opacity .3s var(--ease-out);}
 .scaf-card .seg:last-child{border-bottom:none;}
 .scaf-card .seg .st{display:block;background:none;border:none;padding:0;border-radius:0;font-family:var(--font-display);font-weight:600;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-low);margin:0 0 3px;transition:color .3s var(--ease-out);}
@@ -1740,7 +1758,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
   <section class="screen fs" id="act">
     <span class="eyebrow" style="margin-top:26px">Your first practice</span>
     <div class="coach"><img class="av-img" src="images/sarah_av.webp" alt="Sarah"><div><div class="cn">Sarah</div><div class="cr">your speaking coach</div></div></div>
-    <div class="saybub"><span class="say-ctx" id="actCtx"></span><span class="say-q" id="actQ" data-en></span></div>
+    <div class="saybub"><span class="say-ctx" id="actCtx"></span><span class="say-q" id="actQ" data-en></span><span class="say-es" id="actEs" hidden></span></div>
     <div id="actMode"></div>
     <div class="fcta" style="align-items:center">
       <div class="mic-row" id="micRow">
@@ -2651,7 +2669,10 @@ function renderPhaseB(id){
   const name=answers.name||'friend';
   const iel=answers.qgoal==='ielts';
   if(id==='act'){
-    document.getElementById('actCtx').textContent=practiceCtx();
+    const actCtx=document.getElementById('actCtx');
+    actCtx.textContent=practiceCtx(); actCtx.hidden=!practiceCtx();
+    const actEs=document.getElementById('actEs'), pes=practiceES();
+    actEs.textContent=pes?pes.q:''; actEs.hidden=!pes;
     document.getElementById('actQ').textContent='\u201C'+practiceQ()+'\u201D';
     /* beginners never land here: qsummary sends read mode straight to `acthint`,
        so the old inline "Read this aloud" card only ever showed via the dev rail */
@@ -2801,7 +2822,8 @@ let recPaused=false,waveInt;
 function startListen(){
   const fam=FAMILIES[answers.fam]||FAMILIES.smalltalk;
   const ind=INDUSTRIES[occKey()]||INDUSTRIES.other;
-  document.getElementById('lisCtx').textContent=practiceCtx();
+  const lisCtx=document.getElementById('lisCtx');
+  lisCtx.textContent=practiceCtx(); lisCtx.hidden=!practiceCtx();
   document.getElementById('lisQ').textContent='\u201C'+practiceQ()+'\u201D';
   recSec=0;recPaused=false;
   document.getElementById('recTimer').textContent='0:00';
@@ -3184,7 +3206,20 @@ function pronSet(){
   if(isBeginner()) return affirmSet().words;
   return PRONWORDS[practiceKey()]||PRONWORDS['career|other'];
 }
-function practiceCtx(){ return practiceSet().ctx; }
+function practiceCtx(){ return practiceSet().ctx||''; }   /* no scenario line any more */
+/* the Spanish twin of whatever they are being asked to say. Shown to a Spanish
+   speaker whether or not they switched the app over: the guide is there to help
+   them understand the English, and their native language is what decides that.
+   Reachable in review with ?lang=Spanish, or the dev rail's language chip. */
+function esGuide(){ return answers.q6==='es' || answers.q5==='Spanish'; }
+function practiceES(){ return esGuide() ? (practiceSet().es||null) : null; }
+function affirmES(){
+  if(!esGuide())return null;
+  const a=affirmSet(); if(!a.es)return null;
+  const n=answers.name||'friend';
+  return a.es.map(l=>l.split('{name}').join(n));
+}
+function readingES(){ return isBeginner() ? affirmES() : (practiceES()||{}).parts||null; }
 function practiceQ(){ return practiceSet().q; }
 function practiceMode(){
   return (LEVELS.find(l=>l.id===answers.qlevel)||{}).mode||answers.mode||'hint';
@@ -3393,7 +3428,10 @@ document.getElementById('hsGo').addEventListener('click',()=>go('loader'));
 let actHintT,ahIdx=0,ahPhase='explain',ahReadT,ahFromBulb=false;
 function enterActHint(){
   const sc=practiceSet();
-  document.getElementById('ahCard').innerHTML=sc.parts.map((pt,i)=>`<div class="seg"><span class="st">${sc.steps[i]}</span><p>${pt}</p></div>`).join('');
+  const ses=practiceES();
+  document.getElementById('ahCard').innerHTML=sc.parts.map((pt,i)=>
+    `<div class="seg"><span class="st">${ses?ses.steps[i]:sc.steps[i]}</span><p>${pt}</p>`+
+    (ses?`<em class="seg-es">${ses.parts[i]}</em>`:'')+`</div>`).join('');
   document.getElementById('ahCard').classList.remove('readmode');
   document.getElementById('ahCard').style.minHeight='';
   document.getElementById('acthint').classList.remove('done');
@@ -3443,16 +3481,29 @@ function ahEnterRead(){
       document.getElementById('ahEye').textContent='Try reading this';
       /* arriving from the bulb means the scenario was on screen a moment ago, so
          it is repetition; arriving directly, this is the first time they see it */
-      cx.textContent=practiceCtx(); cx.hidden=ahFromBulb;
+      cx.textContent=practiceCtx(); cx.hidden=ahFromBulb||!practiceCtx();
       ttl.textContent='\u201C'+practiceQ()+'\u201D';
     }
-    card.innerHTML='<p class="ah-para" id="ahPara">'+readingParts().join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>';
+    const res=readingES();
+    /* the tools live inside the card, so they are rebuilt with it */
+    card.innerHTML='<p class="ah-para" id="ahPara">'+readingParts().join(' ').split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')+'</p>'
+      +(res?'<p class="ah-es">'+res.join(' ')+'</p>':'')
+      +(res?'<div class="rd-tools"><button class="rd-tool" id="rdTr" aria-label="Translate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 5v1.5c0 3-2 5.6-4.5 6.5"/><path d="M6 9.5c1 2.2 3 4 5.5 4.7"/><path d="m12.5 20 4-9 4 9M14 17.4h5"/></svg></button> <button class="rd-tool" id="rdSp" aria-label="Listen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path d="M15.6 8.8a4.4 4.4 0 0 1 0 6.4"/><path d="M18.3 6.1a8 8 0 0 1 0 11.8"/></svg></button></div>':'');
+    card.classList.remove('showes');
     card.classList.add('readmode');
     document.getElementById('ahNext').hidden=true;
     document.getElementById('ahMicRow').hidden=false;
     document.getElementById('ahFill').style.width='50%';
   }
 }
+/* delegated, because the tools are rebuilt whenever the card is */
+document.getElementById('ahCard').addEventListener('click',e=>{
+  const tr=e.target.closest('#rdTr'), sp=e.target.closest('#rdSp');
+  const card=document.getElementById('ahCard');
+  if(tr){ const on=card.classList.toggle('showes'); tr.classList.toggle('on',on); }
+  /* the speaker is the affordance only; playback is not wired in the prototype */
+  if(sp){ sp.classList.add('on'); setTimeout(()=>sp.classList.remove('on'),1200); }
+});
 let ahPaused=false,ahWaveT;
 function ahFinishRead(){
   clearInterval(ahReadT);clearInterval(ahWaveT);

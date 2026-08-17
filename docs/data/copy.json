@@ -1286,24 +1286,37 @@
   "practice": {
     "career|office": {
       "who": "Working professional",
-      "ctx": "Your team is mid-discussion and your manager turns to you.",
-      "q": "Can you give us a quick update?",
+      "q": "How are things going at work?",
       "steps": [
-        "Say where it is",
+        "Say how it is going",
         "Give one detail",
-        "Say what is left",
-        "Say the next step"
+        "Say what is next",
+        "Close it"
       ],
       "parts": [
-        "The work is going well.",
-        "Three of the five screens are done.",
-        "We are still waiting on the last two.",
-        "I will finish them this week."
-      ]
+        "Things are going well at work.",
+        "I am busy, but I like my team.",
+        "We finish a big project this week.",
+        "After that it should be calmer."
+      ],
+      "es": {
+        "q": "¿Cómo te va en el trabajo?",
+        "steps": [
+          "Di cómo va",
+          "Da un detalle",
+          "Di qué sigue",
+          "Ciérralo"
+        ],
+        "parts": [
+          "En el trabajo todo va bien.",
+          "Estoy ocupado, pero me gusta mi equipo.",
+          "Terminamos un proyecto grande esta semana.",
+          "Después de eso será más tranquilo."
+        ]
+      }
     },
     "career|ownboss": {
       "who": "Freelancer or business owner",
-      "ctx": "A client likes your work, and now they ask about money.",
       "q": "So what do you charge for this?",
       "steps": [
         "Say the price",
@@ -1316,11 +1329,25 @@
         "That covers the work and two changes.",
         "It takes me about three weeks.",
         "I think that is a fair price."
-      ]
+      ],
+      "es": {
+        "q": "¿Y cuánto cobras por esto?",
+        "steps": [
+          "Di el precio",
+          "Di qué incluye",
+          "Da la razón",
+          "Mantén tu precio"
+        ],
+        "parts": [
+          "Mi precio por esto es dos mil.",
+          "Eso incluye el trabajo y dos cambios.",
+          "Me toma unas tres semanas.",
+          "Creo que es un precio justo."
+        ]
+      }
     },
     "career|jobhunt": {
       "who": "Looking for a job",
-      "ctx": "You are in the final interview for a job you want.",
       "q": "So, why should we hire you?",
       "steps": [
         "Answer it directly",
@@ -1333,12 +1360,26 @@
         "I stay calm when things get busy.",
         "Last month I ran our busiest week.",
         "I know I can do the same here."
-      ]
+      ],
+      "es": {
+        "q": "¿Por qué deberíamos contratarte?",
+        "steps": [
+          "Responde directo",
+          "Da tu razón",
+          "Da un ejemplo",
+          "Ciérralo"
+        ],
+        "parts": [
+          "Encajo bien en este puesto.",
+          "Me mantengo tranquilo cuando hay mucho trabajo.",
+          "El mes pasado dirigí nuestra semana más ocupada.",
+          "Sé que puedo hacer lo mismo aquí."
+        ]
+      }
     },
     "career|careerbreak": {
       "who": "On a career break",
-      "ctx": "The interviewer stops at the gap on your CV.",
-      "q": "What were you doing during this time?",
+      "q": "What were you doing during the career break?",
       "steps": [
         "Name it plainly",
         "Say what you did",
@@ -1350,28 +1391,56 @@
         "I kept doing small projects in that time.",
         "I also finished a short course.",
         "I am ready to work full time now."
-      ]
+      ],
+      "es": {
+        "q": "¿Qué hiciste durante tu pausa laboral?",
+        "steps": [
+          "Dilo claramente",
+          "Di qué hiciste",
+          "Muestra que seguiste",
+          "Vuelve al presente"
+        ],
+        "parts": [
+          "Tomé dos años libres por mi familia.",
+          "Seguí haciendo proyectos pequeños en ese tiempo.",
+          "También terminé un curso corto.",
+          "Ahora estoy listo para trabajar tiempo completo."
+        ]
+      }
     },
     "career|athome": {
       "who": "At home full time",
-      "ctx": "You are applying for your first job in years.",
-      "q": "You have not worked for a while. Why now?",
+      "q": "What were you doing during the career break?",
       "steps": [
-        "Answer it directly",
-        "Say what changed",
-        "Say what you bring",
-        "Say what you want"
+        "Name it plainly",
+        "Say what you did",
+        "Show you kept going",
+        "Bring it back"
       ],
       "parts": [
-        "My youngest started school this year.",
-        "So now I have time to work.",
-        "I have run a home and a budget.",
-        "I want to use those skills at work."
-      ]
+        "I took two years off for my family.",
+        "I kept doing small projects in that time.",
+        "I also finished a short course.",
+        "I am ready to work full time now."
+      ],
+      "es": {
+        "q": "¿Qué hiciste durante tu pausa laboral?",
+        "steps": [
+          "Dilo claramente",
+          "Di qué hiciste",
+          "Muestra que seguiste",
+          "Vuelve al presente"
+        ],
+        "parts": [
+          "Tomé dos años libres por mi familia.",
+          "Seguí haciendo proyectos pequeños en ese tiempo.",
+          "También terminé un curso corto.",
+          "Ahora estoy listo para trabajar tiempo completo."
+        ]
+      }
     },
     "career|student": {
       "who": "Student",
-      "ctx": "You are interviewing for your first internship.",
       "q": "You have no work experience. Why take you?",
       "steps": [
         "Answer it directly",
@@ -1384,11 +1453,25 @@
         "I ran the events for our student group.",
         "We doubled the numbers in one year.",
         "I would bring the same energy here."
-      ]
+      ],
+      "es": {
+        "q": "No tienes experiencia laboral. ¿Por qué tú?",
+        "steps": [
+          "Responde directo",
+          "Da tu razón",
+          "Da un ejemplo",
+          "Ciérralo"
+        ],
+        "parts": [
+          "Aprendo rápido y termino mi trabajo.",
+          "Organicé los eventos de nuestro grupo estudiantil.",
+          "Duplicamos los números en un año.",
+          "Traería la misma energía aquí."
+        ]
+      }
     },
     "career|other": {
       "who": "Something else",
-      "ctx": "You are interviewing for a job you want.",
       "q": "Tell me about yourself.",
       "steps": [
         "Start with now",
@@ -1401,62 +1484,118 @@
         "I am good at staying calm with people.",
         "Last year I handled our busiest month.",
         "I want to do more of that."
-      ]
+      ],
+      "es": {
+        "q": "Háblame de ti.",
+        "steps": [
+          "Empieza con el ahora",
+          "Di una fortaleza",
+          "Da un ejemplo",
+          "Di qué quieres"
+        ],
+        "parts": [
+          "Ahora trabajo en atención al cliente.",
+          "Se me da bien mantener la calma con la gente.",
+          "El año pasado manejé nuestro mes más ocupado.",
+          "Quiero hacer más de eso."
+        ]
+      }
     },
     "convo": {
       "who": "Improve social conversations",
-      "ctx": "You meet an old friend at a cafe after a long time. They ask:",
       "q": "So what are you doing these days?",
       "steps": [
-        "Say what you do",
+        "Answer it",
         "Add one detail",
         "Say what is new",
         "Ask them back"
       ],
       "parts": [
-        "I am still at the same company.",
-        "I work with customers now, and I like it.",
-        "I also started running in the mornings.",
-        "What about you? What is new?"
-      ]
+        "I am good. Still at the same job.",
+        "I work with people every day.",
+        "I started running in the mornings.",
+        "What about you?"
+      ],
+      "es": {
+        "q": "¿Y qué haces estos días?",
+        "steps": [
+          "Respóndelo",
+          "Añade un detalle",
+          "Di qué hay de nuevo",
+          "Pregunta tú también"
+        ],
+        "parts": [
+          "Estoy bien. Sigo en el mismo trabajo.",
+          "Trabajo con gente todos los días.",
+          "Empecé a correr por las mañanas.",
+          "¿Y tú?"
+        ]
+      }
     },
     "travel": {
       "who": "Travel",
-      "ctx": "There is no hot water in your hotel room. At the desk, they ask:",
-      "q": "What is the problem?",
+      "q": "What is your dream travel destination?",
       "steps": [
-        "Say the problem",
-        "Say what you tried",
-        "Say what you need",
-        "Say thank you"
+        "Name the place",
+        "Say why",
+        "Give one detail",
+        "Say when"
       ],
       "parts": [
-        "There is no hot water in my room.",
-        "I tried the shower and it stayed cold.",
-        "Can someone come and fix it today?",
-        "Thank you for your help."
-      ]
+        "My dream place is Japan.",
+        "I want to see the old temples.",
+        "I would also like to try the food.",
+        "I hope to go there next year."
+      ],
+      "es": {
+        "q": "¿Cuál es tu destino de viaje soñado?",
+        "steps": [
+          "Di el lugar",
+          "Di por qué",
+          "Da un detalle",
+          "Di cuándo"
+        ],
+        "parts": [
+          "Mi lugar soñado es Japón.",
+          "Quiero ver los templos antiguos.",
+          "También me gustaría probar la comida.",
+          "Espero ir el año que viene."
+        ]
+      }
     },
     "school": {
       "who": "Excel at school",
-      "ctx": "Your class is debating phones in lessons. The teacher asks:",
-      "q": "What do you think, and why?",
+      "q": "What is your favorite hobby?",
       "steps": [
-        "Say your view",
-        "Give your reason",
-        "Give an example",
-        "Close it"
+        "Name it",
+        "Say how often",
+        "Give one detail",
+        "Say why you like it"
       ],
       "parts": [
-        "I think phones should stay in our bags.",
-        "It is hard to listen with a screen on.",
-        "Last week nobody finished our group work.",
-        "So I would allow them at break."
-      ]
+        "My favorite hobby is painting.",
+        "I paint almost every weekend.",
+        "I like to paint people and places.",
+        "It helps me relax after school."
+      ],
+      "es": {
+        "q": "¿Cuál es tu pasatiempo favorito?",
+        "steps": [
+          "Dilo",
+          "Di con qué frecuencia",
+          "Da un detalle",
+          "Di por qué te gusta"
+        ],
+        "parts": [
+          "Mi pasatiempo favorito es pintar.",
+          "Pinto casi todos los fines de semana.",
+          "Me gusta pintar personas y lugares.",
+          "Me ayuda a relajarme después de clase."
+        ]
+      }
     },
     "ielts": {
       "who": "IELTS",
-      "ctx": "IELTS Speaking, Part 2. You have one minute to talk.",
       "q": "Describe a place you enjoy visiting.",
       "steps": [
         "Name it",
@@ -1469,11 +1608,25 @@
         "It is about thirty minutes away.",
         "It is quiet and you can hear the water.",
         "I always leave feeling calm."
-      ]
+      ],
+      "es": {
+        "q": "Describe un lugar que te gusta visitar.",
+        "steps": [
+          "Dilo",
+          "Di dónde está",
+          "Da un detalle",
+          "Di por qué te gusta"
+        ],
+        "parts": [
+          "Hay una playa pequeña cerca de mi casa.",
+          "Está a unos treinta minutos.",
+          "Es tranquila y se oye el agua.",
+          "Siempre me voy sintiéndome en calma."
+        ]
+      }
     },
     "other": {
       "who": "Any other goal",
-      "ctx": "You are meeting someone new who could open a door for you. They ask:",
       "q": "Tell me a little about yourself.",
       "steps": [
         "Start with now",
@@ -1484,9 +1637,24 @@
       "parts": [
         "Right now I work and study English.",
         "I am good at sticking with things.",
-        "I have practised every day this month.",
+        "I have practiced every day this month.",
         "I want to use English without thinking."
-      ]
+      ],
+      "es": {
+        "q": "Háblame un poco de ti.",
+        "steps": [
+          "Empieza con el ahora",
+          "Di una fortaleza",
+          "Da un ejemplo",
+          "Di qué quieres"
+        ],
+        "parts": [
+          "Ahora trabajo y estudio inglés.",
+          "Se me da bien ser constante.",
+          "He practicado todos los días este mes.",
+          "Quiero usar el inglés sin pensarlo."
+        ]
+      }
     }
   },
   "score": {

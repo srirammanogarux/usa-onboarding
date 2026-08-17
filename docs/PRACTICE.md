@@ -8,23 +8,19 @@ To change the copy, edit [`practice.js`](../practice.js) and rerun it.
 
 ### `career|office` · Working professional
 
-> Your team is mid-discussion and your manager turns to you.
->
-> **"Can you give us a quick update?"**
+> **"How are things going at work?"**
 
 | step | the learner says |
 |---|---|
-| Say where it is | The work is going well. |
-| Give one detail | Three of the five screens are done. |
-| Say what is left | We are still waiting on the last two. |
-| Say the next step | I will finish them this week. |
+| Say how it is going | Things are going well at work. |
+| Give one detail | I am busy, but I like my team. |
+| Say what is next | We finish a big project this week. |
+| Close it | After that it should be calmer. |
 
-Drilled afterwards: **waiting**, **finish**
+Drilled afterwards: **project**, **finish**
 
 ### `career|ownboss` · Freelancer or business owner
 
-> A client likes your work, and now they ask about money.
->
 > **"So what do you charge for this?"**
 
 | step | the learner says |
@@ -38,8 +34,6 @@ Drilled afterwards: **thousand**, **covers**
 
 ### `career|jobhunt` · Looking for a job
 
-> You are in the final interview for a job you want.
->
 > **"So, why should we hire you?"**
 
 | step | the learner says |
@@ -53,9 +47,7 @@ Drilled afterwards: **position**, **busiest**
 
 ### `career|careerbreak` · On a career break
 
-> The interviewer stops at the gap on your CV.
->
-> **"What were you doing during this time?"**
+> **"What were you doing during the career break?"**
 
 | step | the learner says |
 |---|---|
@@ -68,23 +60,19 @@ Drilled afterwards: **family**, **projects**
 
 ### `career|athome` · At home full time
 
-> You are applying for your first job in years.
->
-> **"You have not worked for a while. Why now?"**
+> **"What were you doing during the career break?"**
 
 | step | the learner says |
 |---|---|
-| Answer it directly | My youngest started school this year. |
-| Say what changed | So now I have time to work. |
-| Say what you bring | I have run a home and a budget. |
-| Say what you want | I want to use those skills at work. |
+| Name it plainly | I took two years off for my family. |
+| Say what you did | I kept doing small projects in that time. |
+| Show you kept going | I also finished a short course. |
+| Bring it back | I am ready to work full time now. |
 
-Drilled afterwards: **youngest**, **budget**
+Drilled afterwards: **family**, **projects**
 
 ### `career|student` · Student
 
-> You are interviewing for your first internship.
->
 > **"You have no work experience. Why take you?"**
 
 | step | the learner says |
@@ -98,8 +86,6 @@ Drilled afterwards: **student**, **energy**
 
 ### `career|other` · Something else
 
-> You are interviewing for a job you want.
->
 > **"Tell me about yourself."**
 
 | step | the learner says |
@@ -113,53 +99,45 @@ Drilled afterwards: **customer**, **busiest**
 
 ### `convo` · Improve social conversations
 
-> You meet an old friend at a cafe after a long time. They ask:
->
 > **"So what are you doing these days?"**
 
 | step | the learner says |
 |---|---|
-| Say what you do | I am still at the same company. |
-| Add one detail | I work with customers now, and I like it. |
-| Say what is new | I also started running in the mornings. |
-| Ask them back | What about you? What is new? |
+| Answer it | I am good. Still at the same job. |
+| Add one detail | I work with people every day. |
+| Say what is new | I started running in the mornings. |
+| Ask them back | What about you? |
 
-Drilled afterwards: **company**, **mornings**
+Drilled afterwards: **people**, **mornings**
 
 ### `travel` · Travel
 
-> There is no hot water in your hotel room. At the desk, they ask:
->
-> **"What is the problem?"**
+> **"What is your dream travel destination?"**
 
 | step | the learner says |
 |---|---|
-| Say the problem | There is no hot water in my room. |
-| Say what you tried | I tried the shower and it stayed cold. |
-| Say what you need | Can someone come and fix it today? |
-| Say thank you | Thank you for your help. |
+| Name the place | My dream place is Japan. |
+| Say why | I want to see the old temples. |
+| Give one detail | I would also like to try the food. |
+| Say when | I hope to go there next year. |
 
-Drilled afterwards: **water**, **shower**
+Drilled afterwards: **Japan**, **temples**
 
 ### `school` · Excel at school
 
-> Your class is debating phones in lessons. The teacher asks:
->
-> **"What do you think, and why?"**
+> **"What is your favorite hobby?"**
 
 | step | the learner says |
 |---|---|
-| Say your view | I think phones should stay in our bags. |
-| Give your reason | It is hard to listen with a screen on. |
-| Give an example | Last week nobody finished our group work. |
-| Close it | So I would allow them at break. |
+| Name it | My favorite hobby is painting. |
+| Say how often | I paint almost every weekend. |
+| Give one detail | I like to paint people and places. |
+| Say why you like it | It helps me relax after school. |
 
-Drilled afterwards: **listen**, **allow**
+Drilled afterwards: **favorite**, **relax**
 
 ### `ielts` · IELTS
 
-> IELTS Speaking, Part 2. You have one minute to talk.
->
 > **"Describe a place you enjoy visiting."**
 
 | step | the learner says |
@@ -173,18 +151,16 @@ Drilled afterwards: **thirty**, **minutes**
 
 ### `other` · Any other goal
 
-> You are meeting someone new who could open a door for you. They ask:
->
 > **"Tell me a little about yourself."**
 
 | step | the learner says |
 |---|---|
 | Start with now | Right now I work and study English. |
 | Say one strength | I am good at sticking with things. |
-| Give an example | I have practised every day this month. |
+| Give an example | I have practiced every day this month. |
 | Say what you want | I want to use English without thinking. |
 
-Drilled afterwards: **practised**, **English**
+Drilled afterwards: **practiced**, **English**
 
 ## Beginner affirmations (A1 and A2)
 
