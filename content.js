@@ -1508,6 +1508,8 @@ const ANALYSING = [
 ];
 
 const ES = {
+  'Two words from your reading need work.':'Dos palabras de tu lectura necesitan trabajo.',
+  'Two words from your answer need work.':'Dos palabras de tu respuesta necesitan trabajo.',
   'You spoke your very first sentence in English.':'Dijiste tu primera frase en inglés.',
   'Analysing your speech.':'Analizando tu manera de hablar.',
   'Evaluating your grammar.':'Revisando tu gramática.',

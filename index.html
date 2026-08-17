@@ -668,8 +668,11 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .hint-tip{position:absolute;bottom:calc(100% + 22px);right:-8px;white-space:nowrap;background:var(--indigo-500);color:#fff;font-size:12px;font-weight:600;padding:6px 11px;border-radius:9px;box-shadow:0 6px 16px -6px rgba(108,99,255,.5);}
 .hint-tip::after{content:"";position:absolute;top:100%;right:26px;transform:translateY(-4px) rotate(45deg);width:8px;height:8px;background:var(--indigo-500);}
 /* hint scaffold */
-.scaf-progress{width:100%;height:5px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:16px;overflow:hidden;}
-.scaf-progress i{display:block;height:100%;width:6%;background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));border-radius:inherit;transition:width .45s var(--ease-out);}
+.scaf-progress{width:100%;height:12px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:14px;overflow:hidden;}
+.scaf-progress i{display:block;height:100%;width:6%;background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));border-radius:inherit;transition:width .45s var(--ease-out),background .3s var(--ease-out);}
+/* the bar carries the win too, not just the position */
+.scaf-progress.win i{background:linear-gradient(90deg,#2FBF8A,#5BE8B4);}
+.hs-view.alldone .scaf-progress i{background:var(--green);}
 /* reading state: scenario then question, both plain, neither competing with the
    passage the learner is actually meant to read */
 #acthint.reading .ah-ctx{margin-top:12px;font-size:14px;line-height:1.55;}
@@ -737,14 +740,12 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 #hintscore .gold .hs-bub{background:var(--gold-600);}
 #hintscore .gold .hs-bub::after{border-left-color:var(--gold-600);}
 #hintscore .gold .fq em{color:var(--gold-300);}
-.hs-passage{margin-top:20px;border-radius:26px;padding:32px 26px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 0 70px rgba(108,99,255,.13),inset 0 1px 0 rgba(255,255,255,.06);}
+.hs-passage{margin-top:auto;margin-bottom:auto;border-radius:26px;padding:36px 26px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);box-shadow:inset 0 0 70px rgba(108,99,255,.13),inset 0 1px 0 rgba(255,255,255,.06);}
 .hs-passage .ah-para{font-size:17px;line-height:2;text-align:left;color:var(--text-mid);}
-#hsErrorsView .hs-passage{margin-top:auto;margin-bottom:auto;min-height:286px;display:flex;flex-direction:column;justify-content:center;}
+#hsErrorsView .hs-passage{margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;justify-content:center;}
 #hsPracPassage{margin-bottom:0;}
 .hs-passage .hlw.ok{color:var(--green);background:rgba(67,214,160,.15);}
 .hs-passage .hlw.idle{color:var(--text-low);background:rgba(255,255,255,.05);}
-.pron-card{margin-bottom:6px;}
-.hs-passage .ah-para{font-size:16px;line-height:1.7;}
 .hs-passage .hlw{font-style:normal;font-weight:700;color:var(--gold-300);background:rgba(240,163,47,.13);border-radius:9px;padding:2px 8px;transition:color .5s,background .5s;}
 .hs-state{margin-top:26px;margin-bottom:10px;text-align:left;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--indigo-300);transition:color .4s;}
 .hs-state.ok{color:var(--green);}
@@ -756,15 +757,15 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .pc-top{display:flex;justify-content:space-between;align-items:flex-start;}
 .pc-word{font-family:var(--font-display);font-weight:700;font-size:32px;letter-spacing:-.01em;color:var(--text-hi);}
 .pc-word i{font-style:normal;color:var(--gold-300);}
-.pc-ph{margin-top:4px;font-size:13px;color:var(--text-mid);}
+.pc-ph{margin-top:4px;font-size:13px;color:var(--text-low);}
 .pc-play{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);border-radius:999px;padding:5px 11px 5px 5px;color:var(--indigo-300);}
 .pc-play img{width:26px;height:26px;border-radius:50%;object-fit:cover;}
 .pc-play svg{width:16px;height:16px;}
 .pc-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:24px;gap:12px;}
 .pc-score b{display:block;font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--gold-300);transition:color .4s;}
-.pc-score span{display:block;margin-top:2px;font-size:11.5px;color:var(--text-mid);}
+.pc-score span{display:block;margin-top:2px;font-size:11.5px;color:var(--text-low);}
 .pc-right{flex:1;display:flex;flex-direction:column;align-items:stretch;gap:9px;}
-.pc-tip{text-align:center;font-size:12.5px;color:var(--text-mid);}
+.pc-tip{text-align:center;font-size:12.5px;color:var(--text-low);}
 .pc-tip b{color:var(--text-hi);}
 .pc-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:999px;font-family:var(--font-display);font-weight:600;font-size:14.5px;background:linear-gradient(180deg,#8B84FF,#6C63FF);color:#fff;transition:background .3s,color .3s,border-color .3s;border:1.5px solid transparent;}
 .pc-btn svg{width:17px;height:17px;}
@@ -772,7 +773,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .pc-btn.done{background:rgba(67,214,160,.14);border-color:rgba(67,214,160,.55);color:var(--green);animation:none;}
 @keyframes pcPulse{50%{box-shadow:0 0 0 8px rgba(67,214,160,.10)}}
 .pron-card.done{border-color:rgba(67,214,160,.6);box-shadow:inset 0 0 40px rgba(67,214,160,.12);}
-.pron-card.done .pc-word,.pron-card.done .pc-word i{color:var(--green);}
+.pron-card.done .pc-word i{color:var(--green);}
 .pron-card.done .pc-score b{color:var(--green);}
 .pc-burst{position:absolute;inset:-3px;border-radius:25px;border:2px solid rgba(67,214,160,.7);opacity:0;pointer-events:none;}
 .pron-card.done .pc-burst{animation:pcBurst .9s var(--ease-out) forwards;}
@@ -1801,7 +1802,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
     </div>
     <div class="hs-view" id="hsErrorsView" hidden>
       <h2 class="fq" style="margin-top:40px">First, let's fix your<br><em>pronunciation</em>.</h2>
-      <p class="fsub">Two words from your answer need work.</p>
+      <p class="fsub" id="hsFixSub">Two words from your answer need work.</p>
       <div class="scaf-card readmode hs-passage" id="hsPassage" data-en></div>
       <div class="fcta"><button class="btn" id="hsFix">Let's correct them</button></div>
     </div>
@@ -3228,6 +3229,8 @@ function enterHintScore(){
     track.innerHTML=t;labels.innerHTML=l;
   }
   ['hsMeterView','hsErrorsView','hsPracticeView','hsDoneView'].forEach((v,i)=>document.getElementById(v).hidden=i>0);
+  document.getElementById('hsPracticeView').classList.remove('alldone');
+  document.getElementById('hsFill').parentElement.classList.remove('win');
   const view=document.getElementById('hsMeterView');
   view.classList.remove('gold');
   document.getElementById('hsSay').textContent=isAdvancedLearner()
@@ -3235,6 +3238,9 @@ function enterHintScore(){
     : isBeginner()
       ? 'I listened to how you said it. Here is where you are starting from.'
       : 'You used the hint, so I scored your speech on pronunciation first. Here is where you stand.';
+  document.getElementById('hsFixSub').textContent=isBeginner()
+    ? 'Two words from your reading need work.'
+    : 'Two words from your answer need work.';
   document.getElementById('hsHead').innerHTML='Your<br>speech<br>level';
   document.getElementById('hsNext1').style.visibility='hidden';
   document.querySelectorAll('#hsLabels span').forEach(sp=>sp.classList.remove('tgt'));
@@ -3264,7 +3270,11 @@ function enterHintScore(){
 }
 function hsPassageHTML(){
   const words=pronSet();
-  let text=readingParts().join(' ');
+  /* show only the sentences carrying the drill words. The whole answer ran to
+     five lines and buried the two highlights; trimming keeps them findable. */
+  const all=readingParts().join(' ').split(/(?<=[.?!])\s+/).filter(Boolean);
+  const keep=all.filter(sn=>words.some(pw=>new RegExp('\\b'+pw.w+'\\b','i').test(sn)));
+  let text=(keep.length?keep:all).join(' ');
   words.forEach((pw,i)=>{text=text.replace(new RegExp('\\b'+pw.w+'\\b','i'),m=>`<b class="hlw" data-i="${i}">${m}</b>`);});
   return '<p class="ah-para">'+text+'</p>';
 }
@@ -3282,7 +3292,9 @@ document.getElementById('hsFix').addEventListener('click',()=>{
 function hsLoadWord(){
   const words=pronSet();
   const pw=words[hsWordIdx];
-  document.getElementById('hsFill').style.width=(hsWordIdx===0?8:50)+'%';
+  const fill=document.getElementById('hsFill');
+  fill.parentElement.classList.remove('win');
+  fill.style.width=(hsWordIdx===0?8:50)+'%';
   document.querySelectorAll('#hsPracPassage .hlw').forEach(el=>{
     const i=+el.dataset.i;
     el.classList.toggle('ok',i<hsWordIdx);
@@ -3325,7 +3337,9 @@ function hsWordDone(){
     document.getElementById('pcScore').textContent=Math.min(80,sc)+'%';
     if(sc>=80)clearInterval(hsScoreT);
   },40);
-  document.getElementById('hsFill').style.width=(hsWordIdx===0?50:100)+'%';
+  const fill=document.getElementById('hsFill');
+  fill.style.width=(hsWordIdx===0?50:100)+'%';
+  fill.parentElement.classList.add('win');
   const hl=document.querySelector(`#hsPracPassage .hlw[data-i="${hsWordIdx}"]`);
   if(hl)hl.classList.add('ok');
 
@@ -3340,6 +3354,9 @@ document.getElementById('pcSkip').addEventListener('click',()=>{
 });
 function hsShowDone(){
   const words=pronSet();
+  document.getElementById('hsPracticeView').classList.add('alldone');
+  document.getElementById('hsFill').style.width='100%';
+  document.querySelectorAll('#hsPracPassage .hlw').forEach(w=>w.classList.add('ok'));
   document.getElementById('hsPracticeView').hidden=true;
   document.getElementById('hsDoneSub').textContent=`You practiced \u201C${words[0].w}\u201D and \u201C${words[1].w}\u201D. Real progress already.`;
   document.getElementById('hsTraj').innerHTML=trajHTML('1',curLevelName(),'First step',goalLevelName());
