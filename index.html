@@ -668,7 +668,7 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 .hint-tip{position:absolute;bottom:calc(100% + 22px);right:-8px;white-space:nowrap;background:var(--indigo-500);color:#fff;font-size:12px;font-weight:600;padding:6px 11px;border-radius:9px;box-shadow:0 6px 16px -6px rgba(108,99,255,.5);}
 .hint-tip::after{content:"";position:absolute;top:100%;right:26px;transform:translateY(-4px) rotate(45deg);width:8px;height:8px;background:var(--indigo-500);}
 /* hint scaffold */
-.scaf-progress{width:100%;height:12px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:14px;overflow:hidden;}
+.scaf-progress{flex:none;width:100%;height:12px;border-radius:999px;background:rgba(255,255,255,.10);margin-top:14px;overflow:hidden;}
 .scaf-progress i{display:block;height:100%;width:6%;background:linear-gradient(90deg,var(--indigo-600),var(--indigo-300));border-radius:inherit;transition:width .45s var(--ease-out),background .3s var(--ease-out);}
 /* the bar carries the win too, not just the position */
 .scaf-progress.win i{background:linear-gradient(90deg,#2FBF8A,#5BE8B4);}
@@ -1003,6 +1003,28 @@ body{font-family:var(--font-body);background:#FFFFFF;color:var(--text-hi);displa
 @media (prefers-reduced-motion: reduce){
   .ana-s1,.ana-glow{animation:none;}
 }
+/* --- pronunciation practice, matched to the India build ---------------------
+   Scoped to the two views only: the level meter before it and the done screen
+   after it keep the flow's normal treatment. */
+#hintscore.pron-flat{background:linear-gradient(180deg,#0D0B14 0%,#0B0912 55%,#08070E 100%);}
+#hintscore.pron-flat .aurora{opacity:0;}
+/* the passage card holds one size whatever the passage length, with the text
+   centred inside it, so the two views never jump */
+#hintscore.pron-flat #hsPassage,
+#hintscore.pron-flat #hsPracPassage{
+  min-height:280px;flex:none;padding:36px 26px;border-radius:26px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:rgba(255,255,255,.043);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 0 70px rgba(255,255,255,.028),inset 0 1px 0 rgba(255,255,255,.06);}
+#hintscore.pron-flat .hs-passage .ah-para{
+  font-size:22px;line-height:2.1;color:var(--text-hi);}
+/* India's gold sits back against the flat ground; the brighter token would glare */
+#hintscore.pron-flat .hs-passage .hlw{color:#D9A24A;background:rgba(217,162,74,.13);}
+#hintscore.pron-flat .pc-word i,
+#hintscore.pron-flat .pc-score b{color:#D9A24A;}
+#hintscore.pron-flat .pron-card.done .pc-word i,
+#hintscore.pron-flat .pron-card.done .pc-score b{color:var(--green);}
 /* score report — an overall gauge, then one card per skill */
 #score .sc-body{justify-content:flex-start;gap:0;overflow-y:auto;scrollbar-width:none;padding-top:10px;}
 #score .sc-body::-webkit-scrollbar{display:none;}
@@ -3229,6 +3251,7 @@ function enterHintScore(){
     track.innerHTML=t;labels.innerHTML=l;
   }
   ['hsMeterView','hsErrorsView','hsPracticeView','hsDoneView'].forEach((v,i)=>document.getElementById(v).hidden=i>0);
+  document.getElementById('hintscore').classList.remove('pron-flat');
   document.getElementById('hsPracticeView').classList.remove('alldone');
   document.getElementById('hsFill').parentElement.classList.remove('win');
   const view=document.getElementById('hsMeterView');
@@ -3279,6 +3302,7 @@ function hsPassageHTML(){
   return '<p class="ah-para">'+text+'</p>';
 }
 document.getElementById('hsNext1').addEventListener('click',()=>{
+  document.getElementById('hintscore').classList.add('pron-flat');
   document.getElementById('hsMeterView').hidden=true;
   document.getElementById('hsPassage').innerHTML=hsPassageHTML();
   document.getElementById('hsErrorsView').hidden=false;
@@ -3354,6 +3378,7 @@ document.getElementById('pcSkip').addEventListener('click',()=>{
 });
 function hsShowDone(){
   const words=pronSet();
+  document.getElementById('hintscore').classList.remove('pron-flat');   /* the done screen is unchanged */
   document.getElementById('hsPracticeView').classList.add('alldone');
   document.getElementById('hsFill').style.width='100%';
   document.querySelectorAll('#hsPracPassage .hlw').forEach(w=>w.classList.add('ok'));
